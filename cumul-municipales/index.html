@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.dataTables.js"></script>
+<script src="data2.json" type="text/javascript"></script>
+<!-- <link href="css/mycss.css" rel="stylesheet" type="text/css">
+<link href="css/lemonde.css" rel="stylesheet" type="text/css"> -->
+</head>
+<body>
+
+
+<div id="tableauprix">
+</div>
+
+
+	<script type="text/javascript">
+
+	$(function() {
+
+  $('#tableauprix').html( '<table cellpadding="0" cellspacing="0" border="0" class="display" id="tableauprixsub"></table>' );
+$('#tableauprixsub').dataTable({
+  "aaData": cumulards, //tableau de données
+  "aoColumns": [ //Propriétés des colonnes
+    { "sTitle": "id", "sType":"numeric","bVisible": false,},
+    { "sTitle": "ville",},
+    { "sTitle": "sexe",},
+    { "sTitle": "prenom",},
+    { "sTitle": "nom",},
+    { "sTitle": "parti",},
+    { "sTitle": "mandat",},
+    { "sTitle": "mandatparl",},
+    { "sTitle": "Situation",},
+    { "sTitle": "Lien",},
+    { "sTitle": "Priorité",},
+    { "sTitle": "longitude", "bVisible": false,},
+    { "sTitle": "latitude","bVisible": false,}
+  ],
+  // "bSort": true, //tri sur la colonne 3
+  // "aaSorting": [[2,'desc']],
+  "sScrollY": "450px", //  hauteur et scroll infini
+  "bScrollInfinite": true,
+  "bScrollCollapse": false,
+  "oLanguage": { //traduction des boutons
+    "sZeroRecords": "Pas de données disponibles avec cette recherche",
+    "sLengthMenu": "_MENU_ entrées affichées",
+    "sInfo": "Résultats _START_ à _END_ (sur _TOTAL_)",
+    "sSearch": "Recherchez un prix, un auteur, un roman et/ou une année : ",
+    "sInfoEmpty": "Pas de données disponibles avec cette recherche"
+  }
+});
+});
+
+
+</script>
+</body>
+</html>
+

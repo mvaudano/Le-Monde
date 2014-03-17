@@ -1,0 +1,222 @@
+<!-- TODO
+Gselper
+Voir la ville des incertains
+"Candidat à Le Cannet"
+Les liens Paris, Lyon, Marseille ne marchent pas
+Faire apparaître le nom de la ville quand on zoome
+DOM-TOM (dézoom ? liens vers chacun des dom tom en texte ?)
+URL personnalisée hash : ne marche pas avec iframe (window.top) => voir avec Eric
+Quand il y a "Saint-Pierre" et "Saint-Pierre des corps", le deuxième parasite le premier
+
+
+//
+
+Sélection vide par défaut : voir dans la fonction filter() dans filter.js
+Dans la recherche, highlighter les termes recherchés dans les résultats (ex : Aix en rouge)
+-->
+
+
+
+
+
+
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <link href="assets/css/jquery-ui-1.10.2.custom.min.css" media="screen" rel="stylesheet" type="text/css">
+    <script src="assets/js/jquery.min.js" type="text/javascript"></script>
+    <script src="assets/js/jquery-ui-1.10.2.custom.min.js" type="text/javascript"></script>
+    <!-- <script src="../vendors/mustache.js" type="text/javascript"></script> -->
+    <script src="filter.js" type="text/javascript"></script>
+    <script src="data.js" type="text/javascript"></script>
+    <script src="simple_filter.js" type="text/javascript"></script>
+    <script src="assets/js/jquery.tinysort.min.js" type="text/javascript"></script>
+    <script type="text/javascript" charset="utf-8" src="jquery.js"></script>
+
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <link href="assets/css/style.css" media="screen" rel="stylesheet" type="text/css">
+    <style type="text/css">
+      body {
+        margin:0;
+        font-size:12px;
+        font-family:Arial, Helvetica, sans-serif;
+        background: #ccc;
+      }
+      html, body {
+        margin:0;
+        padding:0;
+        height:100%;
+      }
+
+      .clear {
+        clear:both;
+      }
+
+      .container {
+        width:1000px;
+        padding:0px 0px;
+        margin:0px auto;
+        position:relative;
+        background: #fff;
+      }
+
+        #service_list {
+          clear:left;
+        }
+        #map {width:500px;height:550px;float:right;}
+        .box_personne {
+            width:190px;
+            height:auto;
+            float:left;
+            margin-left:0px;
+            margin-bottom:10px;
+            padding:10px;
+        }
+        .box_personne:hover {
+        background:#EEF;
+        border-radius:5px;
+        box-shadow:1px 1px 3px #c4c4c4;
+       }
+
+       .situation {
+        width: 60px;
+        float: right;
+        text-align: center;
+        margin:0 0 3px 3px;
+       }
+       .situation.cumul {
+        background-color: red;
+       }
+       .situation.incertain {
+        background-color: orange;
+       }
+
+       .champ_recherche {
+        float: left;
+        width: 380px;
+        background: #e8f6f7;
+        border-radius: 5px;
+        padding: 10px 20px 0px 20px;
+       }
+
+       .candidat {
+        font-size:1.4em;
+        font-weight: bold;
+       }
+
+       .candidat span.parti {
+        font-size:9pt;
+       }
+
+       .ville {
+        font-size:1.2em;
+        font-weight: bold;
+       }
+       .ville a {
+          font-size:1em;
+        }
+
+        .mandats {
+          font-weight: bold;
+        }
+
+        #notule {
+          clear:left;
+        }
+
+        .featured_services_find {
+            width:420px;
+            float:left;
+            margin-right:-10px;
+            max-height:500px;
+            overflow: scroll
+        }
+
+        #result_count {
+          font-weight: bold;
+          margin-left: 10px;
+        }
+
+        #partagesocial {
+          clear:both;
+        }
+
+        
+    </style>
+  </head>
+  <body>
+
+    <div class="container">
+      <div class="sidebar_bar">
+        <div class="champ_recherche">
+          <div class="sidebar_list">
+            
+            <input type="hidden" id="link_filter"/>
+            <h3>Rechercher une ville ou un candidat...</h3>
+            <input type="text" id="search_box" class="searchbox" placeholder=""/><label for="search_box" id="result_count">ex : 
+
+            <a class="filter_by_link" href="#" data-value="Paris" data-target="#search_box">Paris</a>
+
+
+
+            , <a class="filter_by_link" href="#" data-value="Lyon" data-target="#search_box">Lyon</a>, <a class="filter_by_link" href="#" data-value="Marseille" data-target='#search_box'>Marseille</a>...</label>
+          </div>
+          <p><a class="filter_by_link" href="#" data-value="" data-target="#search_box">Effacer la recherche</a></p>
+        </div>  
+
+        <div id="notule">
+            <p>&raquo; <a href="https://docs.google.com/forms/d/1bP6TX_7o9K74irt2tuo7x8wjGjHLcEJkr7w55uyvJJU/viewform" target="_blank">Signaler un oubli ou une erreur</a></p>
+        </div>
+
+        <div class="featured_services_find">
+        
+            <div class="featured_list_find" id="service_list"></div>
+        </div>
+
+        <div id="partagesocial">
+
+        </div>
+
+      </div>
+
+      <div id="map"></div>
+
+
+      <script>
+        //<![CDATA[
+        // var services = 
+        //   [{"id":1,"ville":"Abymes","departement":"971 - Guadeloupe","sexe":"M.","prenom":"Éric","nom":"Jalton","parti":"DVG","mandat":"Député de la Guadeloupe*Maire des Abymes*Vice-président de la communauté d'agglomération Cap Excellence","mandatparl":"Député","situation":"cumul","lien":"http://www.guadeloupe.franceantilles.fr/actualite/politique/eric-jalton-candidat-legitime-du-ps-246554.php","priorite":null,"longitude":-61.502615,"latitude":16.273950},
+        //   {"id":2,"ville":"Agnetz","departement":"60 - Oise","sexe":"M.","prenom":"Édouard","nom":"Courtial","parti":"UMP","mandat":"Député de l'Oise*Maire d'Agnetz*Vice-président de la communauté de communes Pays du Clermontois","mandatparl":"Député","situation":"cumul","lien":"http://courrier-picard.fr/region/cedric-maisse-recoit-le-soutien-de-jean-luc-melenchon-ia167b0n294456","priorite":null,"longitude":2.38333,"latitude":49.3833},
+        //   {"id":3,"ville":"Aillas","departement":"33 - Gironde","sexe":"Mme","prenom":"Martine","nom":"Faure","parti":"PS","mandat":"Députée de la Gironde*Conseillère municipale d'Aillas*Conseillère déléguée de la communauté de communes du Pays d'Auros","mandatparl":"Député","situation":"cumul","lien":"http://www.lerepublicain.net/langon-philippe-plagnol-devoile-sa-liste_15627/","priorite":null,"longitude":-0.066667,"latitude":44.4667},
+        //   {"id":4,"ville":"Aix-en-Provence","departement":"13 - Bouches-du-Rhône","sexe":"Mme","prenom":"Sophie","nom":"Joissains","parti":"UDI","mandat":"Sénatrice des Bouches-du-Rhône*Adjointe au maire d'Aix-en-Provence*Vice-présidente de la communauté d'agglomération du Pays d'Aix-en-Provence","mandatparl":"Sénateur","situation":"cumul","lien":"http://www.laprovence.com/article/actualites/2698109/aix-salima-saa-en-2012-avec-sarko-en-2014-avec-genzana.html","priorite":null,"longitude":5.43333,"latitude":43.5333},
+        //   {"id":5,"ville":"Aix-les-Bains","departement":"73 - Savoie","sexe":"M.","prenom":"Dominique","nom":"Dord","parti":"UMP","mandat":"Député de la Savoie*Maire d'Aix-les-Bains*Président de la communauté d'agglomération du Lac du Bourget","mandatparl":"Député","situation":"cumul","lien":"http://www.aixlesbains.info/2013/09/municipales-la-parole-nest-plus-dargent-elle-est-dord/","priorite":null,"longitude":5.91667,"latitude":45.7},
+        //   {"id":6,"ville":"Ajaccio","departement":"20 - Corse-du-Sud","sexe":"M.","prenom":"Laurent","nom":"Marcangeli","parti":"UMP","mandat":"Député de la Corse-du-Sud*Conseiller général de la Corse-du-Sud, canton d'Ajaccio 1","mandatparl":"Député","situation":"incertain","lien":"http://corse.france3.fr/2013/11/29/ajaccio-corse-du-sud-laurent-marcangelli-se-veut-le-grand-rassembleur-droite-367713.html","priorite":null,"longitude":8.7364,"latitude":41.9256},
+        //   {"id":7,"ville":"Balzac","departement":"16 - Charente","sexe":"Mme","prenom":"Martine","nom":"Pinville","parti":"PS","mandat":"Députée de la Charente*Adjointe au maire de Balzac","mandatparl":"Député","situation":"incertain","lien":"","priorite":null,"longitude":0.116667,"latitude":45.7},
+        //     {"id":8,"ville":"Bapaume","departement":"62 - Pas-de-Calais","sexe":"M.","prenom":"Jean-Jacques","nom":"Cottel","parti":"PS","mandat":"Député du Pas-de-Calais*Maire de Beaulencourt*Vice-président de la communauté de communes du Sud Artois*Conseiller général du Pas-de-Calais, canton de Bapaume","mandatparl":"Député","situation":"cumul","lien":"http://www.lavenirdelartois.fr/actualite/la_une/Arras/2013/10/31/municipales-jean-jacques-cottel-est-offi.shtml","priorite":null,"longitude":2.85,"latitude":50.1},
+        //     {"id":9,"ville":"Bar-le-Duc","departement":"55 - Meuse","sexe":"M.","prenom":"Bertrand","nom":"Pancher","parti":"UDI","mandat":"Député de la Meuse","mandatparl":"Député","situation":"cumul","lien":"http://www.bertrandpancher.com/media/doc/doc20130917091851.pdf","priorite":null,"longitude":5.16667,"latitude":48.7833},
+        //     {"id":10,"ville":"Coudes","departement":"63 - Puy-de-Dôme","sexe":"M.","prenom":"Jean-Paul","nom":"Bacquet","parti":"PS","mandat":"Député du Puy-de-Dôme*Maire de Coudes*Vice-président de la communauté de communes Couze Val d'Allier","mandatparl":"Député","situation":"cumul","lien":"http://www.lamontagne.fr/auvergne/actualite/departement/puy-de-dome/issoire/2013/10/24/cinq-listes-se-preparent-dans-le-chef-lieu-et-trois-ediles-sortants-ne-se-representeront-pas_1741156.html","region":"Auvergne","priorite":null,"longitude":3.21667,"latitude":45.6167}];
+
+
+console.log(services)
+                </script>
+
+
+
+
+
+      <div class="clear"></div>
+    </div>
+
+<!--    <script id="template" type="text/html">
+      <div class="fs_box">
+          <h1 class="candidat">{{sexe}} {{prenom}} {{nom}} ({{parti}})</h1>
+          <p class="ville">Candidat à {{ville}}</p>
+          <p class="mandats">Mandats actuels :</p>
+          <p>{{mandat}}</p>
+          <p class="lien"><a href="{{lien}}">Source</a></p>
+        <div class="clear"></div>
+        </div> 
+    </script>  -->
+  </body>
+</html>

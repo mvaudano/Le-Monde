@@ -1,0 +1,341 @@
+      .clear {
+        clear:both;
+      }
+
+      .container {
+        width:1000px;
+        padding:0px 0px;
+        margin:0px auto;
+        position:relative;
+        background: #fff;
+      }
+
+      #contribuez {
+        width:380px;
+        float:right;
+        margin-top:10px;
+      }
+      #contribuez span {
+        width:120px;
+        float:right;
+        margin-left:10px;
+      }
+      #contribuez span.contribuez_note {
+        padding-top:5px;
+        width:180px;
+      }
+      #loader {
+        position: absolute;
+        top: 200px;
+        right: 0;
+        width: 100%;
+        height:620px;
+        text-align: center;
+      }
+       #loader p {
+        margin-bottom:15px;
+      }
+      
+      .recherche div.champ:hover, .recherche div.champ > input:focus {
+        fill: white;
+      }
+
+        #resultats {
+          clear:left;
+        }
+        #entete {
+          height:50px;
+        }
+        #left {
+          height:670px;
+        }
+      
+        #carto, #carto2 {
+          position:relative;
+          clear:both;
+        }
+        #carto2 {
+          height:220px;
+        }
+        #carte {
+          width:100%;
+          height:670px;
+          position:absolute;
+          top:0px;
+          left:0;
+          display:block;
+        }
+        #carte2 {
+          width:100%;
+          height:220px;
+          left:0;
+          top:0px;
+          position:absolute;
+        }
+        #zoom_idf {
+          left:0;
+          top:0px;
+          width:100%;
+          text-align: center;
+          position:absolute;
+          z-index: 9999;
+        }
+        #legende  {
+          width:100%;
+          height:40px;
+          margin:5px 0;
+          float:left;
+          clear:left;
+          text-align: center;
+        }
+      
+        #legende span {
+  color:white;
+  font-weight: bold;
+  margin-top: 0px;
+  padding:10px 8px;
+  float:left;
+}
+#legende .q1-9{background:rgb(229,245,224) }
+#legende .q2-9{background:rgb(199,233,192) }
+#legende .q3-9{background:rgb(161,217,155) }
+#legende .q4-9{background:rgb(116,196,118) }
+#legende .q5-9{background:rgb(65,171,93) }
+#legende .q6-9{background:rgb(35,139,69) }
+#legende .q7-9{background:rgb(0,109,44) }
+#legende .q8-9{background:rgb(0,68,27) }
+#legende .q9-9{background:rgb(251,106,74) }
+        #legende span.black {
+          color: rgb(22, 33, 44)!important;
+          padding:0px 15px 0 0;
+          line-height: 100%;
+          font-weight:normal;
+          margin-top: 0px;
+          width:400px;
+        }
+        .box_personne {
+            width: 185px;
+            height: auto;
+            float: left;
+            margin-left: 5px;
+            margin-right: 5px;
+            margin-bottom: 15px;
+            cursor: pointer;
+           /* border-radius:3px 3px 0 0;*/
+            fill: #f8f9fb;
+            border: 1px solid #b9c0c5;
+            padding-bottom: 10px;
+        }
+        .box_personne p {
+          padding: 0 10px;
+        }
+        .box_personne:hover {
+        background:#eef1f5;
+        /*border-radius:5px;
+        box-shadow:1px 1px 3px #c4c4c4;*/
+       }
+       .box_personne.selectionne {
+          fill: #ffc89b;
+       }
+       
+       .box_personne hr {
+          width:90%;
+       }
+
+       .box_personne.impair {
+          clear:left;
+        }
+
+       .situation {
+        width: 177px;
+        float: left;
+        text-align: center;
+        margin: 0 0 6px 0px;
+        /*border-radius:3px 3px 0 0;*/
+        padding: 4px;
+        color: #FFF;
+       }
+       .situation.cumul {
+          fill: #B30000;
+       }
+       .situation.incertain {
+        fill: #ff6e17;
+       }
+       .situation.promesse {
+          fill: #59880E;
+       }
+
+       p.candidat, p.parti, p.ville {
+        text-align: center;
+       }
+
+       .mandats, .priorite {
+          font-weight: bold;
+        }
+        .mandats2, .priorite2 {
+          font-size: 8pt;
+          line-height: 8pt;
+        }
+
+       .champ_recherche {
+        float: left;
+        width: 365px;
+        background: #e4e6e9;
+        padding: 10px 10px 10px 10px;
+        border-top: 3px solid #16212c!important;
+        margin: 0 10px 0 5px;
+       }
+        
+
+        #notule {
+          clear: left;
+          padding: 0px;
+          height:390px;
+          overflow-y:auto;
+          
+        }
+
+        #notule .tt3_capital{
+          line-height:3rem;
+          text-align: center;
+        }
+        #notule .tt3_capital:before {
+          color:#a2a9ae;
+          content: '\203A \203A \00A0';
+          width:20px;
+
+        }
+
+        #decodeurs {
+          width: 100%;
+          height:50px;
+          border-top: 1px solid #b9c0c5;
+          padding-top: 10px;
+        }
+
+        #decodeurs img {
+          width:50px;
+          float:right;
+        }
+        #raccourcis {
+          width:600px;
+          float:right;
+        }
+
+        #raccourcis p.lire {
+          margin: 3px 0px 10px 0;
+        }
+
+        #infos {
+          background: url('http://s1.lemde.fr/medias/web/d046629438b18715f94c4d85542ca8a7/img/sprites/sprite.png') -48px -448px no-repeat;
+          display: inline-block;
+          width: 15px;
+          height: 18px;
+          float:right;
+        }
+
+        #infos a {
+          display:block;
+          width:100%;
+          height:100%;
+        }
+
+        #data {
+          font-weight: bold;
+          text-align:center;
+          margin:0!important;
+          padding: 10px 0 0 0;
+        }
+        #data span {
+          background: url('http://s1.lemde.fr/medias/web/d046629438b18715f94c4d85542ca8a7/img/sprites/sprite.png') no-repeat;
+          display: inline-block;
+          background-position: 0px -131px;
+          text-indent: -9999px;
+          width: 13px;
+          height:10px;
+          margin-right: 5px;
+        }
+
+    .labels {
+     color: #000;
+    /* font-family: "Lucida Grande", "Arial", sans-serif;*/
+     font-size: 14px;
+     font-weight: bold;
+     text-align: center;
+     width: 36px; 
+     height:36px;
+     margin:-18px 0 0 -18px!important;
+/*     border-radius:25px;   */ 
+    /* border: 2px solid black;*/
+     white-space: nowrap;
+   }
+
+.Greens circle {
+  stroke:white;
+}
+.Greens text {
+   fill: #000;
+   text-anchor:middle;
+}
+#textCannes{
+  text-anchor:middle;
+}
+.Greens.q6-9 text.chiffre, .Greens.q7-9 text.chiffre, .Greens.q8-9 text.chiffre, .Greens.q9-9 text.chiffre {
+   fill: #FFF;
+
+}
+
+.Greens.q1-9{fill:rgb(229,245,224)}
+.Greens.q2-9{fill:rgb(199,233,192)}
+.Greens.q3-9{fill:rgb(161,217,155)}
+.Greens.q4-9{fill:rgb(116,196,118)}
+.Greens.q5-9{fill:rgb(65,171,93)}
+.Greens.q6-9{fill:rgb(35,139,69)}
+.Greens.q7-9{fill:rgb(0,109,44)}
+.Greens.q8-9{fill:rgb(0,68,27)}
+.Greens.q9-9 circle{fill:rgb(251,106,74)}
+
+
+
+
+td.evol {
+  font-weight: bold;
+}
+
+
+.ligne_titres {
+  position: relative;
+height: 22px;
+width:310px;
+margin: 0px;
+border-bottom: 1px solid #b9c0c5;
+background-color: #fff;
+}
+
+.ligne_titres h2 {
+font-size:1.6rem;
+  }
+
+.ligne_titres:after {
+content: " ";
+position: absolute;
+display: block;
+width: 16px;
+height: 10px;
+background-image: url('../img/discussion.png');
+background-repeat: no-repeat;
+bottom: -10px;
+left: 20px;
+}
+
+.infofirefox {
+  line-height:1.35;
+overflow:hidden;
+white-space:nowrap;
+}
+
+
+/*
+.gmnoprint, .gm-style-cc{
+    visibility: hidden;
+}*/
