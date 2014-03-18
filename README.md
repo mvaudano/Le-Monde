@@ -35,6 +35,8 @@ Visualisation des programmes de la NSA et de ses partenaires en SVG et JSON.
 
 [>> Voir sur Le Monde.fr](http://www.lemonde.fr/technologies/visuel/2013/08/27/plongee-dans-la-pieuvre-de-la-cybersurveillance-de-la-nsa_3467057_651865.html)
 
+![NSA : la pieuvre de la cybersurveillance](vignettes/nsa.png "NSA : la pieuvre de la cybersurveillance")
+
 
 ## [Trente ans après la Marche pour l'égalité, où en est la société française ?](marche-egalite) ##
 Tableau de bord chronologique à l'occasion du trentenaire de la marche pour l'égalité et contre le racisme, à base de Highcharts.
