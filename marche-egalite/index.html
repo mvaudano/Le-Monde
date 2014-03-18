@@ -1,0 +1,1164 @@
+<html>
+<head>
+	<title>L'intégration depuis la "marche des beurs"</title>
+	<meta charset="utf-8">
+
+	<link rel="stylesheet" type="text/css" href="css/fonts.css"/>
+	<link type="text/css" rel="stylesheet" href="css/mycss.css" />
+	<link type="text/css" rel="stylesheet" href="css/jquery.qtip.min.css" />
+	<link type="text/css" rel="stylesheet" href="css/lemonde.css" />
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.qtip.min.js"></script>
+	<script type="text/javascript" src="js/imagesloaded.min.js"></script>
+
+	<style type="text/css">
+		
+
+		/* INUTILE */
+
+		/*body {
+			background-color: #16212c;
+			font-family: Arial, Georgia, Verdana;
+		}
+
+		#master {
+			width:1000px;
+			height:2000px;
+			margin:0 auto;
+			background-color: #fff;
+		}*/
+
+		
+
+		/* UTILE */
+
+
+		@font-face{font-family:'TheSerifOffice';
+font-weight:normal;
+font-style:normal;
+src:url('http://s1.lemde.fr/medias/web/font/svg/TheSerifOffice-OT7_West.svgz#TheSerifOffice') format('svg');
+src:url('http://s1.lemde.fr/medias/web/font/eot/TheSerifOffice-TT7_.eot');
+src:url('http://s1.lemde.fr/medias/web/font/eot/TheSerifOffice-TT7_.eot?#iefix') format('embedded-opentype'),url('http://s1.lemde.fr/medias/web/font/woff/TheSerifOffice-TT7_.woff') format('woff');
+font-weight:normal;
+font-style:normal}
+
+	</style>
+
+	<script type="text/javascript">
+	// Create the tooltips only when document ready
+ $(document).ready(function()
+ {
+     // MAKE SURE YOUR SELECTOR MATCHES SOMETHING IN YOUR HTML!!!
+     $('a.bulle').each(function() {
+         $(this).qtip({
+         	style: { classes: 'qtip-bootstrap' },
+             content: {
+                 text: $(this).next('.tooltiptext'),
+                 title: $(this).attr('title')
+             },
+             position: {
+								        my: 'top center',
+								        at: 'bottom center'
+					}
+         });
+          });
+    
+     $('a.detail').each(function() {
+         $(this).qtip({
+         	style: { classes: 'qtip-bootstrap' },
+             content: {
+                 text: $(this).title
+             },
+             position: {
+								        my: 'top center',
+								        at: 'bottom center'
+					}
+         });
+          });
+
+         $('div.chronoright').qtip({ // Grab all elements with a non-blank data-tooltip attr.
+			    style: { classes: 'qtip-bootstrap' },
+			    content: {
+			        text: $(this).title
+			    },
+			     position: {
+								        my: 'center right',
+								        at: 'top left'
+					}
+			})
+
+          $('div.chronoleft').qtip({ // Grab all elements with a non-blank data-tooltip attr.
+			    style: { classes: 'qtip-bootstrap' },
+			    content: {
+			        text: $(this).title
+			    },
+			     position: {
+								        my: 'bottom left',
+								        at: 'center right'
+					}
+			})
+
+
+
+     });
+
+
+	</script>
+
+	<script type="text/javascript">
+
+	function thousandsSeparator(n){
+			    var rx=  /(\d+)(\d{3})/;
+			    return String(n).replace(/^\d+/, function(w){
+			        while(rx.test(w)){
+			            w= w.replace(rx, '$1 $2');
+        }
+		        return w;
+		    	});
+		}
+
+	var sofres = "#0A197F"
+	var csa = "#6074FF"
+	var ipsos = "#107ECC"
+	var harris = "#303A7F"
+	var cevipof = "#1431FF"
+	var lalettre = "#14D9FF"
+	var bva = "#6814FF"
+	var lh2 = "#05EAFF"
+	var cncdh = "#006FFF"
+	var ifop = "#4F74FF"
+
+		$(function () {
+
+
+	Highcharts.setOptions({
+		lang: {
+			resetZoom: 'Annuler le zoom',
+			resetZoomTitle: 'Revenir au graphe initial'
+		}
+	});
+        
+       $('#part').highcharts({
+            chart: {
+            	spacingTop: 0,
+            	spacingBottom: 0,
+            	spacingLeft: 16,
+            	spacingRight: 16,
+            	backgroundColor: '#e9edf0'
+            },
+            title: {
+                text: ''
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: [{
+            	/*labels: {
+            		enabled: false
+            	},*/
+            	gridLineWidth: 0,
+            	lineWidth: 0,
+            	 type: 'datetime',
+               /* categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']*/
+                 /*pointStart: Date.UTC(1984, 10, 1),*/
+                min: Date.UTC(1982,0,1),
+                max: Date.UTC(2013,11,1),
+            	/*pointInterval: 24 * 3600 * 1000 * 365.25,*/
+            	tickWidth: 0,
+            	labels: {
+            		enabled: false,
+            		style: {
+	            		fontSize: '13pt',
+	            		fontWeight: 'bold',
+	                    fontFamily: '"TheSerifOffice", Georgia, sans-serif',
+						fontWeight: 'normal',
+                    	color: '#000000'
+            		}
+            	}
+            }],
+            legend: {
+           		 enabled: false
+      	  	},
+      	  	credits: {
+           		 enabled: false
+      	  	},
+      	  	plotOptions: {
+		            series: {
+		            	marker: {
+		                        states: {
+				                        hover: {
+				                            fillColor: 'white',
+				                            lineWidth: 0,
+				                            lineColor: '#00387F',
+				                            radius: 0
+				                        }
+				                    }
+				        },
+		                dataLabels: {
+                    		enabled: true,
+                    		padding: 0,
+                    		formatter: function(){
+                    			
+                    			if(this.point.x == 378691200000 || this.point.x == 1262304000000 ) {
+                    				return this.point.y + '%'
+                    			}
+                    			
+                    		},
+                    		style: {
+                    			fontSize: '15pt',
+                    			fontWeight: 'bold',
+                    			fontFamily: 'Arial, Georgia, sans-serif',
+                    			color: '#000000'
+                    		},
+                    		x: 0,
+                    		y: 40
+                		},
+		                lineWidth: 0,
+		                point: {
+		                    events: {
+		                        click: function() {
+		                             window.open(this['lien']);
+		                        }
+                    }
+                }
+		            }
+       		 },
+      	  	tooltip: {
+      	  		backgroundColor: 'rgba(255,255,255,1)',
+      	  		style: {
+      	  			width: 350,
+      	  			fontFamily: 'Arial, Georgia, sans-serif'
+      	  		},
+                 formatter: function() {
+                 	if(this.series.name == 'Trop d\'immigrés') {
+                 		complement = 'pensent qu\'il y a trop d\'immigrés en France'
+                 	}
+                 	else {
+                 		complement = 'sont favorables au droit de vote pour les étrangers aux élections locales'
+                 	}
+
+                 	if(this.point['lien']) {
+                 		texte = this.point['texte'] + ' <em>(cliquez pour accéder au sondage)</em>'
+                 	}
+                 	else {
+                 		texte = this.point['texte']
+                 	}
+              
+                 	function convertUTCDateToLocalDate(date) {
+					    var newDate = new Date(date.getTime());
+
+					    var offset = date.getTimezoneOffset() / 60;
+					    var hours = date.getHours();
+
+					    newDate.setHours(hours - offset);
+
+					    return newDate;   
+					}
+					
+
+              	if(this.series.name == "Population immigrée") {
+              		var date = this.point.x
+              		date = convertUTCDateToLocalDate(new Date(date));
+              		date = date.getFullYear();
+              			return '<table><tr><td><span style="font-size:18pt; font-weight:bold; ">'+ thousandsSeparator(this.point.options['nombre']) +
+                    '</span> <span style="font-size:12pt; font-weight:bold;  "> immigrés en '+ date +
+                    '</span></td></tr><br/><tr><td>Soit <b>'+ this.point.y +' % de la population française</b><br>(Insee)</td></tr></table>';
+              	}
+                else return '<table><tr><td><span style="font-size:18pt; font-weight:bold; ">'+ this.point.y +
+                    ' %</span><span style="font-size:12pt; font-weight:bold;  "> '+ complement +'</span></td></tr><br/> <br/> <tr><td><b>'+ texte +'</b><br><b>'+ this.point['date'] +
+                    '</b></td></tr></table>';
+          		  },
+
+            },
+            yAxis: [
+            {
+                title: {
+                    text: ''
+                },
+                labels: {
+            		enabled: false
+            	},
+            	endOnTick: true,
+            	/*min: 30,
+            	max: 70,*/
+                gridLineWidth: 0,
+                min: 7,
+                max: 9,
+                maxPadding: 0,
+                minPadding: 0
+            }],
+            series: [
+				{
+	            	name: 'Population immigrée',
+	            	yAxis: 0,
+	            	/*xAxis: 1,*/
+	            	lineWidth: 2,
+	            	type: 'spline',
+	            	marker: {
+	               		 enabled: false,
+	               		 symbol: 'circle'
+	           		 },
+	            	/*pointStart: Date.UTC(1985, 0, 1),
+	            	pointInterval: 24 * 3600 * 1000 * 365.25,*/
+	            	data: [{x:Date.UTC(1982,0,1),"nombre":4037036,y:7.4,"lien":"http://www.insee.fr/fr/themes/detail.asp?reg_id=0&ref_id=ir-rp99pipe&page=irweb/rp99pipe/dd/rp99pipe_retrospectif.htm"},
+							{x:Date.UTC(1990,0,1),"nombre":4165952,y:7.4,"lien":"http://www.insee.fr/fr/themes/detail.asp?reg_id=0&ref_id=ir-rp99pipe&page=irweb/rp99pipe/dd/rp99pipe_retrospectif.htm"},
+							{x:Date.UTC(1999,0,1),"nombre":4306094,y:7.4,"lien":"http://www.insee.fr/fr/themes/detail.asp?reg_id=0&ref_id=ir-rp99pipe&page=irweb/rp99pipe/dd/rp99pipe_retrospectif.htm"},
+							{x:Date.UTC(2004,0,1),"nombre":4900000,y:8.1,"lien":""},
+							{x:Date.UTC(2006,0,1),"nombre":5136294,y:8.1,"lien":"http://www.insee.fr/fr/themes/detail.asp?reg_id=0&ref_id=pop-immigree-pop-etrangere"},
+							{x:Date.UTC(2007,0,1),"nombre":5253000,y:8.3,"lien":"http://www.insee.fr/fr/themes/document.asp?reg_id=0&id=3212"},
+							{x:Date.UTC(2008,0,1),"nombre":5342288,y:8.4,"lien":"http://www.insee.fr/fr/themes/detail.asp?reg_id=0&ref_id=pop-immigree-pop-etrangere-2008"},
+							{x:Date.UTC(2009,0,1),"nombre":5325418,y:8.5,"lien":"http://www.insee.fr/fr/themes/tableau.asp?reg_id=0&ref_id=NATTEF02131 "},
+							{x:Date.UTC(2010,0,1),"nombre":5514000,y:8.5,"lien":"http://www.insee.fr/fr/themes/tableau.asp?reg_id=0&ref_id=NATTEF02162"}]
+				}
+		]
+        });
+
+
+
+     $('#droitdevote').highcharts({
+            chart: {
+            	spacingTop: 0,
+            	spacingBottom: 10,
+            	spacingLeft: 16,
+            	spacingRight: 30,
+            	spacingBottom: 20,
+            	backgroundColor: '#f1f5f8',
+            	zoomType: 'x'
+            },
+            title: {
+                text: ''
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: [{
+            	/*labels: {
+            		enabled: false
+            	},*/
+            	gridLineWidth: 0,
+            	lineWidth: 0,
+            	 type: 'datetime',
+            	 min: Date.UTC(1982,0,1),
+                max: Date.UTC(2013,11,1),
+               /* categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']*/
+                /* pointStart: Date.UTC(1984, 10, 1),
+            	pointInterval: 24 * 3600 * 1000 * 365.25,*/
+            	tickWidth: 0,
+            	labels: {
+            		enabled: false
+            		/*style: {
+	            		fontSize: '13pt',
+	            		fontWeight: 'bold',
+	                    fontFamily: '"TheSerifOffice", Georgia, sans-serif',
+                    	color: '#000000'
+            		}*/
+            	}
+            }],
+            legend: {
+           		 enabled: false
+      	  	},
+      	  	credits: {
+           		 enabled: false
+      	  	},
+      	  	plotOptions: {
+		            series: {
+		            	states: {
+		                    hover: {
+		                        enabled: function (){if(this.series.name == 'Autres') { return false } else return true},
+		                        lineWidth: 2
+		                    }
+		                },
+		            	marker: {
+		                        states: {
+				                        hover: {
+				                            fillColor: 'white',
+				                            lineWidth: 0,
+				                            lineColor: '#00387F',
+				                            radius: 0
+				                        }
+				                    }
+				        },
+		                dataLabels: {
+                    		enabled: true,
+                    		formatter: function(){
+                    			if(this.point.y == 63) {console.log(this.point.x)}
+                    			if(this.point.x == 468115200000 || this.point.x == 1367366400000 || this.point.x == 1104537600000) {
+                    				return this.point.y + '%'
+                    			}
+                    			
+                    		},
+                    		style: {
+                    			fontSize: '15pt',
+                    			fontWeight: 'bold',
+                    			fontFamily: 'Arial, Georgia, sans-serif',
+                    			color: '#000000'
+                    		},
+                    		align: 'center'
+                		},
+		                lineWidth: 0.01,
+		                point: {
+		                    events: {
+		                        click: function() {
+		                             window.open(this['lien']);
+		                        }
+                    }
+                }
+		            }
+       		 },
+      	  	tooltip: {
+      	  		backgroundColor: 'rgba(255,255,255,1)',
+      	  		positioner: function () {
+            		return { x: 10, y: 40 };
+           		},
+           		borderWidth: 0,
+           		borderRadius: 0,
+           		snap: 5,
+      	  		style: {
+      	  			width: 410,
+      	  			padding: '8px 4px 4px 4px',
+      	  			fontFamily: 'Arial, Georgia, sans-serif'
+      	  		},
+                 formatter: function() {
+                 	if(this.series.name == 'Trop d\'immigrés') {
+                 		complement = 'pensent qu\'il y a trop d\'immigrés en France'
+                 	}
+                 	else {
+                 		complement = 'sont favorables au droit de vote pour les étrangers aux élections locales'
+                 	}
+
+                 	if(this.point['lien']) {
+                 		texte = this.point['texte'] + ' <em>(cliquez pour accéder au sondage)</em>'
+                 	}
+                 	else {
+                 		texte = this.point['texte']
+                 	}
+              
+                 	function convertUTCDateToLocalDate(date) {
+					    var newDate = new Date(date.getTime());
+
+					    var offset = date.getTimezoneOffset() / 60;
+					    var hours = date.getHours();
+
+					    newDate.setHours(hours - offset);
+
+					    return newDate;   
+					}
+					
+
+              	if(this.series.name == "Population immigrée") {
+              		var date = this.point.x
+              		date = convertUTCDateToLocalDate(new Date(date));
+              		date = date.getFullYear();
+              			return '<table><tr><td><span style="font-size:18pt; font-weight:bold;">'+ thousandsSeparator(this.point.options['nombre']) +
+                    '</span> <span style="font-size:12pt; font-weight:bold;"> immigrés en '+ date +
+                    '</span></td></tr><br/><tr><td>Soit <b>'+ this.point.y +' % de la population française</b><br>(Insee)</td></tr></table>';
+              	}
+                else return '<table><tr><td><span style="font-size:18pt; font-weight:bold;">'+ this.point.y +
+                    ' %</span><span style="font-size:12pt; font-weight:bold;"> '+ complement +'</span></td></tr><br/> <br/> <tr><td><b>'+ texte +'</b><br><b>'+ this.point['date'] +
+                    '</b></td></tr></table>';
+          		  },
+
+            },
+            yAxis: [
+            {
+                title: {
+                    text: ''
+                },
+                labels: {
+            		enabled: false
+            	},
+            	/*min: 30,
+            	max: 70,*/
+                gridLineWidth: 0,
+                min: 20,
+                max: 63
+            }],
+            series: [
+				{
+	            	name: 'CSA',
+	            	marker: {
+	               		 symbol: 'circle'
+	           		 },
+	           		 color: '#6074FF',
+	            	/*pointStart: Date.UTC(1985, 0, 1),
+	            	pointInterval: 24 * 3600 * 1000 * 365.25,*/
+	            	data: 
+			            	[{x:Date.UTC(1994,0,1),y:32,"texte":"CSA pour RTL","date":"1994","lien":"http://www.csa.eu/multimedia/data/sondages/data2012/opi20120919-les-francais-et-le-droit-de-vote-des-etrangers-non-communautaires.pdf",color:csa},
+							{x:Date.UTC(1995,0,1),y:30,"texte":"CSA pour RTL","date":"1995","lien":"http://www.csa.eu/multimedia/data/sondages/data2012/opi20120919-les-francais-et-le-droit-de-vote-des-etrangers-non-communautaires.pdf",color:csa},
+							{x:Date.UTC(1996,0,1),y:28,"texte":"CSA pour RTL","date":"1996","lien":"http://www.csa.eu/multimedia/data/sondages/data2012/opi20120919-les-francais-et-le-droit-de-vote-des-etrangers-non-communautaires.pdf",color:csa},
+							{x:Date.UTC(1997,0,1),y:39,"texte":"CSA pour RTL","date":"1997","lien":"http://www.csa.eu/multimedia/data/sondages/data2012/opi20120919-les-francais-et-le-droit-de-vote-des-etrangers-non-communautaires.pdf",color:csa},
+							
+							{x:Date.UTC(1998,0,1),y:52,"texte":"CSA pour RTL","date":"1998","lien":"http://www.csa.eu/multimedia/data/sondages/data2012/opi20120919-les-francais-et-le-droit-de-vote-des-etrangers-non-communautaires.pdf",color:csa},
+							{x:Date.UTC(1999,0,1),y:44,"texte":"CSA pour RTL","date":"1999","lien":"http://www.csa.eu/multimedia/data/sondages/data2012/opi20120919-les-francais-et-le-droit-de-vote-des-etrangers-non-communautaires.pdf",color:csa},
+							
+							{x:Date.UTC(2000,0,1),y:55,"texte":"CSA pour RTL","date":"2000","lien":"http://www.csa.eu/multimedia/data/sondages/data2012/opi20120919-les-francais-et-le-droit-de-vote-des-etrangers-non-communautaires.pdf",color:csa},
+						
+							{x:Date.UTC(2001,0,1),y:40,"texte":"CSA pour RTL","date":"2001","lien":"http://www.csa.eu/multimedia/data/sondages/data2012/opi20120919-les-francais-et-le-droit-de-vote-des-etrangers-non-communautaires.pdf",color:csa},
+							
+							{x:Date.UTC(2002,0,1),y:54,"texte":"CSA pour RTL","date":"2002","lien":"http://www.csa.eu/multimedia/data/sondages/data2012/opi20120919-les-francais-et-le-droit-de-vote-des-etrangers-non-communautaires.pdf",color:csa},
+						
+							{x:Date.UTC(2003,0,1),y:57,"texte":"CSA pour RTL","date":"2003","lien":"http://www.csa.eu/multimedia/data/sondages/data2012/opi20120919-les-francais-et-le-droit-de-vote-des-etrangers-non-communautaires.pdf",color:csa},
+							
+							{x:Date.UTC(2004,0,1),y:45,"texte":"CSA pour RTL","date":"2004","lien":"http://www.csa.eu/multimedia/data/sondages/data2012/opi20120919-les-francais-et-le-droit-de-vote-des-etrangers-non-communautaires.pdf",color:csa},
+							
+							{x:Date.UTC(2005,0,1),y:45,"texte":"CSA pour RTL","date":"2005","lien":"http://www.csa.eu/multimedia/data/sondages/data2012/opi20120919-les-francais-et-le-droit-de-vote-des-etrangers-non-communautaires.pdf",color:csa},,
+						
+							{x:Date.UTC(2006,0,1),y:50,"texte":"CSA pour RTL","date":"2006","lien":"http://www.csa.eu/multimedia/data/sondages/data2012/opi20120919-les-francais-et-le-droit-de-vote-des-etrangers-non-communautaires.pdf",color:csa},
+							
+							
+							{x:Date.UTC(2008,0,1),y:51,"texte":"CSA pour RTL","date":"2008","lien":"http://www.csa.eu/multimedia/data/sondages/data2012/opi20120919-les-francais-et-le-droit-de-vote-des-etrangers-non-communautaires.pdf",color:csa},
+							
+							{x:Date.UTC(2009,0,1),y:50,"texte":"CSA pour RTL","date":"2009","lien":"http://www.csa.eu/multimedia/data/sondages/data2012/opi20120919-les-francais-et-le-droit-de-vote-des-etrangers-non-communautaires.pdf",color:csa},
+						
+							{x:Date.UTC(2010,0,1),y:55,"texte":"CSA pour RTL","date":"2010","lien":"http://www.csa.eu/multimedia/data/sondages/data2012/opi20120919-les-francais-et-le-droit-de-vote-des-etrangers-non-communautaires.pdf",color:csa},
+						
+												
+							{x:Date.UTC(2012,8,1),y:37,"texte":"CSA pour RTL","date":"Septembre 2012","lien":"http://www.csa.eu/multimedia/data/sondages/data2012/opi20120919-les-francais-et-le-droit-de-vote-des-etrangers-non-communautaires.pdf",color:csa}]
+				},
+				{
+	            	name: 'CSA/CNCDH',
+	            	marker: {
+	               		 symbol: 'circle'
+	           		 },
+	           		 color: '#2A787F',
+	            	/*pointStart: Date.UTC(1985, 0, 1),
+	            	pointInterval: 24 * 3600 * 1000 * 365.25,*/
+	            	data: 
+			            	[
+							{x:Date.UTC(1999,10,1),y:39,"texte":"Baromètre racisme du CSA pour la CNCDH","date":"Novembre 1999","lien":"http://csa.eu/multimedia/data/sondages/data2013/opi20130321-Barometre-CNCDH-pour-publication.pdf",color:cncdh},
+							
+							{x:Date.UTC(2000,9,1),y:36,"texte":"Baromètre racisme du CSA pour la CNCDH","date":"Octobre 2000","lien":"http://csa.eu/multimedia/data/sondages/data2013/opi20130321-Barometre-CNCDH-pour-publication.pdf",color:cncdh},
+							
+							{x:Date.UTC(2001,11,1),y:44,"texte":"Baromètre racisme du CSA pour la CNCDH","date":"Décembre 2001","lien":"http://csa.eu/multimedia/data/sondages/data2013/opi20130321-Barometre-CNCDH-pour-publication.pdf",color:cncdh},
+						
+							{x:Date.UTC(2002,11,1),y:50,"texte":"Baromètre racisme du CSA pour la CNCDH","date":"Décembre 2002","lien":"http://csa.eu/multimedia/data/sondages/data2013/opi20130321-Barometre-CNCDH-pour-publication.pdf",color:cncdh},
+						
+							{x:Date.UTC(2003,11,1),y:54,"texte":"Baromètre racisme du CSA pour la CNCDH","date":"Décembre 2003","lien":"http://csa.eu/multimedia/data/sondages/data2013/opi20130321-Barometre-CNCDH-pour-publication.pdf",color:cncdh},
+							
+							{x:Date.UTC(2004,11,1),y:56,"texte":"Baromètre racisme du CSA pour la CNCDH","date":"Décembre 2004","lien":"http://csa.eu/multimedia/data/sondages/data2013/opi20130321-Barometre-CNCDH-pour-publication.pdf",color:cncdh},
+							
+							{x:Date.UTC(2005,11,1),y:43,"texte":"Baromètre racisme du CSA pour la CNCDH","date":"Décembre 2005","lien":"http://csa.eu/multimedia/data/sondages/data2013/opi20130321-Barometre-CNCDH-pour-publication.pdf",color:cncdh},
+						
+							{x:Date.UTC(2006,10,1),y:52,"texte":"Baromètre racisme du CSA pour la CNCDH","date":"Novembre 2006","lien":"http://csa.eu/multimedia/data/sondages/data2013/opi20130321-Barometre-CNCDH-pour-publication.pdf",color:cncdh},
+							{x:Date.UTC(2007,10,1),y:50,"texte":"Baromètre racisme du CSA pour la CNCDH","date":"Novembre 2007","lien":"http://csa.eu/multimedia/data/sondages/data2013/opi20130321-Barometre-CNCDH-pour-publication.pdf",color:cncdh},
+							
+							{x:Date.UTC(2008,10,1),y:58,"texte":"Baromètre racisme du CSA pour la CNCDH","date":"Novembre 2008","lien":"http://csa.eu/multimedia/data/sondages/data2013/opi20130321-Barometre-CNCDH-pour-publication.pdf",color:cncdh},
+							
+							{x:Date.UTC(2009,10,1),y:59,"texte":"Baromètre racisme du CSA pour la CNCDH","date":"Novembre 2009","lien":"http://csa.eu/multimedia/data/sondages/data2013/opi20130321-Barometre-CNCDH-pour-publication.pdf",color:cncdh},
+							
+							{x:Date.UTC(2011,0,1),y:48,"texte":"Baromètre racisme du CSA pour la CNCDH","date":"Janvier 2011","lien":"http://csa.eu/multimedia/data/sondages/data2013/opi20130321-Barometre-CNCDH-pour-publication.pdf",color:cncdh},
+							
+							{x:Date.UTC(2011,11,1),y:44,"texte":"Baromètre racisme du CSA pour la CNCDH","date":"Décembre 2011","lien":"http://csa.eu/multimedia/data/sondages/data2013/opi20130321-Barometre-CNCDH-pour-publication.pdf",color:cncdh},
+							
+							{x:Date.UTC(2012,11,1),y:39,"texte":"Baromètre racisme du CSA pour la CNCDH","date":"Décembre 2012","lien":"http://csa.eu/multimedia/data/sondages/data2013/opi20130321-Barometre-CNCDH-pour-publication.pdf",color:cncdh}]
+				},
+				{
+	            	name: 'Sofres',
+	            	marker: {
+	               		 symbol: 'circle'
+	           		 },
+	           		 color: '#0A197F',
+	            	/*pointStart: Date.UTC(1985, 0, 1),
+	            	pointInterval: 24 * 3600 * 1000 * 365.25,*/
+	            	data: 
+			            	[{x:Date.UTC(1984,10,1),y:21,"texte":"Sofres","date":"Novembre 1984","lien":"",color:sofres},
+							{x:Date.UTC(1985,0,1),y:35,"texte":"Sofres","date":"1985","lien":"",color:sofres},
+							{x:Date.UTC(1988,1,1),y:32,"texte":"Sofres","date":"Février 1988","lien":"",color:sofres},
+							{x:Date.UTC(1989,10,1),y:20,"texte":"Sofres","date":"Novembre 1989","lien":"",color:sofres},
+							{x:Date.UTC(1991,0,1),y:21,"texte":"Sofres pour Le Figaro Magazine","date":"1991","lien":"",color:sofres}]
+				}
+		]
+        });
+
+
+
+
+
+ $('#immigres').highcharts({
+            chart: {
+            	spacingTop: 15,
+            	spacingBottom: 0,
+            	spacingLeft: 16,
+            	spacingRight: 16,
+            	spacingBottom: 20,
+            	backgroundColor: '#e9edf0',
+            	zoomType: 'x'
+            },
+            title: {
+                text: ''
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: [{
+            	/*labels: {
+            		enabled: false
+            	},*/
+            	gridLineWidth: 0,
+            	lineWidth: 0,
+            	opposite: true,
+            	offset: 0,
+            	 type: 'datetime',
+               /* categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']*/
+                min: Date.UTC(1982,0,1),
+                max: Date.UTC(2013,11,1),
+            	tickWidth: 0,
+            	labels: {
+            		enabled: false,
+            		style: {
+	            		fontSize: '13pt',
+	            		fontWeight: 'bold',
+	                    fontFamily: '"TheSerifOffice", Georgia, sans-serif',
+	                    fontWeight: 'normal',
+                    	color: '#000000'
+            		}
+            	}
+            }],
+            legend: {
+           		 enabled: false
+      	  	},
+      	  	credits: {
+           		 enabled: false
+      	  	},
+      	  	plotOptions: {
+		            series: {
+		            	states: {
+		                    hover: {
+		                        enabled: true,
+		                        lineWidth: 2
+		                    }
+		                },
+		            	marker: {
+		                        states: {
+				                        hover: {
+				                            fillColor: 'white',
+				                            lineWidth: 0,
+				                            lineColor: '#00387F',
+				                            radius: 0
+				                        }
+				                    }
+				        },
+		                dataLabels: {
+                    		enabled: true,
+                    		formatter: function(){
+                    			if(this.point.y == 32) { console.log(this.point.x) }
+                    			if(this.point.x == 957139200000 ||  this.point.x == 1356998400000 ||  this.point.x == 1177977600000) {
+                    				return this.point.y + '%'
+                    			}
+                    			
+                    		},
+                    		style: {
+                    			fontSize: '15pt',
+                    			fontWeight: 'bold',
+                    			fontFamily: 'Arial, Georgia, sans-serif',
+                    			color: '#000000'
+                    		},
+                    		x: 0,
+                    		y: 0
+                		},
+		                lineWidth: 0.01,
+		                point: {
+		                    events: {
+		                        click: function() {
+		                             window.open(this['lien']);
+		                        }
+                    }
+                }
+		            }
+       		 },
+      	  	tooltip: {
+      	  		backgroundColor: 'rgba(255,255,255,1)',
+      	  		positioner: function () {
+            		return { x: 10, y: 60 };
+           		},
+           		borderWidth: 0,
+           		borderRadius: 0,
+           		snap: 5,
+      	  		style: {
+      	  			width: 520,
+      	  			padding: '8px 4px 0px 4px',
+      	  			fontFamily: 'Arial, Georgia, sans-serif'
+      	  		},
+                 formatter: function() {
+                 	if(this.series.name == 'Trop d\'immigrés') {
+                 		complement = 'pensent qu\'il y a trop d\'immigrés en France'
+                 	}
+                 	else {
+                 		complement = 'pensent qu\'il y a trop d\'immigrés en France'
+                 	}
+
+                 	if(this.point['lien']) {
+                 		texte = this.point['texte'] + ' <em>(cliquez pour accéder au sondage)</em>'
+                 	}
+                 	else {
+                 		texte = this.point['texte']
+                 	}
+              
+                 	function convertUTCDateToLocalDate(date) {
+					    var newDate = new Date(date.getTime());
+
+					    var offset = date.getTimezoneOffset() / 60;
+					    var hours = date.getHours();
+
+					    newDate.setHours(hours - offset);
+
+					    return newDate;   
+					}
+					
+
+              	if(this.series.name == "Population immigrée") {
+              		var date = this.point.x
+              		date = convertUTCDateToLocalDate(new Date(date));
+              		date = date.getFullYear();
+              			return '<table><tr><td><span style="font-size:18pt; font-weight:bold; ">'+ thousandsSeparator(this.point.options['nombre']) +
+                    '</span> <span style="font-size:12pt; font-weight:bold;  "> immigrés en '+ date +
+                    '</span></td></tr><br/><tr><td>Soit <b>'+ this.point.y +' % de la population française</b><br>(Insee)</td></tr></table>';
+              	}
+                else return '<table><tr><td><span style="font-size:18pt; font-weight:bold; ">'+ this.point.y +
+                    ' %</span><span style="font-size:12pt; font-weight:bold;  "> '+ complement +'</span></td></tr><br/> <br/> <tr><td><b>'+ texte +'</b><br><b>'+ this.point['date'] +
+                    '</b></td></tr></table>';
+          		  },
+
+            },
+            yAxis: 
+            {
+                title: {
+                    text: ''
+                },
+                labels: {
+            		enabled: false
+            	},
+            	/*min: 30,
+            	max: 70,*/
+                gridLineWidth: 0,
+                maxPadding:0,
+                max: 68,
+                startOnTick: false
+            },
+            series: [{
+            	name: 'Sofres',
+            	yAxis: 0,
+            	xAxis: 0,
+            	marker: {
+	               		 enabled: true,
+	               		 symbol: 'circle'
+	           	},
+	           	color: '#0A197F',
+            	data: [
+						{x:Date.UTC(2000,4,1),y:59,"texte":"Enquête Sofres pour Le Monde et RTL","date":"Mai 2000","lien":"",color:sofres},
+						{x:Date.UTC(2002,4,1),y:59,"texte":"Enquête Sofres pour Le Monde et RTL","date":"Mai 2002","lien":"",color:sofres},
+						{x:Date.UTC(2003,11,1),y:59,"texte":"Enquête Sofres pour Le Monde et RTL","date":"Décembre 2003","lien":"",color:sofres},
+						{x:Date.UTC(2005,11,1),y:63,"texte":"Enquête Sofres pour Le Monde et RTL","date":"Décembre 2005","lien":"",color:sofres},
+						{x:Date.UTC(2006,11,1),y:59,"texte":"Enquête Sofres pour Le Monde et RTL","date":"Décembre 2006","lien":"http://medias.lemonde.fr/mmpub/edt/doc/20061214/845801_barometre_fnle_mondertl.pdf",color:sofres},
+						{x:Date.UTC(2010,0,1),y:44,"texte":"Enquête TNS Sofres/Logica pour Le Monde et France 2","date":"Janvier 2010","lien":"http://abonnes.lemonde.fr/politique/article/2010/01/14/l-adhesion-aux-idees-du-fn-recule_1291275_823448.html",color:sofres},
+						{x:Date.UTC(2011,0,1),y:49,"texte":"Baromètre d'image du FN TNS Sofres pour Le Monde/France Info/Canal+","date":"Janvier 2011","lien":"http://www.franceinfo.fr/sites/default/files/2012/01/11/495063/pdf/fichier/Sondage20TNS20Sofres20France20Info20Le20Monde20Canal202B2020la20pC3A9nC3A9tration20des20idC3A9es20du20FN.pdf",color:sofres},
+						{x:Date.UTC(2012,0,1),y:51,"texte":"Baromètre d'image du FN TNS Sofres pour Le Monde/France Info/Canal+","date":"Janvier 2012","lien":"http://www.franceinfo.fr/sites/default/files/2012/01/11/495063/pdf/fichier/Sondage20TNS20Sofres20France20Info20Le20Monde20Canal202B2020la20pC3A9nC3A9tration20des20idC3A9es20du20FN.pdf",color:sofres},
+						{x:Date.UTC(2013,0,1),y:54,"texte":"Baromètre d'image du FN TNS Sofres pour Le Monde/France Info/Canal+","date":"Janvier 2013","lien":"http://medias.lemonde.fr/mmpub/edt/doc/20130205/1827596_eece_baro_fn_2013_-_presentation.pdf",color:sofres}
+						]
+				},
+				{
+            	name: 'CSA',
+            	yAxis: 0,
+            	xAxis: 0,
+            	color: '#6074FF',
+            	marker: {
+	               		 enabled: true,
+	               		 symbol: 'circle'
+	           	},
+            	data: [
+						{x:Date.UTC(2003,11,1),y:51,"texte":"Baromètre racisme du CSA pour la CNCDH","date":"Décembre 2002","lien":"http://www.ladocumentationfrancaise.fr/var/storage/rapports-publics/084000167/0000.pdf",color:csa},
+						{x:Date.UTC(2003,11,1),y:41,"texte":"Baromètre racisme du CSA pour la CNCDH","date":"Décembre 2003","lien":"http://www.ladocumentationfrancaise.fr/var/storage/rapports-publics/084000167/0000.pdf",color:csa},
+						{x:Date.UTC(2004,11,1),y:44,"texte":"Baromètre racisme du CSA pour la CNCDH","date":"Décembre 2004","lien":"http://www.ladocumentationfrancaise.fr/var/storage/rapports-publics/084000167/0000.pdf",color:csa},
+						{x:Date.UTC(2005,10,1),y:55,"texte":"Baromètre racisme du CSA pour la CNCDH","date":"Novembre 2005","lien":"http://www.ladocumentationfrancaise.fr/var/storage/rapports-publics/084000167/0000.pdf",color:csa},
+						{x:Date.UTC(2006,1,1),y:48,"texte":"Baromètre racisme du CSA pour la CNCDH","date":"Février 2006","lien":"http://www.ladocumentationfrancaise.fr/var/storage/rapports-publics/084000167/0000.pdf",color:csa},
+						{x:Date.UTC(2006,10,1),y:48,"texte":"Baromètre racisme du CSA pour la CNCDH","date":"Novembre 2006","lien":"http://www.ladocumentationfrancaise.fr/var/storage/rapports-publics/084000167/0000.pdf",color:csa},
+						{x:Date.UTC(2007,10,1),y:49,"texte":"Baromètre racisme du CSA pour la CNCDH","date":"Novembre 2007","lien":"http://www.ladocumentationfrancaise.fr/var/storage/rapports-publics/084000167/0000.pdf",color:csa},
+						{x:Date.UTC(2009,10,1),y:47,"texte":"Baromètre racisme du CSA pour la CNCDH","date":"Novembre 2009","lien":"http://www.ladocumentationfrancaise.fr/var/storage/rapports-publics/104000267/0000.pdf",color:csa},
+						{x:Date.UTC(2011,0,1),y:56,"texte":"Baromètre racisme du CSA pour la CNCDH","date":"Janvier 2011","lien":"http://www.csa.eu/multimedia/data/sondages/data2011/opi20110114-xenophobie-antisemitisme-racisme-anti-racisme-et-discriminations-en-france.pdf",color:csa},
+						{x:Date.UTC(2011,11,1),y:59,"texte":"Baromètre racisme du CSA pour la CNCDH","date":"Décembre 2011","lien":"http://csa.eu/multimedia/data/sondages/data2012/opi20111205-xenophobie-antisemitisme-racisme-antiracisme-et-discriminations-en-france.pdf",color:csa},
+						{x:Date.UTC(2012,11,1),y:69,"texte":"Baromètre racisme du CSA pour la CNCDH","date":"Décembre 2012","lien":"http://csa.eu/multimedia/data/sondages/data2013/opi20130321-Barometre-CNCDH-pour-publication.pdf",color:csa}
+						]
+				},
+				{
+            	name: 'Cevipof',
+            	yAxis: 0,
+            	xAxis: 0,
+            	color: '#1431FF',
+            	marker: {
+	               		 enabled: true,
+	               		 symbol: 'circle'
+	           	},
+            	data: [
+						{x:Date.UTC(2009,11,1),y:49,"texte":"Baromètre Cevipof de la confiance politique","date":"Décembre 2009","lien":"http://www.cevipof.com/fr/le-barometre-de-la-confiance-politique-du-cevipof/resultats/",color:cevipof},
+						{x:Date.UTC(2010,11,1),y:59,"texte":"Baromètre Cevipof de la confiance politique","date":"Décembre 2010","lien":"http://www.cevipof.com/fr/le-barometre-de-la-confiance-politique-du-cevipof/resultats2/",color:cevipof},
+						{x:Date.UTC(2011,9,1),y:60,"texte":"Baromètre Cevipof de la confiance politique","date":"Octobre 2011","lien":"http://www.cevipof.com/fr/le-barometre-de-la-confiance-politique-du-cevipof/resultats3/",color:cevipof},
+						{x:Date.UTC(2011,11,1),y:59,"texte":"Baromètre racisme du CSA pour la CNCDH","date":"Décembre 2011","lien":"http://csa.eu/multimedia/data/sondages/data2012/opi20111205-xenophobie-antisemitisme-racisme-antiracisme-et-discriminations-en-france.pdf",color:csa},
+						{x:Date.UTC(2012,11,1),y:65,"texte":"Baromètre Cevipof de la confiance politique","date":"Décembre 2012","lien":"http://www.cevipof.com/fr/le-barometre-de-la-confiance-politique-du-cevipof/les-resultats-vague-4-janvier-2013/",color:cevipof}
+						]
+				}
+	/*			{
+	            	name: 'Deuxième axe',
+	            	yAxis: 2,
+	            	
+	            	marker: {
+	               		 enabled: false
+	           		 },
+	            	pointStart: Date.UTC(1982, 0, 1),
+	            	pointInterval: 24 * 3600 * 1000 * 365.25,
+	            	data: [{x:Date.UTC(1982,0,1),"nombre":4037036,y:7.4,"lien":"http://www.insee.fr/fr/themes/detail.asp?reg_id=0&ref_id=ir-rp99pipe&page=irweb/rp99pipe/dd/rp99pipe_retrospectif.htm"},
+							{x:Date.UTC(2013,4,1),"nombre":5514000,y:8.5,"lien":"http://www.insee.fr/fr/themes/tableau.asp?reg_id=0&ref_id=NATTEF02162"}]
+				}*/
+		]
+        });
+
+
+
+$('#axe').highcharts({
+            chart: {
+            	spacingTop: 0,
+            	spacingBottom: 0,
+            	spacingLeft: 26,
+            	spacingRight: 16,
+            	marginTop: 20
+            },
+            title: {
+                text: ''
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: [{
+            	/*labels: {
+            		enabled: false
+            	},*/
+            	gridLineWidth: 0,
+            	lineWidth: 0,
+            	opposite: true,
+            	offset: 0,
+            	 type: 'datetime',
+               /* categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']*/
+                min: Date.UTC(1982,0,1),
+                max: Date.UTC(2013,11,1),
+                tickInterval: 24 * 3600 * 1000 * 365.25,
+            	tickWidth: 0,
+            	labels: {
+            		style: {
+	            		fontSize: '12pt',
+	            		fontWeight: 'bold',
+	                    fontFamily: '"TheSerifOffice", Georgia, sans-serif',
+	                    fontWeight: 'normal',
+                    	color: '#000000'
+            		}
+            	}
+            }],
+            legend: {
+           		 enabled: false
+      	  	},
+      	  	credits: {
+           		 enabled: false
+      	  	},
+      	  	plotOptions: {
+		            series: {
+		            	marker: {
+		                       enabled: false
+				        },
+		                lineWidth: 0,
+		            }
+       		 },
+      	  	
+            yAxis: [
+            {
+                title: {
+                    text: ''
+                },
+                labels: {
+            		enabled: false
+            	},
+            	/*min: 30,
+            	max: 70,*/
+                gridLineWidth: 0,
+                maxPadding:0
+            }],
+            series: [
+				{
+	            	name: 'Deuxième axe',
+	            	marker: {
+	               		 enabled: false
+	           		 },
+	            	data: [{x:Date.UTC(1982,0,1),y:10}]
+				}
+		]
+        });
+
+
+$('#axe2').highcharts({
+            chart: {
+            	spacingTop: 0,
+            	spacingBottom: 0,
+            	spacingLeft: 26,
+            	spacingRight: 16,
+            	marginTop: 0
+            },
+            title: {
+                text: ''
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: [{
+            	/*labels: {
+            		enabled: false
+            	},*/
+            	gridLineWidth: 0,
+            	lineWidth: 0,
+            	offset: 0,
+            	 type: 'datetime',
+               /* categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']*/
+                min: Date.UTC(1982,0,1),
+                max: Date.UTC(2013,11,1),
+                tickInterval: 24 * 3600 * 1000 * 365.25,
+            	tickWidth: 0,
+            	labels: {
+            		style: {
+	            		fontSize: '12pt',
+	            		fontWeight: 'bold',
+	                    fontFamily: '"TheSerifOffice", Georgia, sans-serif',
+	                    fontWeight: 'normal',
+                    	color: '#000000'
+            		}
+            	}
+            }],
+            legend: {
+           		 enabled: false
+      	  	},
+      	  	credits: {
+           		 enabled: false
+      	  	},
+      	  	plotOptions: {
+		            series: {
+		            	marker: {
+		                       enabled: false
+				        },
+		                lineWidth: 0,
+		            }
+       		 },
+      	  	
+            yAxis: [
+            {
+                title: {
+                    text: ''
+                },
+                labels: {
+            		enabled: false
+            	},
+            	/*min: 30,
+            	max: 70,*/
+                gridLineWidth: 0,
+                maxPadding:0
+            }],
+            series: [
+				{
+	            	name: 'Deuxième axe',
+	            	marker: {
+	               		 enabled: false
+	           		 },
+	            	data: [{x:Date.UTC(1982,0,1),y:10}]
+				}
+		]
+        });
+
+	
+
+    });
+
+    
+
+	</script>
+</head>
+<body>
+
+<script src="http://code.highcharts.com/highcharts.js"></script>
+
+
+	
+	<div class="commentaire article txt15_140">
+			<p>Le 15 octobre 1983, trente-deux enfants d'immigrés partaient à pied de Marseille pour réclamer l'égalité, la justice et la fin des crimes racistes. Mille deux cents kilomètres plus tard, le 3 décembre, la "Marche pour l'égalité et contre le racisme" fut accueillie à Paris par près de 100 000 personnes. Reçus à l'Elysée, ses marcheurs réclamèrent à François Mitterrand le droit de vote pour les étrangers et une carte de séjour de dix ans, au lieu d'un. Trente ans plus tard, après SOS Racisme, Le Pen, la crise des banlieues et la burqa, la société française a-t-elle évolué ?</p>
+			<p class="article lire">Lire (édition abonnés) : <a href="http://abonnes.lemonde.fr/societe/article/2013/10/11/la-marche-des-beurs-veut-entrer-dans-l-histoire-de-france_3494031_3224.html" target="_blank">La Marche des beurs veut entrer dans l'histoire de France</a></p>
+	</div>
+
+<div id="maitre">
+
+
+	
+
+	<div class="ligne" id="parlement">
+			
+			
+			<div class="legislature" id="leg2012">
+				<a href="#" title="2012 : six députés de l'immigration maghrébine et africaine" class="bulle"><img src="img/deputes2012.jpg" width="120" height="120" /></a>
+				<div class="tooltiptext">
+	    		Il faut attendre 2012 pour voir des députés issus de l'immigration maghrébine et africaine entrer au palais Bourbon : Kader Arif (Algérie), Malek Boutih (Algérie), Chaynesse Khirouni (Algérie), Kheira Bouziane (Algérie) et Razzy Hammadi (Algérie-Tunisie). Seybah Dagoma, originaire du Tchad, succède également au franco-togolais Kofi Yamgnane, élu de 1997 à 2002.
+				</div>
+				<div class="connector"></div>
+			</div>
+
+			<div class="legislature" id="leg1999">
+				<a href="#" title="1999-2004 : quatre sénateurs d'origine maghrébine" class="bulle"><img src="img/senateurs1999.jpg" width="120" height="120" /></a>
+				<div class="tooltiptext">
+	    		L'année 1999 voit l'arrivée du premier parlementaire d'origine maghrébine : Roger Karoutchi, entré au palais Bourbon après la démission de Charles Pasqua, est né à Casablanca, dans une famille de juive marocaine. Trois autres personnalités le rejoignent à la faveur des sénatoriales de 2004 : l'écologiste Alima Boumediene-Thiery (fille d'un Algérien et d'une Française), la socialiste Bariza Khiari (franco-algérienne née en Algérie) et son collègue David Assouline (né au Maroc, naturalisé en 1973). 
+	    		</div>
+	    		<div class="connector"></div>
+			</div>
+
+			<div class="legislature" id="leg1997">
+				<a href="#" title="1997 : le premier député d'origine africaine" class="bulle"><img src="img/yamgnane.jpg" height="120"  /></a>
+				<div class="tooltiptext">
+	    		En 1997, Kofi Yamgnane devient le premier député d'origine africaine à entrer à l'Assemblée nationale. Né au Togo, il a été naturalisé français en 1975, avant de devenir maire de Saint-Coulitz, en Bretagne, en 1989.
+	    		</div>
+	    		<div class="connector"></div>
+			</div>
+
+			<div class="legislature" id="leglegende">
+				<h1>Immigration du Maghreb et de l'Afrique noire au Parlement</h1>
+				<div class="tooltiptext">
+	    		Le premier député d'origine extra-européenne de la V<sup>e</sup> République à entrer à l'Assemblée fut le gaulliste Michel Habib-Deloncle, né d'un père libanais et d'une mère française.
+	    		</div>
+			</div>
+	</div>
+
+	<div class="ligne" id="axe"></div>
+
+	<div class="titraille" id="titre_immigres">
+		<h1>"Il y a trop d'immigrés en France"</h1>
+		<p>Sélectionnez une zone pour zoomer</p>
+	</div>
+
+	<div class="legende" id="legende_immigres">
+		<p><span style="color:#0A197F">TNS/Sofres</span> &middot; <span style="color:#6074FF">CSA/CNDH</span> &middot; <span style="color:#1431FF">Cevipof</span></p>
+	</div>
+
+
+	<div class="titraille" id="titre_droitdevote">
+		<h1>Pour le droit de vote des étrangers</h1>
+	</div>
+
+
+	<div class="legende" id="legende_droitdevote">
+		<p><span style="color:#0A197F">Sofres</span> &middot; <span style="color:#6074FF">CSA/RTL</span> &middot; <span style="color:#2A787F">CSA/CNCDH</span></p>
+	</div>
+
+	<div class="titraille" id="titre_part">
+		<h1>Part des immigrés dans la population française</h1>
+	</div>
+
+	<div class="legende" id="legende_part">
+		<p>Insee</p>
+	</div>
+	
+	<div class="ligne" id="immigres"></div>
+
+	<div class="ligne" id="droitdevote"></div>
+
+	<div class="ligne" id="part"></div>
+
+	<div class="ligne" id="axe2"></div>
+
+	
+
+
+		<!-- <div class="element_chrono chrono4">
+			<div class="connecteur"></div>
+			<h1>"Toute la misère du monde"</h1>
+			<p>Texte</p>
+		</div>
+
+		<div class="element_chrono chrono5">
+			<div class="connecteur"></div>
+			<h1>France 98</h1>
+			<p>Texte</p>
+		</div>
+
+		<div class="element_chrono chrono6">
+			<div class="connecteur"></div>
+			<h1>Le Pen au second tour</h1>
+			<p>Texte</p>
+		</div>
+
+		<div class="element_chrono chrono7">
+			<div class="connecteur"></div>
+			<h1>Crise des banlieues</h1>
+			<p>Texte</p>
+		</div>
+
+		<div class="element_chrono chrono8">
+			<div class="connecteur"></div>
+			<h1>"Compétences et talents"</h1>
+			<p>Texte</p>
+		</div>
+
+		<div class="element_chrono chrono9">
+			<div class="connecteur"></div>
+			<h1>Débat sur la burqa</h1>
+			<p>Texte</p>
+		</div>
+
+		<div class="element_chrono chrono10">
+			<div class="connecteur"></div>
+			<h1>Titre de séjour pluriannuels</h1>
+			<p>Texte</p>
+		</div> -->
+	</div>
+	
+</div>
+		<div class="commentaire com2 article txt15_140">
+			<p>En trente ans, le nombre d'<a href="http://www.insee.fr/fr/ffc/docs_ffc/ref/IMMFRA12_g_Flot1_pop.pdf#page=3" target="_blank" title="Un immigré est une personne née à l’étranger et de nationalité étrangère à la naissance, qui a pu éventuellement acquérir la nationalité française par la suite (Haut conseil à l’intégration, 1991)." class="detail">immigrés</a> est passé de 4 à 5,5 millions. Ils représentent aujourd'hui 8,5&nbsp;% de la population française. Cette évolution est loin d'être indexée à la courbe du refus de l'immigration. Une plongée dans les archives des instituts de sondages montre que l'adhésion à l'expression <em>"il y a trop d'immigrés en France"</em> a atteint un pic en décembre 2012 (69&nbsp;%), après une montée ininterrompue lors du quinquennat de Nicolas Sarkozy. A l'inverse, le début des années 2000 avait été marqué par une stabilisation, voire une baisse de ce sentiment. Le point bas avait été atteint, selon les sondages, en 2003 (41 %, CSA/CNDH), 2007 (32%, Harris Interactive) ou (2010 (41 %, TNS Sofres).</p>
+			<p>L'approbation du droit de vote pour les étrangers aux élections municipales, l'une des principales revendications de la Marche pour l'égalité, a connu une évolution plus complexe, notamment <a href="https://sites.google.com/a/iepg.fr/trielec/resultats-analyses/enquetes-pre-electorales/vague-2---octobre-2011/ledroitdevotedesetrangersunexempledelaprogressionduliberalismecultureldansl%E2%80%99opinion" target="_blank">du fait des possibilités multiples de poser le problème dans les sondages</a>. <a href="http://www.lours.org/default.asp?pid=307" target="_blank">80<sup>e</sup> des 110 propositions de François Mitterrand</a> en 1981, la mesure était soutenue par à peine un Français sur cinq. <a href="http://www.luipresident.fr/engagement/droit-vote-des-etrangers-77" target="_blank">50<sup>e</sup> des 60 engagements de François Hollande</a> en 2012, son approbation oscille aujourd'hui entre 37&nbsp;% et 54&nbsp;%, alors que la perspective de sa mise en &oelig;uvre <a href="http://www.lemonde.fr/politique/article/2013/05/16/hollande-relance-la-perspective-d-une-loi-sur-le-vote-des-etrangers_3269391_823448.html" target="_blank">reste fragile</a>.</p>
+			<p class="lm_intertitre">1997 : le premier député d'origine africaine</p>
+			<p>Entrés brusquement dans le débat public en 1983, les immigrés originaires du Maghreb et de l'Afrique noire ont mis près de vingt ans à accéder au Parlement. Le premier natif d'Afrique, le franco-togolais Kofi Yamgnane, a été élu député en 1997, vingt-deux ans après sa naturalisation. Les premiers parlementaires d'origine maghrébine ont été élus au Sénat en 2004, cinq ans après l'entrée au palais Bourbon de Roger Karoutchi, né au Maroc, suppléant du démissionnaire Charles Pasqua. Il faudra en revanche attendre 2012 pour voir des élus d'origine maghrébine à l'Assemblée nationale : au nombre de six, ils côtoient trois autres nouveaux députés issus de l'immigration extra-européenne : Pouria Amirshahi (Iran), Henri Jibrayel (Liban) et Eduardo Rihan Cypel (Brésil). En revanche, deux élues d'origine algérienne avaient accédé au Parlement européen de Strasbourg dès 1989 : Nora Zaïdi (apparentée PS) et Djida Tazdait (verte).</p>
+			<p class="article lire">Lire : <a href="http://www.lemonde.fr/politique/article/2012/06/18/la-diversite-progresse-dans-l-hemicycle_1720683_823448.html" target="_blank">La diversité progresse dans l'Hémicycle</a></p>
+			<p>La tâche des "beurs" et des originaires d'Afrique noire semble avoir été plus ardue que des personnalités politiques issues de l'immigration intra-européenne. L'ancien premier ministre Edouard Balladur, issu d'une famille arménienne et né en Turquie, est entré à l'Assemblée dès 1986. Manuel Valls, natif de Barcelone, n'a acquis la nationalité française qu'à l'âge de vingt ans, mais a été élu député en 2002. Elie Aboud, né au Liban, est entré à l'Assemblée en 2007, après le décès de Paul-Henri Cugnenc, quelques mois après Eric Ciotti, d'origine italienne.</p><p>La lente progression des immigrés d'Afrique noire et du Maghreb semble toutefois calquée sur celle des Français d'outre-mer en métropole. Après le Guyannais Gaston Monnerville, sénateur du Lot de 1948 à 1974 et président du Sénat, il avait fallu attendre 1993 pour revoir un parlementaire ultra-marin élu dans une circonscription métropolitaine. Ernest Chenière, né en Martinique, a été député de l'Oise pendant une législature, après avoir déclenché "l'affaire du foulard islamique" en tant que proviseur du lycée de Creil. Seize ans plus tard, la Guadeloupéenne George-Pau Langevin se plaçait dans leur trace en devenant députée de Paris, avant d'être rejointe par Helène Geoffroy et Corinne Narassiguin en 2012.</p>
+			<p>Du point de vie du niveau de vie, les immigrés restent encore largement derrière le reste de la population française. Ils disposent de moitié moins de ressources, et sont trois fois plus nombreux sous le seuil de pauvreté. Un écart qui n'a pas bougé d'un pouce lors de la dernière décennie, et qui se répercute sur les 6,5 millions de descendants d'immigrés, qui représentent 11 % de la population : <a href="www.lemonde.fr/societe/article/2011/04/28/le-niveau-de-vie-des-descendants-d-immigres-est-inferieur-a-celui-des-enfants-de-parents-nes-francais_1513895_3224.html" target="_blank">21 % d'entre eux vivaient en 2008 sous le seuil de pauvreté</a>, contre 10,6 % pour les enfants de parents nés français.</p>
+		</div>
+
+		<div class="appui">
+
+			<div class="chiffrecle" id="chiffrecle3">
+				<p>En 1991,</p>
+				<h1>52 %</h1>
+				<p>des Français estiment qu'il faut empêcher de nouvelles entrées d'immigrés</p>
+				<p class="notice">Sofres/Le Figaro Magazine, août 1991</p>
+			</div>
+
+			<div class="chiffrecle" id="chiffrecle4">
+				<h1>59 %</h1>
+				<p>des Français jugent que le racisme a augmenté au cours des 30 dernières années</p>
+				<p class="small"><span>68 %</span> pensent qu'il être difficile d'être d'origine maghrébine en France aujourd'hui</p> 
+				<p class="notice"><a href="http://fr.scribd.com/doc/174052864/Les-Francais-et-le-racisme-Opinion-Way-pour-la-Licra" target="_blank">OpinionWay pour la Licra, octobre 2013</a></p>
+			</div>
+
+
+			<div class="chiffrecle" id="chiffrecle1">
+				<h1>37,5 %</h1>
+				<p>des immigrés sous le seuil de pauvreté</p>
+				<p class="small"><span>21,1 %</span> des enfants d'immigrés</p>
+				<p class="small"><span>11,3 %</span> des non-immigrés</p>
+			</div>
+
+			<div class="chiffrecle" id="chiffrecle2">
+				<h1>15&nbsp;360 €</h1>
+				<p>Niveau de vie moyen dans un ménage immigré</p>
+				<p class="small"><span>22 990 €</span> dans les autres ménages</p>
+				<p class="notice"><a href="http://www.insee.fr/fr/ffc/docs_ffc/ref/IMMFRA12_k_Flot5_con.pdf" target="_blank">2009, Insee</a></p>
+			</div>
+
+
+		</div>
+
+
+</body>
+</html>

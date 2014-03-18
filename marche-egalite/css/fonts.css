@@ -1,0 +1,349 @@
+@font-face {
+   font-family: 'TheSerifOffice';
+   font-weight: normal;
+   font-style: normal;
+   src: url('/medias/web/font/svg/TheSerifOffice-OT7_West.svgz#TheSerifOffice') format('svg');
+   src: url('/medias/web/font/eot/TheSerifOffice-TT7_.eot');
+   src: url('/medias/web/font/eot/TheSerifOffice-TT7_.eot?#iefix') format('embedded-opentype'),
+        url('/medias/web/font/woff/TheSerifOffice-TT7_.woff') format('woff');
+   font-weight: normal;
+   font-style: normal;
+}
+
+@font-face {
+   font-family: 'FetteEngschrift';
+   src: url('/medias/web/font/eot/fetteengschrift.eot');
+   src: url('/medias/web/font/eot/fetteengschrift.eot?#iefix') format('embedded-opentype'),
+        url('/medias/web/font/woff/fetteengschrift.woff') format('woff');
+   font-weight: normal;
+   font-style: normal;
+
+}
+
+/*** abonnes ***/
+@font-face {
+   font-family: 'TheAntiqua';
+   src: url('/medias/web/font/ttf/TheAntB7Bol.ttf');
+   font-weight: normal;
+   font-style: normal;
+}
+
+.gras { font-weight: bold; }
+.ital { font-style: italic }
+.normal {font-weight: normal; font-style: normal }
+.caps {text-transform: uppercase }
+
+/*** nouvelle webfont narrow 1/03/12 ***/
+.global .bloc_droit .bandeau, .global .bloc_bandeau .bandeau  {
+   font-family: 'FetteEngschrift', 'Arial Narrow', sans-serif;
+   font-weight: normal;
+}
+
+/*** titres ****/
+.tt40, .tt40_capital {
+  display: block;
+  font-size: 4rem;
+  line-height: 105%;
+  font-family: 'TheSerifOffice', georgia, serif;
+  font-weight: normal;
+  margin: 0 0 .5rem;
+}
+
+.ie .tt40 {
+  font-size: 40px;
+  margin: 0 0 0.5px;
+}
+
+.tt40_capital {
+   font-family: 'FetteEngschrift', 'Arial Narrow', sans-serif;
+   text-transform: uppercase;
+	margin: 0 0 4px;
+}
+
+.tt32   {
+  display: block;
+  font-size: 3.2rem;
+  line-height: 105%;
+  font-family: 'TheSerifOffice', georgia, serif;
+  font-weight: normal;
+  margin: 0 0 .5rem;
+}
+
+.ie .tt32 {
+  font-size: 32px;
+  margin: 0 0 10px;
+}
+
+
+.tt28   {
+  display: block;
+  font-size: 2.8rem;
+  line-height: 105%;
+  font-family: 'TheSerifOffice', georgia, serif;
+  font-weight: normal;
+  margin: 0 0 1rem;
+}
+
+
+.ie .tt28 {
+  font-size: 28px;
+  margin: 0 0 10px;
+}
+
+
+.tt26_capital {
+	font-size: 2.6rem;
+	line-height: 120%;
+	font-family: 'FetteEngschrift', 'Arial Narrow', sans-serif;
+	font-weight: normal;
+	margin: 0 0 .4rem;
+   text-transform: uppercase;
+}
+
+
+.ie  .tt26_capital {
+  font-size: 26px;
+  margin: 0 0 4px;
+}
+
+
+.tt24, .tt24_capital  {
+  display: block;
+  font-size: 2.4rem;
+  line-height: 105%;
+  font-family: 'TheSerifOffice', georgia, serif;
+  font-weight: normal;
+  margin: 0 0 .3rem;
+}
+
+.tt24_capital {
+   font-family: 'FetteEngschrift', 'Arial Narrow', sans-serif;
+   text-transform: uppercase;
+	margin: 0 0 4px;
+}
+
+.app_abonnes .tt24 {
+   font-family: 'TheAntiqua', georgia, serif;
+}
+
+.ie .tt24, .ie .tt24_capital {
+  font-size: 24px;
+  margin: 0 0 3px;
+}
+
+.tt20, .tt20_capital  {
+  display: block;
+  font-size: 2rem;
+  line-height: 105%;
+  font-family: 'TheSerifOffice', georgia, serif;
+  font-weight: normal;
+  padding: 0 0 .3rem;
+}
+
+.tt20_capital {
+   font-family: 'FetteEngschrift', 'Arial Narrow', sans-serif;
+   text-transform: uppercase;
+}
+
+.ie .tt20, .ie .tt20_capital {
+  font-size: 20px;
+  padding: 0 0 3px;
+}
+
+.tt17, .tt17_capital {
+	display: block;
+	font-size: 1.7rem;
+	line-height: 120%;
+	font-family: 'TheSerifOffice', georgia, serif;
+	font-weight: normal;
+	margin: 0 0 .4rem;
+}
+
+.tt17_capital {
+   font-family: 'FetteEngschrift', 'Arial Narrow', sans-serif;
+   text-transform: uppercase;
+	margin: 0 0 4px;
+}
+
+.ie .tt17,.ie  .tt17_capital {
+  font-size: 17px;
+}
+
+.tt15_capital {
+	display: block;
+	font-size: 1.5rem;
+	line-height: 120%;
+   font-family: 'FetteEngschrift', 'Arial Narrow', sans-serif;
+	font-weight: normal;
+   text-transform: uppercase;
+}
+
+.ie  .tt15_capital {
+  font-size: 15px;
+	margin: 0 0 4px;
+}
+
+
+.tt13_capital {
+	display: block;
+	font-size: 1.3rem;
+	line-height: 120%;
+	font-family: 'FetteEngschrift', 'Arial Narrow', sans-serif;
+	font-weight: normal;
+	margin: 0 0 .4rem;
+   text-transform: uppercase;
+}
+
+.ie  .tt13_capital {
+  font-size: 13px;
+	margin: 0 0 4px;
+}
+/**** texte ***/
+.txt20 {
+  font-size: 2rem;
+  line-height: 105%;
+}
+
+.ie .txt20{
+	font-size: 20px;
+}
+
+.txt18 {
+  font-size: 1.8rem;
+  line-height: 105%;
+}
+
+.ie .txt18 {
+	font-size: 18px;
+}
+
+.txt15_140, .txt15_120 {
+  font-size: 1.5rem;
+  line-height: 140%;
+}
+
+.ie .txt15_140, .ie .txt15_120  {
+	font-size: 15px;
+}
+
+.txt15_120 {
+	line-height: 120%;
+}
+
+
+.txt14_140, .txt14_120 {
+  font-size: 1.4rem;
+  line-height: 140%;
+}
+
+.txt14_120 {
+	line-height: 120%;
+}
+
+.ie .txt14_140, .ie .txt14_120 {
+	font-size: 14px;
+}
+
+.txt13_140, .txt13_120 {
+  font-size: 1.3rem;
+  line-height: 140%;
+}
+
+.txt13_120 {
+	line-height: 120%;
+}
+
+.ie .txt13_140, .ie .txt13_120 {
+	font-size: 13px;
+}
+
+.txt12{
+  line-height: 120%;
+  font-size: 1.2rem;
+}
+
+
+.ie .txt12 {
+  font-size: 12px;
+}
+
+.txt11 {
+  line-height: 120%;
+  font-size: 1.1rem;
+}
+
+.ie .txt11 {
+  font-size: 11px;
+}
+
+.txt10 {
+  line-height: 120%;
+  font-size: 1rem;
+}
+
+.ie .txt10 {
+  font-size: 10px;
+}
+
+
+.txt15_120, .txt14_140, .txt14_120, .txt13_140, .txt13_120, .txt12, .txt11, .txt10 {
+   font-family: arial, sans-serif;
+}
+
+/**********************************************/
+/*** textes de désignation de type de contenu ***/
+/**********************************************/
+.annotation {
+   display: inline-block;
+	font-size: 10px;
+   line-height: 100%;
+	color:#747b83;
+}
+
+.type_element, .titre_blog, .nature_edito, .liste_carre.liste_une .type_element  {
+	font-size: 11px;
+	font-size: 1.1rem;
+	font-family: arial, sans-serif;
+	font-weight: bold;
+	color: #a2a9ae;
+	text-transform: uppercase;
+}
+
+.nature_edito {
+	display: block;
+	font-weight: normal;
+	font-size: 16px;
+	font-family: 'FetteEngschrift', 'Arial Narrow', sans-serif;
+}
+
+.titre_blog { display: block; }
+
+
+.lien_externe {
+	color: #747b83;
+	font-size: 11px;
+}
+
+.source_contenu {
+   display: block;
+   font: normal 16px georgia, serif;
+   color: #747b83;
+}
+
+.source_contenu span { font-style: italic }
+
+/*** presentations de textes, liens... ***/
+.reco_article {
+    font-size: 1.1rem;
+    line-height: 18px;
+    display: block;
+    color: #fff;
+}
+
+.ie .reco_article {font-size: 11px;}
+
+.reco_article .entete {
+    display: inline-block;
+    background: #ff6e17;
+    padding: 0 3px;
+}

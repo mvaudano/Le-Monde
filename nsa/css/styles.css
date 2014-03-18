@@ -1,0 +1,439 @@
+
+
+@font-face{font-family:'TheSerifOffice';
+font-weight:normal;
+font-style:normal;
+src:url('http://s1.lemde.fr/medias/web/font/svg/TheSerifOffice-OT7_West.svgz#TheSerifOffice') format('svg');
+src:url('http://s1.lemde.fr/medias/web/font/eot/TheSerifOffice-TT7_.eot');
+src:url('http://s1.lemde.fr/medias/web/font/eot/TheSerifOffice-TT7_.eot?#iefix') format('embedded-opentype'),url('http://s1.lemde.fr/medias/web/font/woff/TheSerifOffice-TT7_.woff') format('woff');
+font-weight:normal;
+font-style:normal}
+
+
+
+body {
+	width: 1000px;
+}
+/*@font-face{
+	font-family:'TheSerifOffice';
+	font-weight:normal;
+	font-style:normal;
+	src:url('theserifoffice.ttf'); }*/
+body {
+	font-family: Arial, sans-serif;
+}
+
+a {
+	border-bottom: 1px dotted #747b83;
+	color: #036;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+a:hover {
+	color:#129af0;
+}
+
+
+
+#globalcontainer {
+	width:1000px;
+	height:600px;
+	margin:0;
+	/*background: url(../img/background.png) left bottom no-repeat #FFFFFF;*/
+}
+
+#intro {
+	width: 990px;
+	height:80px;
+	font-size:11pt;
+	padding:0 0 0 10px;
+
+}
+
+#intro p {
+	margin:0 0 10px 0;
+}
+
+#infographie {
+	width:630px; float:left;
+	height:576px;
+	clear:both;
+	margin-top: 15px;
+}
+
+#infographie svg {
+	margin-top:-20px;
+}
+
+#side {
+	margin:0;
+	width:350px; 
+	float:left; 
+	height: 586px; 
+	background-color:rgba(255,255,255,0.9);
+	padding:0 10px;
+	box-shadow: -1px 0px 5px 1px rgba(0, 0, 0, 0.3);
+	position:relative;
+}
+
+#detail {
+	max-height:520px;
+	padding-top:50px;
+	overflow-y: scroll;
+	font-size:10pt;
+
+}
+#detail h1 {
+	font-family: 'TheSerifOffice', Georgia, sans-serif;
+	margin:0 0 0px 0;
+	font-weight:normal;
+	position:fixed;
+	padding-top:7px;
+	top:80px;
+	width: 350px;
+	background-color: #FFFFFF;
+	font-size:26pt;
+}
+
+
+.explication {
+	background-color: #ece9e9;
+	cursor:pointer;
+	border-bottom:1px dotted #666;
+}
+
+#motscles {
+	height:115px;
+	position:absolute;
+	left:0;
+	bottom:10px;
+	padding:0 10px;
+}
+#motscles .explication {
+	padding:3px!important;
+}
+#motscles p {
+	margin:0;
+	font-size:10pt;
+	line-height:18pt;
+}
+#motscles h2 {
+	margin:0;
+	font-family:'TheSerifOffice', Georgia, sans-serif;
+	font-size:16pt;
+}
+
+#credito {
+	height: 20px;
+	position: absolute;
+	bottom: 8px;
+	right: 2px;
+}
+button.btn {
+	float:right;
+/*	margin-top:-22px;*/
+	font-size:10pt!important;
+	padding:0 6px!important;
+}
+
+.collapse {
+  position: relative;
+  height: 0;
+ /* display:none;*/
+  overflow: hidden;
+  -webkit-transition: height 0.35s ease;
+     -moz-transition: height 0.35s ease;
+       -o-transition: height 0.35s ease;
+          transition: height 0.35s ease;
+}
+
+.collapse.in {
+  height: 160px!important;
+	z-index: 1000;
+	background-color: white;
+	width: 280px;
+	padding: 10px 0;
+	/*border:1px solid #666;*/
+	/*display:block!important;*/
+}
+
+#credits2 {
+	position: absolute;
+	bottom: 5px;
+	left: 10px;
+	width:290px!important;
+	box-shadow: -2px 2px 5px rgba(0,0,0,0.5);
+	/*-moz-border-radius: 5px;
+	border-radius: 5px;*/
+}
+
+#credits2 p {
+	margin:0;
+	font-size:10pt;
+	font-style: italic;
+	padding:10px 10px 0 10px;
+
+}
+
+
+p.lire {padding:8px 16px 6px;clear:both;background:#f8f9fb;border-left:1px solid #e4e6e9;font-weight:bold;margin:5px 0}
+
+p.lire a {
+	color: #036;
+	border-bottom: 1px dotted #747b83;
+	text-decoration: none;
+cursor: pointer;
+font-weight: bold;
+}
+
+p.lire a:hover {color:#129af0;}
+
+.caps {
+	text-transform: uppercase;
+	font-family: 'TheSerifOffice', Arial, sans-serif;
+
+}
+
+p.caps {
+	margin-bottom:5px;
+	}
+
+.aligndroite {
+	float:right;
+}
+
+
+.aligngauche {
+	float:left;
+}
+
+.introdroit {
+	font-family: 'TheSerifOffice', Arial, sans-serif;
+	font-size:13pt;
+	text-align: center;
+	margin: 10px 0 10px 0;
+}
+
+#side .vide {
+	padding-top:0px;
+}
+
+p.france, p.us, p.metad {
+	font-size:10pt;
+	clear:both;
+	margin: 0;
+	padding-top: 5px;
+	font-family: 'TheSerifOffice', Arial, sans-serif;
+}
+p.france img, p.us img {
+	padding-right: 5px;
+
+}
+p.metad img {
+	width: 20px;
+	padding-right: 5px;
+}
+
+#side .petit h1 {
+	font-size:20pt;
+}
+
+#side .petit {
+padding-top: 70px!important;
+}
+
+#side .moyen h1 {
+	font-size:16pt;
+}
+
+#side .large h1 {
+	font-size:24pt;
+}
+
+/*SVG*/
+
+circle,path,g{
+	cursor:pointer;
+}
+circle{
+	display: block;
+}
+circle:hover, g:hover circle, g#boundlessinformant:hover image, g#inconnus:hover circle {
+	-webkit-filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.5));
+	filter: url(shadow.svg#drop-shadow);
+	-ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=2, OffY=2,
+Color='#444')";
+	filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=2, OffY=2, Color='#444')";
+}
+#agences image:hover {
+	-webkit-filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3));
+	filter: url(shadow2.svg#drop-shadow);
+	-ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=2, OffY=2,
+Color='#444')";
+	filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=2, OffY=2, Color='#444')";
+}
+#xkeyscore:hover image {
+	-webkit-filter: drop-shadow(2px 2px 3px rgba(116,218,252,0.9));
+	filter: url(shadow3.svg#drop-shadow);
+	-ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=2, OffY=2,
+Color='#6fd4fe')";
+	filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=2, OffY=2, Color='#6fd4fe')";
+	box-shadow: 4px 4px 4px #000;
+}
+
+path#engrenage:hover {
+	fill: #FFCC00;
+}
+
+img.pin {
+	float: right;
+margin-top: -20px;
+margin-right: -10px;
+border:0;
+width:30px;
+height:37px;
+}
+
+.vide h1 {
+	display:none;
+}
+
+.legendes {
+	font-family: 'TheSerifOffice', Arial, sans-serif;
+	font-size:11pt;
+	margin: 0 10px 20px 0;
+	clear:both;
+}
+.legendes img {
+	float: left;
+padding-right: 15px;
+}
+/*USELESS*/
+
+/*#motscles #credits .in {
+	height:215px;
+}*/
+
+/*JSCROLLPANE*/
+
+/*
+ * CSS Styles that are needed by jScrollPane for it to operate correctly.
+ *
+ * Include this stylesheet in your site or copy and paste the styles below into your stylesheet - jScrollPane
+ * may not operate correctly without them.
+ */
+
+/*.jspContainer
+{
+	overflow: hidden;
+	position: relative;
+}
+
+.jspPane
+{
+	position: absolute;
+}
+
+.jspVerticalBar
+{
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 16px;
+	height: 100%;
+	background: red;
+}
+
+.jspHorizontalBar
+{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 16px;
+	background: red;
+}
+
+.jspVerticalBar *,
+.jspHorizontalBar *
+{
+	margin: 0;
+	padding: 0;
+}
+
+.jspCap
+{
+	display: none;
+}
+
+.jspHorizontalBar .jspCap
+{
+	float: left;
+}
+
+.jspTrack
+{
+	background: #dde;
+	position: relative;
+}
+
+.jspDrag
+{
+	background: #bbd;
+	position: relative;
+	top: 0;
+	left: 0;
+	cursor: pointer;
+}
+
+.jspHorizontalBar .jspTrack,
+.jspHorizontalBar .jspDrag
+{
+	float: left;
+	height: 100%;
+}
+
+.jspArrow
+{
+	background: #50506d;
+	text-indent: -20000px;
+	display: block;
+	cursor: pointer;
+}
+
+.jspArrow.jspDisabled
+{
+	cursor: default;
+	background: #80808d;
+}
+
+.jspVerticalBar .jspArrow
+{
+	height: 16px;
+}
+
+.jspHorizontalBar .jspArrow
+{
+	width: 16px;
+	float: left;
+	height: 100%;
+}
+
+.jspVerticalBar .jspArrow:focus
+{
+	outline: none;
+}
+
+.jspCorner
+{
+	background: #eeeef4;
+	float: left;
+	height: 100%;
+}
+
+/* Yuk! CSS Hack for IE6 3 pixel bug :( */
+* html .jspCorner
+{
+	margin: 0 -3px 0 0;
+}*/

@@ -1,0 +1,439 @@
+
+		.commentaire {
+			margin: 10px 15px 0 15px;
+		}
+
+		.com2 {
+			margin-top: 0px;
+			width:750px;
+			float:left;
+		}
+
+		.appui {
+			margin-top: 20px;
+			width:200px;
+			float:right;
+			padding-right: 20px;
+		}
+
+		#maitre {
+			width:1000px;
+			height:auto;
+			margin:0 auto;
+			position: relative;
+			background-color: #fff;
+		}
+
+		.headhead {
+			width:1000px;
+			height:auto;
+			margin:0 auto;
+			background-color: #fff;
+		}
+
+		.ligne {width:100%;
+			clear:both;
+			/*background-color:#f1f5f8;*/
+		}
+
+		#parlement {
+			height:150px;
+			/*background-color: #f1f5f8;*/
+			position:relative;
+			top: 0;
+			left: 0;
+		}
+
+		.legislature {
+			width:120px;
+			position: absolute;
+			top:5;
+		}
+
+			#leg2012 {
+			right:15;
+			}
+				#leg2012 .connector {
+				left:60;
+				}
+
+			#leg1999 {
+			right:345;
+			}
+				#leg1999 .connector {
+				left:0;
+				height:45px;
+				bottom: -45px;
+				z-index: 9999;
+				}
+
+			#leg1997 {
+			right:530;
+			}
+				#leg1997 .connector {
+				left:125;
+				z-index: 9999;
+				height:45px;
+				bottom: -45px;
+				}
+
+			.connector {
+			margin: 0 auto;
+			background-color: #16212c;
+			display: block;
+			/*float: left;*/
+			height: 25px;
+			bottom: -25;
+			width: 4px;
+			position:absolute;
+		}
+
+
+			.chiffrecle {
+				width:200px;
+				text-align: center;
+				font-size:12pt;
+				position:inherit!important;
+				float:right;
+			}
+
+			.chiffrecle h1 {
+				font-size:28pt;
+				font-family: 'TheSerifOffice',georgia,serif;
+
+				font-weight: normal;
+				color: #0059CC;
+				margin:0;
+				padding: 0;
+				line-height: 28pt;
+			}
+
+			.chiffrecle p {
+				margin:0;
+				padding: 0;
+			}
+
+			.chiffrecle p.small {
+				font-size:10pt;
+			}
+
+			.chiffrecle p.notice {
+				font-size:8pt;
+				font-style: italic;
+			}
+
+			.chiffrecle p span {
+				font-family: 'TheSerifOffice', Georgia, sans-serif;
+
+				font-weight: normal;
+				color: #0059CC;
+			}
+
+			#chiffrecle1 {
+				margin-top:200px;
+			}
+
+			#chiffrecle2 {
+				margin-top:30px;
+			}
+
+			#chiffrecle3 {
+				margin-top:0px;
+			}
+
+			#chiffrecle4 {
+				
+				margin-top:110px;
+			}
+
+		#leglegende {
+			width:250px;
+			left: 50;
+			text-align: right;
+		}
+
+		#leglegende h1 {
+			margin:35px 0!important;
+			line-height: 1.2em;
+		}
+
+		#leglegende h1, .titraille h1 {
+			font-size:1.5em;
+			font-family: 'TheSerifOffice', Georgia, sans-serif;
+			margin-bottom:0;
+
+				font-weight: normal;
+			padding:0;
+		}
+
+		.tooltiptext, .tooltiptitle, .tooltipnext{
+   		 display: none;
+		}
+
+		#part, #droitdevote, #immigres {
+			height:160px;
+		}
+
+		#immigres {
+		}
+
+		#droitdevote {
+			height:210px;
+		}
+
+		#axe, #axe2 {
+			height:50px;
+		}
+
+		.titraille {
+			left: 20;
+			position: absolute;
+			z-index: 9000;
+		}
+
+		.titraille p {
+			margin:0;
+			padding:0;
+			font-size: 11pt;
+			font-style: italic;
+		}
+
+		#titre_immigres {
+			top: 220;
+		}
+
+		#titre_droitdevote {
+			top: 375;
+		}
+
+		#titre_part {
+			top: 590;
+		}
+
+		.legende {
+			right: 10;
+			text-align: right;
+			position: absolute;
+			z-index: 9000;
+			font-family: Arial, sans-serif;
+			font-size: 8pt;
+			font-weight: bold;
+		}
+			#legende_immigres {
+			top: 335;
+			}
+
+			#legende_droitdevote {
+			top: 540;
+			}
+
+
+			#legende_part {
+			top: 695;
+			}
+
+		#chronologie {
+			height:245px;
+			margin-top:30px;
+			position: relative;
+		}
+
+		#credits_photo {
+			right: 25;
+			font-size: 9pt;
+			position: absolute;
+			bottom: 0;
+		}
+
+		.element_chrono {
+			width:140px; 
+			top: -15;
+			margin: 0px;
+			border-top: 3px solid #16212c;
+			position: absolute;
+		}
+
+		.element_chrono:hover {
+			cursor:pointer;
+		}
+
+		.in {
+			background: #eef1f5;
+		}
+
+		.element_chrono h1 {
+			/*border-top: 3px solid #16212c;*/
+			font-family: Arial, Georgia, sans-serif;
+			text-align: center;
+			display: block;
+			font-size:12pt;
+			padding: 4px;
+			margin:0px!important;
+		}
+
+		.connecteur {
+			margin: 0 auto;
+			background-color: #16212c;
+			display: block;
+			/*float: left;*/
+			height: 15px;
+			top: -15;
+			width: 4px;
+			position:absolute;
+		}
+		
+
+		.element_chrono p {
+			margin:0 0 5px 0;
+			padding:0 4px;
+
+		}
+
+		.chrono1 {
+			width:190px!important;
+			left: 10;
+			top: 60;
+		}
+
+
+
+		.chrono1 .connecteur {
+			left: 42;
+			height: 90px;
+			top:-90;
+		}
+
+		.chrono2 {
+			width:130px;
+			left: 80;
+		}
+
+		.chrono3 {
+			width:220px;
+			top: 170;
+			left: 210;
+		}
+
+		.chrono3 .in {
+			height:40px;
+		}
+
+		.chrono3 .connecteur {
+			left: 26;
+			height: 200px;
+			top:-200;
+		}
+
+		.chrono4 {
+			width:190px;
+			left: 245;
+		}
+
+		.chrono4 .connecteur {
+			left: 10;
+		}
+
+		.chrono5 {
+			width:140px;
+			left: 450;
+		}
+
+		.chrono5 .connecteur {
+			left: 26;
+		}
+
+		.chrono6 {
+			width:153px;
+			top: 130;
+			left: 450;
+		}
+
+		.chrono6 .in {
+			height: 80px;
+		}
+
+		.chrono6 .connecteur {
+			left: 150;
+			height: 160px;
+			top:-160;
+		}
+
+		.chrono7 {
+			width:90px;
+			left: 615;
+		}
+
+		.chrono7 .connecteur {
+			left: 10;
+		}
+
+		.chrono8 {
+			width:180px;
+			top: 90;
+			left: 610;
+		}
+
+		.chrono8 .in {
+			height: 120px;
+		}
+
+		.chrono8 .connecteur {
+			left: 120;
+			height: 120px;
+			top:-120;
+		}
+
+		.chrono9 {
+			width:100px;
+			left: 740;
+		}
+
+		.chrono9 .connecteur {
+			left: 15;
+		}
+
+		.chrono10 {
+			width:140px;
+			left: 800;
+			top: 80;
+		}
+
+		.chrono10 .connecteur {
+			left: 60;
+			height: 110px;
+			top:-110;
+		}
+
+		.chrono11 {
+			width:130px;
+			left: 870;
+		}
+
+		.chrono11 .connecteur {
+			left: 25;
+		}
+
+		.highcharts-tooltip {
+			z-index: 9999;
+		}
+		
+		.qtip-title {
+			font-weight: bold;
+			font-family: 'TheSerifOffice', Georgia, sans-serif;
+
+				font-weight: normal;
+			font-size:14pt;
+		}
+
+		a.detail {
+			text-decoration: none;
+			background-color: #ece9e9;
+			cursor: pointer;
+			border-bottom: 1px dotted #666;
+			color: inherit;
+		}
+
+		.lm_intertitre {
+		text-transform: uppercase;
+		font-weight: bold;
+		}

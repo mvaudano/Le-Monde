@@ -1,0 +1,1170 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+	<title>Plongée dans la “pieuvre” de la cybersurveillance américaine</title>
+	<!-- Une infographie du Monde.fr, réalisée par Maxime Vaudano -->
+	
+
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script src="js/d3.js" charset="utf-8"></script>
+		<script src="js/bootstrap.min.js" charset="utf-8"></script>
+		<link type="text/css" rel="stylesheet" href="js/jquery.qtip.min.css" />
+		<link type="text/css" rel="stylesheet" href="css/styles.css" />
+		<link type="text/css" rel="stylesheet" href="css/bootstrap.css" />
+		<link type="text/css" rel="stylesheet" href="css/jquery.jscrollpane.css" />
+		<!-- <link type="text/css" rel="stylesheet" href="css/lemonde.css" /> -->
+	<script type="text/javascript" src="js/jquery.qtip.min.js"></script>
+	<script type="text/javascript" src="js/tabletop.js"></script>
+	<script type="text/javascript" src="js/data.js"></script>
+	<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
+	<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43480978-1', 'maximevaudano.com');
+  ga('send', 'pageview');
+
+</script>
+
+
+	<script type="text/javascript">
+
+$(".collapse").collapse();
+$('#credits2').collapse({
+  toggle: false
+});
+
+
+// CHARGEMENT DES DONNEES VIA TABLETOP
+	 // window.onload = function() { init() };
+  // 		var public_spreadsheet_url = 'https://docs.google.com/spreadsheet/pub?key=0Apd2dyc491ZXdGV5bVE1dVU0QnVvU0l2NTB2QVcydGc&output=html';
+
+  //     function init() {
+  //     tabletop = Tabletop.init( { 
+  //     					key: public_spreadsheet_url,
+  //                       callback: showInfo
+  //                   } );
+                        
+  //     };
+  //   	function showInfo(data, tabletop) {
+		//         programmes = tabletop.sheets("programmes").all();
+		        
+		//         generation(programmes);
+		//         // return quinzaines;
+  //  		};
+
+var bloc = false;
+var pin = false;
+		function bloquer(programme){
+
+			exe = programme
+			// if(pin == false) {
+			// 	pin = true
+			// }
+			// else {
+			// 	pin = false;
+			// }
+			if(bloc == false) {
+				bloc = true,
+				pin = true,
+				// console.log(pin)
+				initialiser(exe,true)
+			}
+			else {
+				bloc = false,
+				pin = false,
+				// console.log(pin)
+				initialiser(exe,false)
+			}
+			
+		}
+
+	
+
+		function creerTooltip(contenu){
+			content = $(contenu).attr('explication')
+			return tooltips[content]["text"]
+		}
+
+
+		// Create the tooltips only when document ready
+		 $(document).ready(function ()
+		 {
+		     // MAKE SURE YOUR SELECTOR MATCHES SOMETHING IN YOUR HTML!!!
+		     $('span.explication').each(function() {
+		         $(this).qtip({
+		             prerender: true,
+		             content: {
+		                 text: creerTooltip(this)
+		             },
+		             style: { classes: 'qtip-light' },
+		             position: {
+								        my: 'bottom right',
+								        at: 'top left'
+					}
+		         });
+		     });
+		 });
+ 
+
+		
+
+function initialiser(text, pinner) {
+	pin = pinner
+	console.log(pin)
+	texte = text
+		
+	if(pin == true) {
+		monelement = document.getElementById("detail")
+		monelement.firstChild.innerHTML = "<a onclick=\"bloquer('home')\" title=\"Cliquez pour dépunaiser\"><img src=\"img/punaise.png\" class=\"pin\" /></a>"+ programmes[texte]["titre"]
+	}
+
+	if(bloc == false) {
+
+	
+	monelement = document.getElementById("detail")
+	if (programmes[texte]["titre"] == "Lithium, Oakstar et Stormbrew" || programmes[texte]["titre"] == "Partenariat avec Verizon" || programmes[texte]["titre"] == "L'unité 2000 israélienne") {
+		monelement.className = "petit"
+	}
+	else if (programmes[texte]["titre"] == "Le Bundesnachrichtendienst (BND)" || programmes[texte]["titre"] == "Le Government Communications Headquarters (GCHQ)" || programmes[texte]["titre"] == "L&rsquo;Agence de sécurité américaine (NSA)" || programmes[texte]["titre"] == "Partenariat avec l'Allemagne" || programmes[texte]["titre"] == "Partenariat avec le Mexique")  {
+		monelement.className = "moyen"
+	}
+	else if (programmes[texte]["titre"] == "Boundless Informant")
+	{
+		monelement.className = "large"
+	}
+	else if (programmes[texte]["titre"] == "Home")
+	{
+		monelement.className = "vide"		
+	}
+	else {
+		monelement.className = null
+	}
+	if(pin == true) {
+		monelement.innerHTML = "<h1><img src=\"img/punaise.png\" class=\"pin\" />"+programmes[texte]["titre"]+"</h1>"
+	}
+	else {
+		monelement.innerHTML = "<h1><img src=\"img/punaise2.png\" class=\"pin\" />"+programmes[texte]["titre"]+"</h1>"
+	}
+	if (programmes[texte]["donnees"]) monelement.innerHTML += "<p class=\"metad\"><img src=\"img/serveur.png\" class=\"aligngauche\"/>"+programmes[texte]["donnees"]+"</p>"
+	if (programmes[texte]["francais"]) monelement.innerHTML += "<p class=\"france\"><img src=\"img/france.jpg\" class=\"aligngauche\"/>"+programmes[texte]["francais"]+"</p>"
+	if (programmes[texte]["americains"]) monelement.innerHTML += "<p class=\"us\"><img src=\"img/us.jpg\" class=\"aligngauche\"/>"+programmes[texte]["americains"]+"</p>"
+	monelement.innerHTML += "<div class=\"texte\">"+programmes[texte]["texte"]+"</div>"
+
+	
+	var det = document.getElementById("detail")
+	det.scrollTop = 0;
+	var explications = det.querySelectorAll("span.explication")
+	
+	
+	$('span.explication').each(function() {
+		         $(this).qtip({
+		             prerender: true,
+		             content: {
+		                 text: creerTooltip(this)
+		             },
+		             style: { classes: 'qtip-light' },
+		             position: {
+								        my: 'bottom right',
+								        at: 'center left'
+					}
+		         });
+		     });
+
+
+		}
+}
+	
+
+	
+	</script>
+
+</head>
+<body id="globalcontainer">
+
+<div id="intro">
+	<p>Au fil des révélations, les documents de l&rsquo;ancien consultant de la NSA Edward Snowden dressent le portrait complexe de l&rsquo;écosystème de la cybersurveillance américaine, piloté par la toute-puissance Agence de sécurité nationale (NSA). Deux méthodes sont utilisées pour collecter les informations : l&rsquo;accès direct aux serveurs des grandes entreprises du net ("back door") et la surveillance directe des infrastructures où transitent quotidiennement les communications ("upstream").</p>
+</div>
+
+
+<div id="infographie">
+
+
+<!-- <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="630.584px" height="617.484px" viewBox="0 0 630.584 617.484" enable-background="new 0 0 630.584 617.484"
+	 xml:space="preserve">
+
+<g id="bullrun" onmouseover="initialiser('bullrun')"  onclick="bloquer('bullrun')">
+	
+	
+	<image overflow="visible" width="104" height="107" xlink:href="img/bullrun.png"  transform="matrix(0.9919 0 0 0.9919 358.1733 500.96)">
+	</image>
+	
+	<text transform="matrix(1 0 0 1 381.8267 522.6172)"><tspan x="0" y="0" font-family="'TheSerifOffice',Georgia,sans-serif" font-size="13.6232">BULLRUN </tspan><tspan x="-1.13" y="16.348"  font-family="'TheSerifOffice',Georgia,sans-serif" font-size="13.6232">EDGEHILL</tspan></text>
+
+	
+</g>
+<g id="boundlessinformant" onmouseover="initialiser('boundlessinformant')"  onclick="bloquer('boundlessinformant')">
+	
+	
+		<image overflow="visible" width="106" height="109" xlink:href="img/boundlessinformant.png"  transform="matrix(0.973 0 0 0.973 241.5933 501.7617)">
+	</image>
+	<text transform="matrix(1 0 0 1 253.8149 521.5576)"><tspan x="0" y="0" font-family="'TheSerifOffice',Georgia,sans-serif" font-size="13.6232">BOUNDLESS </tspan><tspan x="-1.192" y="16.348" font-family="'TheSerifOffice',Georgia,sans-serif" font-size="13.6232">INFORMANT</tspan></text>
+</g>
+<g id="xkeyscore" onmouseover="initialiser('xkeyscore')" onclick="bloquer('xkeyscore')">
+	
+		<image overflow="visible" width="158" height="336" xlink:href="img/xkeyscore.png"  transform="matrix(0.622 0 0 0.622 302.8457 254.9995)">
+	</image>
+	
+		<image overflow="visible" width="190" height="171" xlink:href="img/xkeyscore2.png"  transform="matrix(0.6105 0 0 0.6105 291.9976 147.9985)">
+	</image>
+</g>
+<g id="agences">
+	
+		<image overflow="visible" width="200" height="200" xlink:href="img/nsa.png"  transform="matrix(0.445 0 0 0.445 306.0049 54.0039)" onmouseover="initialiser('nsa')" onclick="bloquer('nsa')">
+	</image>
+	
+		<image overflow="visible" width="200" height="89" xlink:href="img/gchq.png"  transform="matrix(0.5402 0 0 0.5402 296.4824 2)" onmouseover="initialiser('gchq')" onclick="bloquer('gchq')">
+	</image>
+	
+		<image overflow="visible" width="200" height="172" xlink:href="img/bnd.png"  transform="matrix(0.33 0 0 0.33 219.814 24.7388)" onmouseover="initialiser('bnd')" onclick="bloquer('bnd')">
+	</image>
+	
+		<image overflow="visible" width="226" height="242" xlink:href="img/unite2000.png"  transform="matrix(0.2367 0 0 0.2367 412.5103 24.2183)" onmouseover="initialiser('unite2000')" onclick="bloquer('unite2000')">
+	</image>
+</g>
+<g id="fairview" onmouseover="initialiser('fairview')" onclick="bloquer('fairview')">
+	<circle fill="#FFFFFF" stroke="#000000" stroke-width="3" stroke-miterlimit="10" cx="173.5" cy="216.5" r="50.5"/>
+	
+		<image overflow="visible" width="113" height="115" xlink:href="img/us-rond.png"  transform="matrix(0.4469 0 0 0.4469 147.502 208.0723)">
+	</image>
+	<text transform="matrix(1 0 0 1 132.8828 202.8779)" font-family="'TheSerifOffice',Georgia,sans-serif" font-size="17">FAIRVIEW</text>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="219.067" y1="241.241" x2="281.772" y2="292.414"/>
+			<g>
+				<polygon points="275.028,294.41 295.5,303.616 282.376,285.406 				"/>
+			</g>
+		</g>
+	</g>
+</g>
+<g id="verizon" onmouseover="initialiser('verizon')" onclick="bloquer('verizon')">
+	<circle fill="#FFFFFF" stroke="#000000" stroke-width="3" stroke-miterlimit="10" cx="51.828" cy="454.828" r="38.828"/>
+	<text transform="matrix(1 0 0 1 47.8296 445.8926)" font-family="'TheSerifOffice',Georgia,sans-serif" font-size="21">?</text>
+	
+		<image overflow="visible" width="400" height="240" xlink:href="img/verizon.png"  transform="matrix(0.1187 0 0 0.1187 28.0898 450.8174)">
+	</image>
+	<g>
+		<g>
+			<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="91.344" y1="462.304" x2="112.771" y2="470.854"/>
+			<g>
+				<polygon points="109.854,472.817 121,474.137 112.008,467.421 				"/>
+			</g>
+		</g>
+	</g>
+</g>
+<g id="blarney" id="blarney" onmouseover="initialiser('blarney')" onclick="bloquer('blarney')">
+	<circle fill="#FFFFFF" stroke="#000000" stroke-width="3" stroke-miterlimit="10" cx="65.828" cy="557.828" r="38.828"/>
+	<g>
+		<g>
+			<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="103.344" y1="545.138" x2="120.352" y2="530.16"/>
+			<g>
+				<polygon points="120.785,533.649 127,524.305 116.944,529.289 				"/>
+			</g>
+		</g>
+	</g>
+	<text transform="matrix(1 0 0 1 36.8296 548.8926)" font-family="'TheSerifOffice',Georgia,sans-serif" font-size="13.0709">BLARNEY</text>
+	
+		<image overflow="visible" width="200" height="90" xlink:href="img/atett.png"  transform="matrix(0.3 0 0 0.3 35.1035 553.8105)">
+	</image>
+</g>
+<g id="evilolive" id="evilolive" onmouseover="initialiser('evilolive')" onclick="bloquer('evilolive')">
+	<circle fill="#FFFFFF" stroke="#000000" stroke-width="3" stroke-miterlimit="10" cx="173.5" cy="490.5" r="50.5"/>
+	<text transform="matrix(1 0 0 1 131.8828 478.8779)" font-family="'TheSerifOffice',Georgia,sans-serif" font-size="17">EVILOLIVE</text>
+	
+		<image overflow="visible" width="113" height="115" xlink:href="img/us-rond.png"  transform="matrix(0.4469 0 0 0.4469 148.252 484.6084)">
+	</image>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="225.067" y1="481.616" x2="281.667" y2="436.313"/>
+			<g>
+				<polygon points="282.204,443.326 295.5,425.241 274.942,434.254 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="476" y1="468.721" x2="426.909" y2="435.228"/>
+			<g>
+				<polygon points="433.458,432.661 412.272,425.241 426.908,442.261 				"/>
+			</g>
+		</g>
+	</g>
+</g>
+<g id="inconnus">
+<g id="stormbrew" onmouseover="initialiser('stormbrew')" onclick="bloquer('stormbrew')">
+	<circle fill="#FFFFFF" stroke="#000000" stroke-width="3" stroke-miterlimit="10" cx="172.828" cy="362.828" r="30.131"/>
+	<text transform="matrix(1 0 0 1 152.6641 358.8926)"><tspan x="0" y="0" font-family="'TheSerifOffice',Georgia,sans-serif" font-size="12">STORM</tspan><tspan x="3.636" y="14.4" font-family="'TheSerifOffice',Georgia,sans-serif" font-size="12">BREW</tspan></text>
+	
+</g>
+<g id="oakstar" onmouseover="initialiser('stormbrew')" onclick="bloquer('stormbrew')">
+	<circle fill="#FFFFFF" stroke="#000000" stroke-width="3" stroke-miterlimit="10" cx="109.828" cy="363.828" r="30.131"/>
+	<text transform="matrix(1 0 0 1 96.1938 359.8926)"><tspan x="0" y="0" font-family="'TheSerifOffice',Georgia,sans-serif" font-size="12">OAK </tspan><tspan x="-1.872" y="14.4" font-family="'TheSerifOffice',Georgia,sans-serif" font-size="12">STAR</tspan></text>
+	<g>
+		<g>
+			<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="204" y1="364" x2="278" y2="364"/>
+			<g>
+				<polygon points="274,369.639 295.682,363.828 274,358.018 				"/>
+			</g>
+		</g>
+	</g>
+</g>
+<g id="lithium" onmouseover="initialiser('stormbrew')" onclick="bloquer('stormbrew')">
+	<circle fill="#FFFFFF" stroke="#000000" stroke-width="3" stroke-miterlimit="10" cx="46.828" cy="364.828" r="30.131"/>
+	<text transform="matrix(1 0 0 1 21.356 368.8926)" font-family="'TheSerifOffice',Georgia,sans-serif" font-size="12.07">LITHIUM</text>
+	
+</g>
+	</g>
+<g id="silverzephyr" onmouseover="initialiser('silverzephyr')" onclick="bloquer('silverzephyr')">
+	<circle fill="#FFFFFF" stroke="#000000" stroke-width="3" stroke-miterlimit="10" cx="61.078" cy="267.301" r="34.224"/>
+	<text transform="matrix(1 1.900000e-04 -1.900000e-04 1 44.2749 248.605)"><tspan x="0" y="0" font-family="'TheSerifOffice',Georgia,sans-serif" font-size="9.707">SILVER </tspan><tspan x="-2.203" y="11.648" font-family="'TheSerifOffice',Georgia,sans-serif" font-size="9.707">ZEPHYR</tspan></text>
+	<g>
+		<g>
+			<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="96.082" y1="260.891" x2="118.542" y2="250.396"/>
+			<g>
+				<polygon points="117.977,253.867 126.568,246.646 115.517,248.603 				"/>
+			</g>
+		</g>
+	</g>
+	
+		<image overflow="visible" width="100" height="101" xlink:href="img/bre.png"  transform="matrix(0.3323 6.299197e-05 -6.299197e-05 0.3323 43.5684 262.6387)">
+	</image>
+</g>
+<g id="allemagne" onmouseover="initialiser('allemagne')" onclick="bloquer('allemagne')">
+	<circle fill="#FFFFFF" stroke="#000000" stroke-width="3" stroke-miterlimit="10" cx="52.911" cy="192.931" r="34.252"/>
+	<text transform="matrix(1 -0.0037 0.0037 1 22.9009 186.6758)" font-family="'TheSerifOffice',Georgia,sans-serif" font-size="9.7148">ALLEMAGNE</text>
+	<g>
+		<g>
+			<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="87.833" y1="199.5" x2="111.713" y2="205.164"/>
+			<g>
+				<polygon points="109.115,207.533 120.333,207.208 110.456,201.88 				"/>
+			</g>
+		</g>
+	</g>
+	
+		<image overflow="visible" width="53" height="71" xlink:href="img/allemagne.png"  transform="matrix(0.4724 -0.0018 0.0018 0.4724 41.438 189.1934)">
+	</image>
+</g>
+<g id="mexique" onmouseover="initialiser('mexique')" onclick="bloquer('mexique')">
+	<circle fill="#FFFFFF" stroke="#000000" stroke-width="3" stroke-miterlimit="10" cx="89.256" cy="123.572" r="36.363"/>
+	<text transform="matrix(1 -0.003 0.003 1 65.5083 114.8291)" font-family="'TheSerifOffice',Georgia,sans-serif" font-size="10.3137">MEXIQUE</text>
+	<g>
+		<g>
+			<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="115.567" y1="150.402" x2="130.799" y2="168.718"/>
+			<g>
+				<polygon points="127.299,169.052 136.464,175.53 131.766,165.337 				"/>
+			</g>
+		</g>
+	</g>
+	
+		<image overflow="visible" width="99" height="69" xlink:href="img/mexique.png"  transform="matrix(0.4247 -0.0013 0.0013 0.4247 66.8076 120.7715)">
+	</image>
+</g>
+<g id="teamtelecom" onmouseover="initialiser('teamtelecom')" onclick="bloquer('teamtelecom')">
+	<circle fill="#FFFFFF" stroke="#000000" stroke-width="3" stroke-miterlimit="10" cx="161.721" cy="92.817" r="34.28"/>
+	<text transform="matrix(1 0.0074 -0.0074 1 147.0361 73.9858)"><tspan x="0" y="0" font-family="'TheSerifOffice',Georgia,sans-serif" font-size="9.7229">TEAM </tspan><tspan x="-7.871" y="11.667" font-family="'TheSerifOffice',Georgia,sans-serif" font-size="9.7229">TELECOM</tspan></text>
+	<g>
+		<g>
+			<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="165.467" y1="127.097" x2="167.551" y2="154.133"/>
+			<g>
+				<polygon points="164.502,152.38 168.232,162.966 170.296,151.934 				"/>
+			</g>
+		</g>
+	</g>
+
+	
+		<image overflow="visible" width="20" height="31" xlink:href="img/telephone.png"  transform="matrix(0.9999 0 0 0.9999 151 89)">
+	</image>
+</g>
+<g id="tempora" onmouseover="initialiser('tempora')" onclick="bloquer('tempora')">
+	<circle fill="#FFFFFF" stroke="#000000" stroke-width="3" stroke-miterlimit="10" cx="526" cy="480.5" r="50.5"/>
+	<text transform="matrix(1 0 0 1 485.7651 467.8779)" font-family="'TheSerifOffice',Georgia,sans-serif" font-size="17">TEMPORA</text>
+	
+		<image overflow="visible" width="113" height="115" xlink:href="img/uk-rond.png"  transform="matrix(0.4469 0 0 0.4469 500.7529 473.6094)">
+	</image>
+	<circle fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" cx="550.391" cy="404.084" r="13.825"/>
+	<path fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" d="M585.829,408.607c6.728,3.609,9.253,11.991,5.646,18.719
+		c-3.611,6.729-11.994,9.256-18.719,5.647c-6.73-3.611-9.258-11.992-5.646-18.721C570.718,407.524,579.1,404.997,585.829,408.607z"
+		/>
+	<circle fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" cx="598.914" cy="447.797" r="13.826"/>
+	<circle fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" cx="605.868" cy="480.447" r="13.827"/>
+	<path fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" d="M612.567,515.538c-1.344,7.518-8.527,12.518-16.044,11.177
+		c-7.516-1.346-12.52-8.527-11.178-16.043c1.342-7.52,8.527-12.521,16.044-11.179C608.906,500.838,613.91,508.021,612.567,515.538z"
+		/>
+	<path fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" d="M590.82,547.891c-4.281,6.324-12.879,7.976-19.201,3.694
+		c-6.322-4.283-7.975-12.879-3.696-19.2c4.285-6.324,12.881-7.977,19.203-3.695C593.447,532.972,595.102,541.568,590.82,547.891z"/>
+	<path fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" d="M557.803,568.619c-6.479,4.038-15.008,2.052-19.046-4.428
+		c-4.034-6.484-2.052-15.01,4.425-19.046c6.484-4.038,15.01-2.056,19.049,4.425C566.265,556.053,564.285,564.579,557.803,568.619z"
+		/>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.75" stroke-miterlimit="10" x1="545.68" y1="543.768" x2="543.272" y2="534.257"/>
+			<g>
+				<polygon points="546.481,535.617 543.5,535.154 541.097,536.98 542.174,529.916 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.75" stroke-miterlimit="10" x1="569.834" y1="529.82" x2="563.896" y2="522.011"/>
+			<g>
+				<polygon points="567.382,522.007 564.456,522.749 562.96,525.369 561.186,518.447 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.75" stroke-miterlimit="10" x1="585.073" y1="508.843" x2="576.551" y2="503.98"/>
+			<g>
+				<polygon points="579.757,502.612 577.355,504.439 577.004,507.437 572.662,501.762 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.75" stroke-miterlimit="10" x1="591.805" y1="480.183" x2="582.061" y2="479.045"/>
+			<g>
+				<polygon points="584.475,476.53 582.98,479.152 583.83,482.048 577.613,478.525 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.75" stroke-miterlimit="10" x1="585.955" y1="450.936" x2="576.544" y2="453.702"/>
+			<g>
+				<polygon points="577.781,450.443 577.433,453.44 579.348,455.772 572.248,454.965 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.75" stroke-miterlimit="10" x1="569.14" y1="430.289" x2="561.562" y2="436.519"/>
+			<g>
+				<polygon points="561.426,433.035 562.278,435.93 564.953,437.326 558.104,439.361 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.75" stroke-miterlimit="10" x1="545.562" y1="416.857" x2="541.027" y2="425.556"/>
+			<g>
+				<polygon points="539.539,422.403 541.456,424.733 544.465,424.972 538.958,429.525 				"/>
+			</g>
+		</g>
+	</g>
+	<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M525.5,430"/>
+	<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M525.5,531"/>
+	<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M575,480.5"/>
+	<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M475,480.5"/>
+	
+		<image overflow="visible" width="400" height="190" xlink:href="img/bt.png"  transform="matrix(0.0585 0 0 0.0585 567.6035 415.2412)">
+	</image>
+	
+		<image overflow="visible" width="151" height="65" xlink:href="img/gc.png"  transform="matrix(0.1681 0 0 0.1681 537.1133 552.168)">
+	</image>
+	
+		<image overflow="visible" width="165" height="50" xlink:href="img/interoute.png"  transform="matrix(0.1709 0 0 0.1709 585.0723 442.3887)">
+	</image>
+	
+		<image overflow="visible" width="400" height="121" xlink:href="img/level3.png"  transform="matrix(0.0581 0 0 0.0581 567.667 536.9824)">
+	</image>
+	
+		<image overflow="visible" width="400" height="240" xlink:href="img/verizon.png"  transform="matrix(0.0584 0 0 0.0584 593.7061 473.6621)">
+	</image>
+	
+		<image overflow="visible" width="110" height="50" xlink:href="img/viatel.png"  transform="matrix(0.2218 0 0 0.2218 586.9395 507.2764)">
+	</image>
+	
+		<image overflow="visible" width="256" height="179" xlink:href="img/vodafone.png"  transform="matrix(0.0796 0 0 0.0796 540.2021 395.9609)">
+	</image>
+</g>
+<g id="prism" onmouseover="initialiser('prism')" onclick="bloquer('prism')">
+	<circle fill="#FFFFFF" stroke="#000000" stroke-width="3" stroke-miterlimit="10" cx="526.5" cy="221.5" r="50.5"/>
+	<circle fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" cx="518.196" cy="141.562" r="13.826"/>
+	<circle fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" cx="551.391" cy="145.084" r="13.825"/>
+	<path fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" d="M586.829,149.607c6.728,3.609,9.253,11.991,5.646,18.719
+		c-3.611,6.729-11.994,9.256-18.719,5.647c-6.73-3.611-9.258-11.992-5.646-18.721C571.718,148.524,580.1,145.997,586.829,149.607z"
+		/>
+	<circle fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" cx="599.914" cy="188.797" r="13.826"/>
+	<circle fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" cx="606.868" cy="221.447" r="13.827"/>
+	<path fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" d="M613.567,256.538c-1.344,7.518-8.527,12.518-16.044,11.177
+		c-7.516-1.346-12.52-8.527-11.178-16.043c1.342-7.52,8.527-12.521,16.044-11.179C609.906,241.838,614.91,249.021,613.567,256.538z"
+		/>
+	<path fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" d="M591.82,288.891c-4.281,6.324-12.879,7.976-19.201,3.694
+		c-6.322-4.283-7.975-12.879-3.696-19.2c4.285-6.324,12.881-7.977,19.203-3.695C594.447,273.972,596.102,282.568,591.82,288.891z"/>
+	<path fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" d="M558.803,309.619c-6.479,4.038-15.008,2.052-19.046-4.428
+		c-4.034-6.484-2.052-15.01,4.425-19.046c6.484-4.038,15.01-2.056,19.049,4.425C567.265,297.053,565.285,305.579,558.803,309.619z"
+		/>
+	<path fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" d="M520.213,315.142c-7.561,1.059-14.546-4.222-15.603-11.782
+		c-1.052-7.563,4.22-14.549,11.782-15.605c7.563-1.057,14.549,4.221,15.605,11.783C533.052,307.1,527.777,314.085,520.213,315.142z"
+		/>
+	<text transform="matrix(1 0 0 1 501.4688 203.8779)" font-family="'TheSerifOffice',Georgia,sans-serif" font-size="17">PRISM</text>
+	
+		<image overflow="visible" width="113" height="115" xlink:href="img/us-rond.png"  transform="matrix(0.4469 0 0 0.4469 501.252 212.6084)">
+	</image>
+	
+		<image overflow="visible" width="200" height="200" xlink:href="img/apple.png"  transform="matrix(0.1078 -0.0284 0.0284 0.1078 592.877 213.354)">
+	</image>
+	
+		<image overflow="visible" width="200" height="203" xlink:href="img/skype.png"  transform="matrix(0.0951 -0.025 0.025 0.0951 587.4551 246.4561)">
+	</image>
+	
+		<image overflow="visible" width="200" height="120" xlink:href="img/yahoo.png"  transform="matrix(0.1155 -0.0304 0.0365 0.1386 567.5146 275.8477)">
+	</image>
+	
+		<image overflow="visible" width="100" height="100" xlink:href="img/google.png"  transform="matrix(0.1745 -0.046 0.046 0.1745 540.3652 138.3389)">
+	</image>
+	
+		<image overflow="visible" width="100" height="101" xlink:href="img/yt.png"  transform="matrix(0.1693 -0.0446 0.0446 0.1693 540.7949 292.1147)">
+	</image>
+	
+		<image overflow="visible" width="51" height="46" xlink:href="img/pt.png"  transform="matrix(0.433 -0.114 0.114 0.433 567.7305 155.3247)">
+	</image>
+	
+		<image overflow="visible" width="100" height="99" xlink:href="img/fb.png"  transform="matrix(0.173 -0.0456 0.0456 0.173 589.3389 182.2676)">
+	</image>
+	
+		<image overflow="visible" width="107" height="104" xlink:href="img/ms.png"  transform="matrix(0.1631 -0.0429 0.0429 0.1631 507.2275 294.5684)">
+	</image>
+	
+		<image overflow="visible" width="100" height="40" xlink:href="img/aol.png"  transform="matrix(0.2187 -0.0576 0.0576 0.2187 504.9531 139.0059)">
+	</image>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.75" stroke-miterlimit="10" x1="520.305" y1="287.619" x2="521.812" y2="277.924"/>
+			<g>
+				<polygon points="524.232,280.432 521.67,278.84 518.744,279.579 522.5,273.5 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.75" stroke-miterlimit="10" x1="546.68" y1="284.768" x2="544.272" y2="275.257"/>
+			<g>
+				<polygon points="547.481,276.618 544.5,276.155 542.097,277.98 543.174,270.917 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.75" stroke-miterlimit="10" x1="570.834" y1="270.82" x2="564.896" y2="263.011"/>
+			<g>
+				<polygon points="568.381,263.006 565.456,263.748 563.96,266.369 562.186,259.447 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.75" stroke-miterlimit="10" x1="586.073" y1="249.843" x2="577.551" y2="244.981"/>
+			<g>
+				<polygon points="580.757,243.612 578.355,245.44 578.004,248.437 573.662,242.762 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.75" stroke-miterlimit="10" x1="592.805" y1="221.183" x2="583.061" y2="220.045"/>
+			<g>
+				<polygon points="585.475,217.53 583.98,220.152 584.83,223.048 578.613,219.525 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.75" stroke-miterlimit="10" x1="586.955" y1="191.936" x2="577.544" y2="194.702"/>
+			<g>
+				<polygon points="578.781,191.443 578.433,194.441 580.348,196.772 573.248,195.965 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.75" stroke-miterlimit="10" x1="570.14" y1="171.289" x2="562.562" y2="177.519"/>
+			<g>
+				<polygon points="562.426,174.035 563.277,176.93 565.953,178.326 559.104,180.362 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.75" stroke-miterlimit="10" x1="546.562" y1="157.857" x2="542.027" y2="166.556"/>
+			<g>
+				<polygon points="540.539,163.404 542.456,165.734 545.464,165.972 539.958,170.526 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.75" stroke-miterlimit="10" x1="518.666" y1="155.103" x2="519.793" y2="164.898"/>
+			<g>
+				<polygon points="516.793,163.123 519.688,163.978 522.312,162.488 520.305,169.346 				"/>
+			</g>
+		</g>
+	</g>
+	<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M526.5,171"/>
+	<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M526.5,272"/>
+	<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M576,221.5"/>
+	<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M476,221.5"/>
+	<g>
+		<g>
+			<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="481.5" y1="246.608" x2="425.95" y2="292.353"/>
+			<g>
+				<polygon points="425.316,285.348 412.272,303.616 432.703,294.319 				"/>
+			</g>
+		</g>
+	</g>
+</g>
+</svg> -->
+
+
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="630.584px" height="595.323px" viewBox="0 0 630.584 595.323" enable-background="new 0 0 630.584 595.323"
+	 xml:space="preserve">
+<g id="bullrun" onmouseover="initialiser('bullrun')"  onclick="bloquer('bullrun')">
+	
+		<image overflow="visible" width="106" height="105" xlink:href="img/bullrun2.png"  transform="matrix(0.9435 0 0 0.9435 501.3203 5.936)">
+	</image>
+	<text transform="matrix(1 0 0 1 521.0996 28.2573)"><tspan x="0" y="0" font-family="'TheSerifOffice',Georgia,sans-serif" font-size="13.7267">BULLRUN </tspan><tspan x="-1.14" y="16.472" font-family="'TheSerifOffice',Georgia,sans-serif" font-size="13.7267">EDGEHILL</tspan></text>
+</g>
+<g id="boundlessinformant" onmouseover="initialiser('boundlessinformant')"  onclick="bloquer('boundlessinformant')">
+	
+		<image overflow="visible" width="106" height="105" xlink:href="img/boundlessinformant2.png"  transform="matrix(0.9462 0 0 0.9462 90.2607 5.646)">
+	</image>
+	<text transform="matrix(1 0 0 1 103.1758 22.2573)"><tspan x="0" y="3" font-family="'TheSerifOffice',Georgia,sans-serif" font-size="12.8922">BOUNDLESS </tspan><tspan x="-1.128" y="17.471" font-family="'TheSerifOffice',Georgia,sans-serif" font-size="12.8922">INFORMANT</tspan></text>
+</g>
+<g id="xkeyscore" onmouseover="initialiser('xkeyscore')" onclick="bloquer('xkeyscore')">
+	<polyline opacity="0.2" fill="#7F7F7F" points="211,5 211,105 274,105 274,239 418,239 418,105 481,105 481,5 	"/>
+	
+		<image overflow="visible" width="158" height="336" xlink:href="img/xkeyscore.png"  transform="matrix(0.622 0 0 0.622 302.8457 254.9995)">
+	</image>
+	
+			<image overflow="visible" width="190" height="171" xlink:href="img/xkeyscore2.png"  transform="matrix(0.5079 0 0 0.5079 301.7471 145.7725)">
+	</image>
+</g>
+<g id="agences">
+	
+		<image overflow="visible" width="200" height="200" xlink:href="img/nsa.png"  transform="matrix(0.415 0 0 0.415 309.0005 56.9995)" onmouseover="initialiser('nsa')" onclick="bloquer('nsa')"></image>
+	
+		<image overflow="visible" width="200" height="89" xlink:href="img/gchq.png"  transform="matrix(0.4841 0 0 0.4841 302.0957 7.5)" onmouseover="initialiser('gchq')" onclick="bloquer('gchq')">
+	</image>
+	
+		<image overflow="visible" width="200" height="172" xlink:href="img/bnd.png"  transform="matrix(0.33 0 0 0.33 219.8149 24.7402)" onmouseover="initialiser('bnd')" onclick="bloquer('bnd')">
+	</image>
+	
+		<image overflow="visible" width="226" height="242" xlink:href="img/unite2000.png"  transform="matrix(0.2367 0 0 0.2367 412.5112 24.2197)" onmouseover="initialiser('unite2000')" onclick="bloquer('unite2000')">
+	</image>
+</g>
+<g id="fairview" onmouseover="initialiser('fairview')" onclick="bloquer('fairview')">
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#0098A7" stroke-width="2" stroke-miterlimit="10" x1="217.067" y1="283.241" x2="285.671" y2="336.051"/>
+			<g>
+				<polygon fill="#0098A7" points="280.992,337.582 295.5,343.616 285.954,331.136 				"/>
+			</g>
+		</g>
+	</g>
+	<circle fill="#BDDADD" stroke="#000000" stroke-width="6" stroke-miterlimit="10" cx="173.5" cy="256.5" r="50.5"/>
+	<text transform="matrix(1 0 0 1 132.8828 262.8779)" font-family="'TheSerifOffice',Georgia,sans-serif" font-size="17">FAIRVIEW</text>
+</g>
+
+<g id="verizon" onmouseover="initialiser('verizon')" onclick="bloquer('verizon')">
+	<circle opacity="0.6" fill="#BDDADD" cx="55.828" cy="457.828" r="38.828"/>
+	<text transform="matrix(1 0 0 1 51.8296 440.8926)" font-family="'TheSerifOffice',Georgia,sans-serif" font-size="21">?</text>
+	
+		<image overflow="visible" width="400" height="240" xlink:href="img/verizon.png"  transform="matrix(0.1187 0 0 0.1187 32.0898 453.8174)">
+	</image>
+	<g>
+		<g>
+			<line fill="none" stroke="#0098A7" stroke-miterlimit="10" x1="92.344" y1="470.304" x2="114.507" y2="483.322"/>
+			<g>
+				<polygon fill="#0098A7" points="111.804,484.599 121,487.137 114.306,480.34 				"/>
+			</g>
+		</g>
+	</g>
+</g>
+<g id="blarney" onmouseover="initialiser('blarney')" onclick="bloquer('blarney')">
+	<circle opacity="0.6" fill="#BDDADD" cx="52.828" cy="548.828" r="38.828"/>
+	<g>
+		<g>
+			<line fill="none" stroke="#0098A7" stroke-miterlimit="10" x1="91.344" y1="541.138" x2="114.089" y2="531.295"/>
+			<g>
+				<polygon fill="#0098A7" points="113.524,534.23 121,528.305 111.562,529.698 				"/>
+			</g>
+		</g>
+	</g>
+	<text transform="matrix(1 0 0 1 23.8296 539.8926)" font-family="'TheSerifOffice',Georgia,sans-serif" font-size="13.0709">BLARNEY</text>
+	
+		<image overflow="visible" width="200" height="90" xlink:href="img/atett.png"  transform="matrix(0.3 0 0 0.3 22.1406 544.8496)">
+	</image>
+</g>
+<g id="evilolive"  onmouseover="initialiser('evilolive')" onclick="bloquer('evilolive')">
+	<path fill="none" stroke="#0098A7" stroke-width="2" stroke-miterlimit="10" d="M221,490"/>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#0098A7" stroke-width="2" stroke-miterlimit="10" x1="221.067" y1="489.616" x2="284.973" y2="449.8"/>
+			<g>
+				<polygon fill="#0098A7" points="284.77,454.719 295.5,443.241 280.468,447.814 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			<line fill="none" stroke="#0098A7" stroke-width="2" stroke-miterlimit="10" x1="476" y1="488.721" x2="422.368" y2="450.446"/>
+			<g>
+				<polygon fill="#0098A7" points="426.989,448.747 412.272,443.241 422.264,455.368 				"/>
+			</g>
+		</g>
+	</g>
+	<circle fill="#BDDADD" stroke="#000000" stroke-width="6" stroke-miterlimit="10" cx="173.5" cy="508.5" r="49"/>
+	<text transform="matrix(1 0 0 1 131.8828 514.8779)" font-family="'TheSerifOffice',Georgia,sans-serif" font-size="17">EVILOLIVE</text>
+	<path fill="none" stroke="#0098A7" stroke-width="2" stroke-miterlimit="10" d="M476,490"/>
+</g>
+
+<g id="stormbrew" onmouseover="initialiser('stormbrew')" onclick="bloquer('stormbrew')">
+	<circle fill="#BDDADD" cx="198.828" cy="354.828" r="30.131"/>
+	<text transform="matrix(1 0 0 1 178.6641 351.8926)"><tspan x="0" y="0" font-family="'TheSerifOffice',Georgia,sans-serif" font-size="12">STORM</tspan><tspan x="3.636" y="14.4" font-family="'TheSerifOffice',Georgia,sans-serif" font-size="12">BREW</tspan></text>
+</g>
+<g id="oakstar" onmouseover="initialiser('stormbrew')" onclick="bloquer('stormbrew')">
+	<circle fill="#BDDADD" cx="139.828" cy="389.828" r="30.131"/>
+	<text transform="matrix(1 0 0 1 126.1938 385.8926)"><tspan x="0" y="0" font-family="'TheSerifOffice',Georgia,sans-serif" font-size="12">OAK </tspan><tspan x="-1.872" y="14.4" font-family="'TheSerifOffice',Georgia,sans-serif" font-size="12">STAR</tspan></text>
+	<g>
+		<g>
+			<line fill="none" stroke="#0098A7" stroke-width="2" stroke-miterlimit="10" x1="170" y1="390" x2="283" y2="390"/>
+			<g>
+				<polygon fill="#0098A7" points="280,393.896 295.177,389.828 280,385.761 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#0098A7" stroke-width="2" stroke-miterlimit="10" x1="228.173" y1="362.655" x2="283.481" y2="376.763"/>
+			<g>
+				<polygon fill="#0098A7" points="279.789,380.019 295.5,379.828 281.799,372.136 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#0098A7" stroke-width="2" stroke-miterlimit="10" x1="228.173" y1="417.829" x2="283.481" y2="403.722"/>
+			<g>
+				<polygon fill="#0098A7" points="281.799,408.349 295.5,400.656 279.789,400.466 				"/>
+			</g>
+		</g>
+	</g>
+</g>
+<g id="lithium" onmouseover="initialiser('stormbrew')" onclick="bloquer('stormbrew')">
+	<circle fill="#BDDADD" cx="198.828" cy="424.828" r="30.131"/>
+	<text transform="matrix(1 0 0 1 173.356 428.8926)" font-family="'TheSerifOffice',Georgia,sans-serif" font-size="12.07">LITHIUM</text>
+</g>
+<g id="silverzephyr" onmouseover="initialiser('silverzephyr')" onclick="bloquer('silverzephyr')">
+	<circle opacity="0.6" fill="#BDDADD" cx="83.078" cy="344.301" r="34.224"/>
+	<text transform="matrix(1 1.900000e-04 -1.900000e-04 1 66.2749 325.6055)"><tspan x="0" y="0" font-family="'TheSerifOffice',Georgia,sans-serif" font-size="9.707">SILVER </tspan><tspan x="-2.203" y="11.648" font-family="'TheSerifOffice',Georgia,sans-serif" font-size="9.707">ZEPHYR</tspan></text>
+	<g>
+		<g>
+			<line fill="none" stroke="#0098A7" stroke-miterlimit="10" x1="108.082" y1="319.891" x2="127.154" y2="303.618"/>
+			<g>
+				<polygon fill="#0098A7" points="127.476,306.59 132.883,298.73 124.27,302.833 				"/>
+			</g>
+		</g>
+	</g>
+	
+		<image overflow="visible" width="100" height="101" xlink:href="img/bre.png"  transform="matrix(0.3323 6.299181e-05 -6.299181e-05 0.3323 65.5674 339.6377)">
+	</image>
+</g>
+<g id="allemagne" onmouseover="initialiser('allemagne')" onclick="bloquer('allemagne')">
+	<circle opacity="0.6" fill="#BDDADD" cx="49.911" cy="275.931" r="34.252"/>
+	<text transform="matrix(1 -0.0037 0.0037 1 19.9009 269.6758)" font-family="'TheSerifOffice',Georgia,sans-serif" font-size="9.7148">ALLEMAGNE</text>
+	<g>
+		<g>
+			<line fill="none" stroke="#0098A7" stroke-miterlimit="10" x1="83.163" y1="270.569" x2="108.903" y2="266.325"/>
+			<g>
+				<polygon fill="#0098A7" points="107.644,269.036 116.333,265.1 106.84,264.162 				"/>
+			</g>
+		</g>
+	</g>
+	
+		<image overflow="visible" width="53" height="71" xlink:href="img/allemagne.png"  transform="matrix(0.4724 -0.0018 0.0018 0.4724 38.438 272.1934)">
+	</image>
+</g>
+<g id="mexique" onmouseover="initialiser('mexique')" onclick="bloquer('mexique')">
+	<circle opacity="0.6" fill="#BDDADD" cx="59.256" cy="198.572" r="36.363"/>
+	<text transform="matrix(1 -0.003 0.003 1 35.5083 189.8291)" font-family="'TheSerifOffice',Georgia,sans-serif" font-size="10.3137">MEXIQUE</text>
+	<g>
+		<g>
+			<line fill="none" stroke="#0098A7" stroke-miterlimit="10" x1="92.567" y1="213.402" x2="113.719" y2="227.395"/>
+			<g>
+				<polygon fill="#0098A7" points="110.952,228.525 120,231.549 113.677,224.406 				"/>
+			</g>
+		</g>
+	</g>
+	
+		<image overflow="visible" width="99" height="69" xlink:href="img/mexique.png"  transform="matrix(0.4247 -0.0013 0.0013 0.4247 36.8076 195.7715)">
+	</image>
+</g>
+<g id="teamtelecom" onmouseover="initialiser('teamtelecom')" onclick="bloquer('teamtelecom')">
+	<circle opacity="0.6" fill="#BDDADD" cx="119.721" cy="143.817" r="34.28"/>
+	<text transform="matrix(1 0.0074 -0.0074 1 105.0361 124.9858)"><tspan x="0" y="0" font-family="'TheSerifOffice',Georgia,sans-serif" font-size="9.7229">TEAM </tspan><tspan x="-7.871" y="11.667" font-family="'TheSerifOffice',Georgia,sans-serif" font-size="9.7229">TELECOM</tspan></text>
+	<g>
+		<g>
+			<line fill="none" stroke="#0098A7" stroke-miterlimit="10" x1="130.467" y1="175.097" x2="141.094" y2="197.394"/>
+			<g>
+				<polygon fill="#0098A7" points="138.14,196.936 144.333,204.191 142.598,194.811 				"/>
+			</g>
+		</g>
+	</g>
+	
+		<image overflow="visible" width="20" height="31" xlink:href="img/telephone.png"  transform="matrix(0.9999 0 0 0.9999 109 140)">
+	</image>
+</g>
+<g id="tempora" onmouseover="initialiser('tempora')" onclick="bloquer('tempora')">
+	<circle fill="#BDDADD" stroke="#000000" stroke-width="6" stroke-miterlimit="10" cx="526" cy="498.5" r="47.578"/>
+	<text transform="matrix(1 0 0 1 485.7651 505.8779)" font-family="'TheSerifOffice',Georgia,sans-serif" font-size="17">TEMPORA</text>
+	<circle opacity="0.6" fill="#9BC8CD" cx="550.391" cy="422.084" r="13.825"/>
+	<path opacity="0.6" fill="#9BC8CD" d="M585.829,426.607c6.728,3.609,9.253,11.991,5.646,18.719
+		c-3.611,6.729-11.994,9.256-18.719,5.647c-6.73-3.611-9.258-11.992-5.646-18.721C570.718,425.524,579.1,422.997,585.829,426.607z"
+		/>
+	<circle opacity="0.6" fill="#9BC8CD" cx="598.914" cy="465.797" r="13.826"/>
+	<circle opacity="0.6" fill="#9BC8CD" cx="605.868" cy="498.447" r="13.827"/>
+	<path opacity="0.6" fill="#9BC8CD" d="M612.567,533.538c-1.344,7.518-8.527,12.518-16.044,11.177
+		c-7.516-1.346-12.52-8.527-11.178-16.043c1.342-7.52,8.527-12.521,16.044-11.179C608.906,518.838,613.91,526.021,612.567,533.538z"
+		/>
+	<path opacity="0.6" fill="#9BC8CD" d="M590.82,565.891c-4.281,6.324-12.879,7.976-19.201,3.694
+		c-6.322-4.283-7.975-12.879-3.696-19.2c4.285-6.324,12.881-7.977,19.203-3.695C593.447,550.972,595.102,559.568,590.82,565.891z"/>
+	<path opacity="0.6" fill="#9BC8CD" d="M557.803,586.619c-6.479,4.038-15.008,2.052-19.046-4.428
+		c-4.034-6.484-2.052-15.01,4.425-19.046c6.484-4.038,15.01-2.056,19.049,4.425C566.265,574.053,564.285,582.579,557.803,586.619z"
+		/>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.75" stroke-miterlimit="10" x1="545.68" y1="561.768" x2="543.272" y2="552.257"/>
+			<g>
+				<polygon points="546.481,553.617 543.5,553.154 541.097,554.98 542.174,547.916 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.75" stroke-miterlimit="10" x1="569.834" y1="547.82" x2="563.896" y2="540.011"/>
+			<g>
+				<polygon points="567.382,540.007 564.456,540.749 562.96,543.369 561.186,536.447 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.75" stroke-miterlimit="10" x1="585.073" y1="526.843" x2="576.551" y2="521.98"/>
+			<g>
+				<polygon points="579.757,520.612 577.355,522.439 577.004,525.437 572.662,519.762 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.75" stroke-miterlimit="10" x1="591.805" y1="498.183" x2="582.061" y2="497.045"/>
+			<g>
+				<polygon points="584.475,494.53 582.98,497.152 583.83,500.048 577.613,496.525 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.75" stroke-miterlimit="10" x1="585.955" y1="468.936" x2="576.544" y2="471.702"/>
+			<g>
+				<polygon points="577.781,468.443 577.433,471.44 579.348,473.772 572.248,472.965 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.75" stroke-miterlimit="10" x1="569.14" y1="448.289" x2="561.562" y2="454.519"/>
+			<g>
+				<polygon points="561.426,451.035 562.278,453.93 564.953,455.326 558.104,457.361 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.75" stroke-miterlimit="10" x1="545.562" y1="434.857" x2="541.027" y2="443.556"/>
+			<g>
+				<polygon points="539.539,440.403 541.456,442.733 544.465,442.972 538.958,447.525 				"/>
+			</g>
+		</g>
+	</g>
+	<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M525.5,448"/>
+	<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M525.5,549"/>
+	<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M575,498.5"/>
+	<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M475,498.5"/>
+	
+		<image overflow="visible" width="400" height="190" xlink:href="img/bt.png"  transform="matrix(0.0585 0 0 0.0585 567.6035 433.2412)">
+	</image>
+	
+		<image overflow="visible" width="151" height="65" xlink:href="img/gc.png"  transform="matrix(0.1681 0 0 0.1681 537.1104 570.1641)">
+	</image>
+	
+		<image overflow="visible" width="165" height="50" xlink:href="img/interoute.png"  transform="matrix(0.1709 0 0 0.1709 585.0693 460.3857)">
+	</image>
+	
+		<image overflow="visible" width="400" height="121" xlink:href="img/level3.png"  transform="matrix(0.0581 0 0 0.0581 567.666 554.9824)">
+	</image>
+	
+		<image overflow="visible" width="400" height="240" xlink:href="img/verizon.png"  transform="matrix(0.0584 0 0 0.0584 593.7061 491.6621)">
+	</image>
+	
+		<image overflow="visible" width="110" height="50" xlink:href="img/viatel.png"  transform="matrix(0.2218 0 0 0.2218 586.9395 525.2764)">
+	</image>
+	
+		<image overflow="visible" width="256" height="179" xlink:href="img/vodafone.png"  transform="matrix(0.0796 0 0 0.0796 540.2021 413.9609)">
+	</image>
+</g>
+<g id="prism" onmouseover="initialiser('prism')" onclick="bloquer('prism')">
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#777776" stroke-width="2" stroke-miterlimit="10" x1="481.5" y1="286.608" x2="421.847" y2="335.731"/>
+			<g>
+				<polygon fill="#777776" points="421.403,330.828 412.272,343.616 426.574,337.108 				"/>
+			</g>
+		</g>
+	</g>
+	<circle fill="#E2DEC3" stroke="#000000" stroke-width="6" stroke-miterlimit="10" cx="526.5" cy="261.5" r="46.877"/>
+	<circle opacity="0.6" fill="#E2DEC3" cx="518.196" cy="181.562" r="13.826"/>
+	<circle opacity="0.6" fill="#E2DEC3" cx="551.391" cy="185.084" r="13.825"/>
+	<path opacity="0.6" fill="#E2DEC3" d="M586.829,189.607c6.728,3.609,9.253,11.991,5.646,18.719
+		c-3.611,6.729-11.994,9.256-18.719,5.647c-6.73-3.611-9.258-11.992-5.646-18.721C571.718,188.524,580.1,185.997,586.829,189.607z"
+		/>
+	<circle opacity="0.6" fill="#E2DEC3" cx="599.914" cy="228.797" r="13.826"/>
+	<circle opacity="0.6" fill="#E2DEC3" cx="606.868" cy="261.447" r="13.827"/>
+	<path opacity="0.6" fill="#E2DEC3" d="M613.567,296.538c-1.344,7.518-8.527,12.518-16.044,11.177
+		c-7.516-1.346-12.52-8.527-11.178-16.043c1.342-7.52,8.527-12.521,16.044-11.179C609.906,281.838,614.91,289.021,613.567,296.538z"
+		/>
+	<path opacity="0.6" fill="#E2DEC3" d="M591.82,328.891c-4.281,6.324-12.879,7.976-19.201,3.694
+		c-6.322-4.283-7.975-12.879-3.696-19.2c4.285-6.324,12.881-7.977,19.203-3.695C594.447,313.972,596.102,322.568,591.82,328.891z"/>
+	<path opacity="0.6" fill="#E2DEC3" d="M558.803,349.619c-6.479,4.038-15.008,2.052-19.046-4.428
+		c-4.034-6.484-2.052-15.01,4.425-19.046c6.484-4.038,15.01-2.056,19.049,4.425C567.265,337.053,565.285,345.579,558.803,349.619z"
+		/>
+	<path opacity="0.6" fill="#E2DEC3" d="M520.213,355.142c-7.561,1.059-14.546-4.222-15.603-11.782
+		c-1.052-7.563,4.22-14.549,11.782-15.605c7.563-1.057,14.549,4.221,15.605,11.783C533.052,347.1,527.777,354.085,520.213,355.142z"
+		/>
+	<text transform="matrix(1 0 0 1 501.4688 265.8779)" font-family="'TheSerifOffice',Georgia,sans-serif" font-size="17">PRISM</text>
+	
+		<image overflow="visible" width="200" height="200" xlink:href="img/apple.png"  transform="matrix(0.1078 -0.0284 0.0284 0.1078 592.877 253.354)">
+	</image>
+	
+		<image overflow="visible" width="200" height="203" xlink:href="img/skype.png"  transform="matrix(0.0951 -0.025 0.025 0.0951 587.4561 286.4565)">
+	</image>
+	
+		<image overflow="visible" width="200" height="120" xlink:href="img/yahoo.png"  transform="matrix(0.1155 -0.0304 0.0365 0.1386 567.5146 315.8477)">
+	</image>
+	
+		<image overflow="visible" width="100" height="100" xlink:href="img/google.png"  transform="matrix(0.1745 -0.046 0.046 0.1745 540.3701 178.3389)">
+	</image>
+	
+		<image overflow="visible" width="100" height="101" xlink:href="img/yt.png"  transform="matrix(0.1693 -0.0446 0.0446 0.1693 540.7949 332.1152)">
+	</image>
+	
+		<image overflow="visible" width="51" height="46" xlink:href="img/pt.png"  transform="matrix(0.433 -0.114 0.114 0.433 567.7285 195.3301)">
+	</image>
+	
+		<image overflow="visible" width="100" height="99" xlink:href="img/fb.png"  transform="matrix(0.173 -0.0456 0.0456 0.173 589.3398 222.2646)">
+	</image>
+	
+		<image overflow="visible" width="107" height="104" xlink:href="img/ms.png"  transform="matrix(0.1631 -0.0429 0.0429 0.1631 507.2236 334.5664)">
+	</image>
+	
+		<image overflow="visible" width="100" height="40" xlink:href="img/aol.png"  transform="matrix(0.2187 -0.0576 0.0576 0.2187 504.9551 179.0039)">
+	</image>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.75" stroke-miterlimit="10" x1="520.305" y1="327.619" x2="521.812" y2="317.924"/>
+			<g>
+				<polygon points="524.232,320.433 521.67,318.84 518.744,319.579 522.5,313.5 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.75" stroke-miterlimit="10" x1="546.68" y1="324.768" x2="544.272" y2="315.257"/>
+			<g>
+				<polygon points="547.481,316.617 544.5,316.154 542.097,317.979 543.174,310.916 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.75" stroke-miterlimit="10" x1="570.834" y1="310.82" x2="564.896" y2="303.011"/>
+			<g>
+				<polygon points="568.381,303.007 565.456,303.748 563.96,306.368 562.186,299.447 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.75" stroke-miterlimit="10" x1="586.073" y1="289.843" x2="577.551" y2="284.981"/>
+			<g>
+				<polygon points="580.757,283.612 578.355,285.44 578.004,288.437 573.662,282.762 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.75" stroke-miterlimit="10" x1="592.805" y1="261.183" x2="583.061" y2="260.045"/>
+			<g>
+				<polygon points="585.475,257.53 583.98,260.152 584.83,263.048 578.613,259.525 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.75" stroke-miterlimit="10" x1="586.955" y1="231.936" x2="577.544" y2="234.702"/>
+			<g>
+				<polygon points="578.781,231.443 578.433,234.441 580.348,236.772 573.248,235.965 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.75" stroke-miterlimit="10" x1="570.14" y1="211.289" x2="562.562" y2="217.519"/>
+			<g>
+				<polygon points="562.426,214.035 563.277,216.93 565.953,218.326 559.104,220.362 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.75" stroke-miterlimit="10" x1="546.562" y1="197.857" x2="542.027" y2="206.556"/>
+			<g>
+				<polygon points="540.539,203.404 542.456,205.734 545.464,205.972 539.958,210.526 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.75" stroke-miterlimit="10" x1="518.666" y1="195.103" x2="519.793" y2="204.898"/>
+			<g>
+				<polygon points="516.793,203.123 519.688,203.978 522.312,202.488 520.305,209.346 				"/>
+			</g>
+		</g>
+	</g>
+</g>
+<g id="france" onmouseover="initialiser('france')"  onclick="bloquer('france')">
+	<path opacity="0.6" fill="#BDDADD" d="M229.613,595.323c0-57.619,56.585-104.328,126.387-104.328s126.387,46.709,126.387,104.328"
+		/>
+	
+		<image overflow="visible" width="102" height="77" xlink:href="img/alcatellucent.png"  transform="matrix(0.9894 0 0 0.9894 255.1191 512.9766)">
+	</image>
+	<text transform="matrix(1 0 0 1 436.0303 579.8486)" font-family="'TheSerifOffice',Georgia,sans-serif" font-size="30">...</text>
+	
+		<image overflow="visible" width="66" height="66" xlink:href="img/wanadoo.jpg"  transform="matrix(0.9331 0 0 0.9331 361.5112 520.5811)">
+	</image>
+</g>
+</svg>
+
+
+
+</div>
+
+<div id="side">
+	<div id="detail" class="vide">
+		<p class="introdroit">Partout dans le monde, les diff&eacute;rents programmes de surveillance de la <span class="explication" explication="nsa">NSA</span> collectent des informations à partir des communications téléphoniques et Internet :</p>
+		<p class="legendes"><img src="img/legende-prism.png" />En accédant directement aux serveurs des entreprises (méthode "<span class="explication" explication="downstream">downstream</span>")</p>
+		<p class="legendes"><img src="img/legende-upstream.png" />En interceptant les données sur les infrastructures d'Internet comme les câbles (méthode "<span class="explication" explication="upstream">upstream</span>")</p>
+		<p class="introdroit">Toutes convergent dans un gigantesque moteur de recherche baptisé "XKeyScore", qui apparaît comme la véritable pierre angulaire du système.</p>
+		<p align="center" style="clear:both;"><img src="img/pointer.png" /></p>
+		<p class="introdroit">Passez votre curseur sur les différents programmes pour consulter leur description. Cliquez pour bloquer un élement.</p>
+		
+	</div>
+	<div id="credito">
+		<button type="button" class="btn" data-toggle="collapse" data-target="#credits2">
+			 	Cr&eacute;dits
+		</button>
+	</div>
+
+	<div id="credits2" class="collapse" style="height:0; padding:0!important;">
+			<p>Images vectorielles : CC 3.0 BY <a href="http://thenounproject.com/AchtSieben" target="_blank">Maximilian Becker</a>, <a href="http://thenounproject.com/aLf" target="_blank">aLf</a>, <a href="http://thenounproject.com/cezary.rudas" target="_blank">Cezary Rudaś</a>, <a href="http://thenounproject.com/catia.giacomello" target="_blank">Catia Marsh Mallow</a>, <a href="http://thenounproject.com/tamimat" target="_blank">Tamim Swaid</a>, <a href="http://thenounproject.com/zamyslianskyj" target:"_blank">james zamyslianskyj</a></p>
+			<p>Sources : <a href="http://www.theguardian.com/world/the-nsa-files" target="_blank"><em>The Guardian</em></a>, <a href="http://www.washingtonpost.com/world/national-security/" target="_blank"><em>The Washington Post</em>, <em>Der Spiegel</em></a>, <a href="http://oglobo.globo.com/mundo/espionagem/" target="_blank"><em>O Globo</em></a>, <a href="http://www.sueddeutsche.de/thema/NSA" target="_blank"><em>Süddeutsche</em></a>, <a href="http://online.wsj.com/search/term.html?KEYWORDS=nsa&mod=DNH_S" target="_blank"><em>The Wall Street Journal</em></a>, <a href="http://topics.nytimes.com/top/reference/timestopics/organizations/n/national_security_agency/index.html" target="_blank"><em>The New York Times</em></a>, <a href="http://www.excelsior.com.mx/global/" target="_blank"><em>Excelsior</em></a>, <a href="http://www.dailydot.com/politics/nsa-spy-prgrams-prism-fairview-blarney/" target="_blank"><em>The Daily Dot</em></a></p>
+			<p>Textes et infographie : <a href="http://twitter.com/mvaudano" target="_blank">Maxime Vaudano</a></p>
+	</div>
+<!-- 
+	<div id="motscles">
+		<hr width="80" align="left" />
+		<h2>Mots-cl&eacute;s</h2>
+		<p><span class="explication" explication="nsa">NSA</span> &middot; 
+		<span class="explication" explication="gchq">GCHQ</span> &middot; 
+		<span class="explication" explication="fisc">FISC</span> &middot; 
+		<span class="explication" explication="metadonnees">M&eacute;tadonn&eacute;s</span> &middot; 
+		<span class="explication" explication="tapping">Tapping</span> &middot; 
+		<span class="explication" explication="backdoor">Back door</span> &middot; 
+		<span class="explication" explication="snowden">Edward Snowden</span> &middot; 
+		<span class="explication" explication="greenwald">Glen Greenwald</span> &middot; 
+		<span class="explication" explication="https">HTTPS</span></p>
+	
+		
+
+		
+	</div> -->
+
+	
+
+	
+
+</div>
+</body>
+</html>
