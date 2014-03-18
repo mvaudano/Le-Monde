@@ -1,0 +1,125 @@
+<html><head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<script language="javascript">
+
+function previous()
+{
+  var i = 2;
+  while ( document.getElementById('div' + i).style.display == 'none' || document.getElementById('div' + i).style.display == 'inline' )
+  {
+    if ( document.getElementById('div' + i).style.display == 'inline' )
+    { 
+      document.getElementById('div' + i).style.display = 'none';
+      document.getElementById('div' + (i-1)).style.display = 'inline';
+      break;
+    }
+    i++;
+  }
+}
+
+function next()
+{
+  
+  var i = 1;
+  while ( document.getElementById('div' + (i+1)).style.display == 'none' || document.getElementById('div' + (i+1)).style.display == 'inline' )
+  {
+    if ( document.getElementById('div' + i).style.display == 'inline' )
+    { 
+      document.getElementById('div' + i).style.display = 'none';
+      document.getElementById('div' + (i+1)).style.display = 'inline';
+      break;
+    }
+    i++;
+  }
+}
+
+function first()
+{
+  document.getElementById('div1').style.display = 'inline';
+  var i = 2;
+  while ( document.getElementById('div' + i).style.display == 'none' || document.getElementById('div' + i).style.display == 'inline' )
+  {
+    document.getElementById('div' + i).style.display = 'none';
+    i++;
+  }
+}
+
+document.onkeydown = function(evt) {
+    evt = evt || window.event;
+    switch (evt.keyCode) {
+        case 37:
+            previous();
+            break;
+        case 39:
+            next();
+            break;
+        case 38:
+            first();
+            break;
+    }
+};
+
+</script>
+
+<style type="text/css" media="screen">
+body {
+	margin:0;
+	padding:0;
+}
+.container {
+	position:relative;
+	width:534px;
+	height:336px;
+	text-align: center;
+}
+.container div {
+	width:534px;
+	height:336px;
+	}
+#previous, #next {
+	width: 50%;
+	height: 100%;
+	background: transparent url(blank_sarko.jpg) no-repeat; /* Trick IE into showing hover */
+/*	display: block;*/
+	position:absolute;
+}
+#previous { left: 0; float: left; background: url(previous.png) left 50% no-repeat;}
+#next { right: 0; float: right; background: url(next.png) right 50% no-repeat;}
+
+.frame {
+	position:absolute;
+	top:0px;
+	left:0px;
+	z-index:-1;
+}
+
+.cadre {
+	width:534px;
+	height:336px;
+}
+</style>
+
+<style type="text/css"></style></head>
+<body style="background-color:#FFFFFF;" marginwidth="0" marginheight="0">
+<div class="container">
+
+<div class="cadre" id="div1" style="display: inline;"><img src="sarkozy/1_sarko.jpg" class="frame" width="534" height="336"><a href="javascript:next()" id="next"></a><div class="clear"></div></div>
+<div class="cadre" id="div2" style="display: none;"><img src="sarkozy/2_sarko.jpg" class="frame" width="534" height="336"><a href="javascript:previous()" id="previous"></a><a href="javascript:next()" id="next"></a><div class="clear"></div></div>
+<div class="cadre" id="div3" style="display: none;"><img src="sarkozy/3_sarko.jpg" class="frame" width="534" height="336"><a href="javascript:previous()" id="previous"></a><a href="javascript:next()" id="next"></a><div class="clear"></div></div>
+<div class="cadre" id="div4" style="display: none;"><img src="sarkozy/4_sarko.jpg" class="frame" width="534" height="336"><a href="javascript:previous()" id="previous"></a><a href="javascript:next()" id="next"></a><div class="clear"></div></div>
+<div class="cadre" id="div5" style="display: none;"><img src="sarkozy/5_sarko.jpg" class="frame" width="534" height="336"><a href="javascript:previous()" id="previous"></a><a href="javascript:next()" id="next"></a><div class="clear"></div></div>
+<div class="cadre" id="div6" style="display: none;"><img src="sarkozy/6_sarko.jpg" class="frame" width="534" height="336"><a href="javascript:previous()" id="previous"></a><a href="javascript:next()" id="next"></a><div class="clear"></div></div>
+<div class="cadre" id="div7" style="display: none;"><img src="sarkozy/7_sarko.jpg" class="frame" width="534" height="336"><a href="javascript:previous()" id="previous"></a><a href="javascript:next()" id="next"></a><div class="clear"></div></div>
+<div class="cadre" id="div8" style="display: none;"><img src="sarkozy/8_sarko.jpg" class="frame" width="534" height="336"><a href="javascript:previous()" id="previous"></a><a href="javascript:next()" id="next"></a><div class="clear"></div></div>
+<div class="cadre" id="div10" style="display: none;"><img src="sarkozy/9_sarko.jpg" class="frame" width="534" height="336"><a href="javascript:previous()" id="previous"></a><a href="javascript:next()" id="next"></a><div class="clear"></div></div>
+<div class="cadre" id="div11" style="display: none;"><img src="sarkozy/10_sarko.jpg" class="frame" width="534" height="336"><a href="javascript:previous()" id="previous"></a><a href="javascript:next()" id="next"></a><div class="clear"></div></div>
+<div class="cadre" id="div12" style="display: none;"><img src="sarkozy/11_sarko.jpg" class="frame" width="534" height="336"><a href="javascript:previous()" id="previous"></a><a href="javascript:next()" id="next"></a><div class="clear"></div></div>
+<div class="cadre" id="div13" style="display: none;"><img src="sarkozy/12_sarko.jpg" class="frame" width="534" height="336"><a href="javascript:previous()" id="previous"></a><a href="javascript:next()" id="next"></a><div class="clear"></div></div>
+<div class="cadre" id="div14" style="display: none;"><img src="sarkozy/13_sarko.jpg" class="frame" width="534" height="336"><a href="javascript:previous()" id="previous"></a><a href="javascript:next()" id="next"></a><div class="clear"></div></div>
+<div class="cadre" id="div9" style="display: none;"><img src="sarkozy/14_sarko.jpg" class="frame" width="534" height="336"><a href="javascript:previous()" id="previous"></a><a href="javascript:next()" id="next"></a><div class="clear"></div></div>
+<div class="cadre" id="div15" style="display: none;"><img src="sarkozy/15_sarko.jpg" class="frame" width="534" height="336"><a href="javascript:previous()" id="previous"></a><div class="clear"></div></div>
+</div>
+
+</body></html>
