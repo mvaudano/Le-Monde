@@ -1,0 +1,734 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title> - jsFiddle demo</title>
+  
+  <script type='text/javascript' src='http://code.jquery.com/jquery-1.9.1.js'></script>
+  
+  
+  <style type='text/css'>
+  body {
+    width:534px;
+  }
+  #button {
+    float:right;
+  }
+  #button2 p {
+    margin:0;
+  }
+  #bouton2 {
+    float:right;
+  }
+  </style>
+  
+
+
+<script type='text/javascript'>//<![CDATA[ 
+
+$(function () {
+        var chart;
+       
+
+
+        Highcharts.setOptions({
+            lang: {
+            thousandsSep: [' '],
+            decimalPoint: [',']
+            }
+        });
+        
+        $('#endettement').highcharts({
+            chart: {
+                type: 'bar',
+                spacingBottom: 60,
+                spacingTop: 60
+            },
+            title: {
+                text: 'Encours de la dette par habitant (2012)',
+                y: -45,
+                verticalAlign: 'top'
+            },
+            subtitle: {
+                text: 'Source : Bercy Colloc',
+                verticalAlign: 'top',
+                y: -30
+            },
+            xAxis: {
+                categories: ["Paris","Marseille","Lyon","Toulouse","Nice","Nantes","Strasbourg","Montpellier","Bordeaux","Lille","Rennes","Reims","Le Havre","Saint-Etienne","Toulon","Grenoble","Dijon","Angers","Villeurbanne","Nimes","Le Mans","Clermont-Ferrand","Aix-en-Provence","Brest","Limoges","Tours","Amiens","Metz","Perpignan","Boulogne-Billancourt","Besancon","Orleans","Rouen","Mulhouse","Caen","Saint-Denis","Nancy","Argenteuil","Montreuil","Roubaix","Tourcoing","Dunkerque","Creteil","Avignon","Nanterre","Courbevoie","Poitiers","Vitry-sur-Seine","Versailles","Colombes"],
+                title: {
+                    text: null
+                },
+                tickWidth: 0
+            },
+            yAxis: {
+                title: {
+                    text: '',
+                    align: 'high',
+                    style: {
+                        fontSize: '14pt'
+                    }
+                },
+                labels: {
+                    enabled: false
+                },
+                plotLines: [{
+                    color: '#ccc',
+                    value: 1109,
+                    width: 1,
+                    label: {
+                        text: "Moyenne",
+                        rotation: 90,
+                        verticalAlign: 'bottom',
+                        align: 'center',
+                        y: -30,
+                        x: 7
+                    }
+                }],
+                gridLineWidth: 0
+            },
+            tooltip: {
+                shared: true,
+                backgroundColor: 'rgba(255,255,255,1)',
+                formatter: function() {
+                    var chart = this.points[0].series.chart; //get the chart object
+                    var categories = chart.xAxis[0].categories; //get the categories array
+                    var contenu = "<big><strong>Encours de la dette par habitant à "+this.x+" ("+this.points[0].point["parti"]+") :</strong></big>";
+                    contenu += "<br>2008 : "+this.points[0].point['2008']+" €<br><strong>2012 : "+this.points[0].point['numeraire2012']+" €</strong>";
+                    if(this.points[0].point['evolution2012'] > 0) { 
+                               numeraire = "+ "+this.points[0].point['evolution2012']; 
+                    }
+                    else { numeraire = this.points[0].point['evolution2012'] };
+                    if(this.points[0].point['pourcentage'] > 0) { 
+                               numeraire2 = "+ "+Highcharts.numberFormat(this.points[0].point['pourcentage'],1,',',' '); 
+                    }
+                    else { numeraire2 = Highcharts.numberFormat(this.points[0].point['pourcentage'],1,',',' ') };
+                    contenu += "<br>Evolution 2008-2012 : "+numeraire+" € ("+numeraire2+" %)";
+                      
+                    return contenu;
+                }
+            },
+            plotOptions: {
+                bar: {
+                    groupPadding:0.1,
+                    dataLabels: {
+                        enabled: true,
+                        style: {
+                            fontWeight: 'bold'
+                        },
+                        formatter: function() {
+                            if(this.series.index == 1) { 
+                                if(this.y > 0) { 
+                                   numeraire = "+ "+this.y; 
+                                }
+                                else { numeraire = this.y };
+                                return numeraire+" €"; 
+                            }
+                            else { return this.y+" €" };                        
+                        }
+                    },
+                    colorByPoint: true
+                },
+                series: {
+                    events: {
+                        /*hide: function() { sortData(chart); },*/
+                        /*show: function() { sortData(chart,1); }*/
+                    }                        
+                }
+            },
+            legend: {
+                enabled: false,
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                x: -40,
+                y: 100,
+                floating: true,
+                borderWidth: 1,
+                backgroundColor: '#FFFFFF',
+                shadow: true
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: "Encours de la dette par habitant",
+                data: [{name:"Paris",y:1444,"parti":"PS","2008":1083},
+{name:"Marseille",y:2103,"parti":"UMP","2008":2291},
+{name:"Lyon",y:710,"parti":"PS","2008":949},
+{name:"Toulouse",y:141,"parti":"PS","2008":158},
+{name:"Nice",y:1117,"parti":"UMP","2008":1106},
+{name:"Nantes",y:874,"parti":"PS","2008":1119},
+{name:"Strasbourg",y:443,"parti":"PS","2008":421},
+{name:"Montpellier",y:887,"parti":"PS","2008":490},
+{name:"Bordeaux",y:828,"parti":"UMP","2008":859},
+{name:"Lille",y:1539,"parti":"PS","2008":847},
+{name:"Rennes",y:726,"parti":"PS","2008":804},
+{name:"Reims",y:1722,"parti":"PS","2008":1738},
+{name:"Le Havre",y:1372,"parti":"UMP","2008":1210},
+{name:"Saint-Etienne",y:2123,"parti":"PS","2008":2075},
+{name:"Toulon",y:621,"parti":"UMP","2008":842},
+{name:"Grenoble",y:1689,"parti":"PS","2008":1755},
+{name:"Dijon",y:1144,"parti":"PS","2008":1275},
+{name:"Angers",y:153,"parti":"PS","2008":5},
+{name:"Villeurbanne",y:22,"parti":"PS","2008":16},
+{name:"Nimes",y:1473,"parti":"UMP","2008":1623},
+{name:"Le Mans",y:582,"parti":"PS","2008":349},
+{name:"Clermont-Ferrand",y:1050,"parti":"PS","2008":927},
+{name:"Aix-en-Provence",y:852,"parti":"UMP","2008":900},
+{name:"Brest",y:451,"parti":"PS","2008":418},
+{name:"Limoges",y:812,"parti":"PS","2008":950},
+{name:"Tours",y:1722,"parti":"PS","2008":1793},
+{name:"Amiens",y:667,"parti":"PS","2008":592},
+{name:"Metz",y:134,"parti":"PS","2008":98},
+{name:"Perpignan",y:1904,"parti":"UMP","2008":2235},
+{name:"Boulogne-Billancourt",y:795,"parti":"UMP","2008":1298},
+{name:"Besancon",y:938,"parti":"PS","2008":825},
+{name:"Orleans",y:866,"parti":"UMP","2008":837},
+{name:"Rouen",y:1674,"parti":"PS","2008":1498},
+{name:"Mulhouse",y:1342,"parti":"UMP","2008":1189},
+{name:"Caen",y:863,"parti":"PS","2008":861},
+{name:"Saint-Denis",y:925,"parti":"PCF","2008":1452},
+{name:"Nancy",y:983,"parti":"UDI","2008":1034},
+{name:"Argenteuil",y:2169,"parti":"PS","2008":2261},
+{name:"Montreuil",y:1637,"parti":"EELV","2008":2308},
+{name:"Roubaix",y:1232,"parti":"PS","2008":1265},
+{name:"Tourcoing",y:1268,"parti":"PS","2008":881},
+{name:"Dunkerque",y:731,"parti":"PS","2008":1059},
+{name:"Creteil",y:1551,"parti":"PS","2008":1709},
+{name:"Avignon",y:2128,"parti":"UMP","2008":2428},
+{name:"Nanterre",y:1587,"parti":"Front de gauche (FASE)","2008":1563},
+{name:"Courbevoie",y:793,"parti":"UMP","2008":578},
+{name:"Poitiers",y:1264,"parti":"PS","2008":1078},
+{name:"Vitry-sur-Seine",y:1389,"parti":"Front de gauche (PCF)","2008":1137},
+{name:"Versailles",y:700,"parti":"UMP","2008":749},
+{name:"Colombes",y:1290,"parti":"PS","2008":1373}]
+         },{
+                name: "Evolution de l'encours de la dette par habitant (2008-2012)",
+                data: [{name:"Paris",y:361,"parti":"PS","pourcentage":"33.33"},
+{name:"Marseille",y:-188,"parti":"UMP","pourcentage":"-8.21"},
+{name:"Lyon",y:-239,"parti":"PS","pourcentage":"-25.18"},
+{name:"Toulouse",y:-17,"parti":"PS","pourcentage":"-10.76"},
+{name:"Nice",y:11,"parti":"UMP","pourcentage":"0.99"},
+{name:"Nantes",y:-245,"parti":"PS","pourcentage":"-21.89"},
+{name:"Strasbourg",y:22,"parti":"PS","pourcentage":"5.23"},
+{name:"Montpellier",y:397,"parti":"PS","pourcentage":"81.02"},
+{name:"Bordeaux",y:-31,"parti":"UMP","pourcentage":"-3.61"},
+{name:"Lille",y:692,"parti":"PS","pourcentage":"81.70"},
+{name:"Rennes",y:-78,"parti":"PS","pourcentage":"-9.70"},
+{name:"Reims",y:-16,"parti":"PS","pourcentage":"-0.92"},
+{name:"Le Havre",y:162,"parti":"UMP","pourcentage":"13.39"},
+{name:"Saint-Etienne",y:48,"parti":"PS","pourcentage":"2.31"},
+{name:"Toulon",y:-221,"parti":"UMP","pourcentage":"-26.25"},
+{name:"Grenoble",y:-66,"parti":"PS","pourcentage":"-3.76"},
+{name:"Dijon",y:-131,"parti":"PS","pourcentage":"-10.27"},
+{name:"Angers",y:148,"parti":"PS","pourcentage":"2960.00"},
+{name:"Villeurbanne",y:6,"parti":"PS","pourcentage":"37.50"},
+{name:"Nimes",y:-150,"parti":"UMP","pourcentage":"-9.24"},
+{name:"Le Mans",y:233,"parti":"PS","pourcentage":"66.76"},
+{name:"Clermont-Ferrand",y:123,"parti":"PS","pourcentage":"13.27"},
+{name:"Aix-en-Provence",y:-48,"parti":"UMP","pourcentage":"-5.33"},
+{name:"Brest",y:33,"parti":"PS","pourcentage":"7.89"},
+{name:"Limoges",y:-138,"parti":"PS","pourcentage":"-14.53"},
+{name:"Tours",y:-71,"parti":"PS","pourcentage":"-3.96"},
+{name:"Amiens",y:75,"parti":"PS","pourcentage":"12.67"},
+{name:"Metz",y:36,"parti":"PS","pourcentage":"36.73"},
+{name:"Perpignan",y:-331,"parti":"UMP","pourcentage":"-14.81"},
+{name:"Boulogne-Billancourt",y:-503,"parti":"UMP","pourcentage":"-38.75"},
+{name:"Besancon",y:113,"parti":"PS","pourcentage":"13.70"},
+{name:"Orleans",y:29,"parti":"UMP","pourcentage":"3.46"},
+{name:"Rouen",y:176,"parti":"PS","pourcentage":"11.75"},
+{name:"Mulhouse",y:153,"parti":"UMP","pourcentage":"12.87"},
+{name:"Caen",y:2,"parti":"PS","pourcentage":"0.23"},
+{name:"Saint-Denis",y:-527,"parti":"PCF","pourcentage":"-36.29"},
+{name:"Nancy",y:-51,"parti":"UDI","pourcentage":"-4.93"},
+{name:"Argenteuil",y:-92,"parti":"PS","pourcentage":"-4.07"},
+{name:"Montreuil",y:-671,"parti":"EELV","pourcentage":"-29.07"},
+{name:"Roubaix",y:-33,"parti":"PS","pourcentage":"-2.61"},
+{name:"Tourcoing",y:387,"parti":"PS","pourcentage":"43.93"},
+{name:"Dunkerque",y:-328,"parti":"PS","pourcentage":"-30.97"},
+{name:"Creteil",y:-158,"parti":"PS","pourcentage":"-9.25"},
+{name:"Avignon",y:-300,"parti":"UMP","pourcentage":"-12.36"},
+{name:"Nanterre",y:24,"parti":"Front de gauche (FASE)","pourcentage":"1.54"},
+{name:"Courbevoie",y:215,"parti":"UMP","pourcentage":"37.20"},
+{name:"Poitiers",y:186,"parti":"PS","pourcentage":"17.25"},
+{name:"Vitry-sur-Seine",y:252,"parti":"Front de gauche (PCF)","pourcentage":"22.16"},
+{name:"Versailles",y:-49,"parti":"UMP","pourcentage":"-6.54"},
+{name:"Colombes",y:-83,"parti":"PS","pourcentage":"-6.05"}]
+            }]
+        },
+        function(chart) { 
+           
+                var chart2 = $("#endettement").highcharts(),
+                $button = $('#button');
+                var serie1 = chart2.series[0];
+                var serie2 = chart2.series[1];
+      
+                serie2.hide();
+                
+                sortData(chart,0,0); // Classe selon la 1ère série (0), affiche la 1ère série seulement (0)
+
+                $button.click(function() {
+
+                    if (serie1.visible) {
+                            serie1.hide();
+                            serie2.show();
+                            sortData(chart,1,1); // Classe selon la 2ème série (1), affiche la 2ème série seulement (1)
+                            
+                            
+                            
+                            $button.html("Voir les chiffres 2012");
+                            chart.setTitle( { text: 'Evolution de l\'encours de la dette par habitant entre 2008 et 2012' } )
+                    } else {
+
+                            var chart2 = $('#endettement').highcharts();
+                            chart2.series[0].setVisible(true,false);
+                            chart2.series[1].setVisible(false,false);
+
+                            $button.html('Voir l\'évolution 2008-2012');
+                            chart.setTitle( { text: 'Encours de la dette par habitant (2012)' } );
+                            sortData(chart2,0,0); // Classe selon la 1ère série (0), affiche la 1ère série seulement (0)
+                    }
+                });
+
+        });
+
+
+
+
+
+       
+
+
+
+
+
+         $('#taxehabitation').highcharts({
+            chart: {
+                type: 'bar',
+                spacingBottom: 60,
+                spacingRight: 60,
+                spacingTop: 60
+            },
+            title: {
+                text: 'Taxe d\'habitation par habitant (2012)',
+                y: -45,
+                verticalAlign: 'top'
+            },
+            subtitle: {
+                text: 'Produit de la taxe d\'habitation par habitant. Source : Bercy Colloc',
+                verticalAlign: 'top',
+                y: -30
+            },
+            xAxis: {
+                categories: ["Paris","Marseille","Lyon","Toulouse","Nice","Nantes","Strasbourg","Montpellier","Bordeaux","Lille","Rennes","Reims","Le Havre","Saint-Etienne","Toulon","Grenoble","Dijon","Angers","Villeurbanne","Nimes","Le Mans","Clermont-Ferrand","Aix-en-Provence","Brest","Limoges","Tours","Amiens","Metz","Perpignan","Boulogne-Billancourt","Besancon","Orleans","Rouen","Mulhouse","Caen","Saint-Denis","Nancy","Argenteuil","Montreuil","Roubaix","Tourcoing","Dunkerque","Creteil","Avignon","Nanterre","Courbevoie","Poitiers","Vitry-sur-Seine","Versailles","Colombes"],
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                title: {
+                    text: '',
+                    align: 'high'
+                },
+                labels: {
+                    enabled: false
+                },
+                plotLines: [{
+                    color: '#ccc',
+                    value: 218.6,
+                    width: 1,
+                    label: {
+                        text: "Moyenne",
+                        rotation: 90,
+                        verticalAlign: 'bottom',
+                        align: 'center',
+                        y: 28,
+                        x: -5
+                    }
+                }],
+                gridLineWidth: 0
+            },
+            tooltip: {
+                shared: true,
+                formatter: function() {
+                    var chart = this.points[0].series.chart; //get the chart object
+                    var categories = chart.xAxis[0].categories; //get the categories array
+                    var contenu = "<big><strong>Produit de la taxe d\"habitation par habitant à "+this.x+" ("+this.points[0].point["parti"]+") :</strong></big>";
+                    contenu += "<br>2009 : "+this.points[0].point['2009']+" €<br><strong>2012 : "+this.points[0].point['numeraire2012']+" €</strong>";
+                    if(this.points[0].point['evolution2012'] > 0) { 
+                               numeraire = "+ "+this.points[0].point['evolution2012']; 
+                    }
+                    else { numeraire = this.points[0].point['evolution2012'] };
+                    if(this.points[0].point['pourcentage'] > 0) { 
+                               numeraire2 = "+ "+Highcharts.numberFormat(this.points[0].point['pourcentage'],1,',',' '); 
+                    }
+                    else { numeraire2 = Highcharts.numberFormat(this.points[0].point['pourcentage'],1,',',' ') };
+                    contenu += "<br>Evolution 2009-2012 : "+numeraire+" € ("+numeraire2+" %)";
+                      
+                    return contenu;
+
+
+
+                    // // var chart = this.points[0].series.chart; //get the chart object
+                    // // var categories = chart.xAxis[0].categories; //get the categories array
+                    // // var contenu = "<big><strong>Produit de la taxe d\"habitation par habitant à "+this.x+" ("+this.points[0].point["parti"]+") :</strong></big>";
+                    
+                    // // var s = '<b>'+ this.x +'</b>';                    
+                    // // var index = 0;
+                    // // while(this.x !== categories[index]){index++;} //compute the index of corr y value in each data arrays           
+                    // // $.each(chart.series, function(i, series) { //loop through series array
+                    // //     if(i == 0) {
+                    // //         contenu += "<br>2009 : "+series.data[index]['2009']+" €<br><strong>2012 : "+series.data[index].y+" €</strong>";
+                    // //     }
+                    // //     if(i == 1) {
+                    // //         if(series.data[index].y > 0) { 
+                    // //            numeraire = "+ "+series.data[index].y; 
+                    // //         }
+                    // //         else { numeraire = series.data[index].y };
+                    // //         if(series.data[index]['pourcentage'] > 0) { 
+                    // //            numeraire2 = "+ "+Highcharts.numberFormat(series.data[index]['pourcentage'],1,',',' '); 
+                    // //         }
+                    // //         else { numeraire2 = series.data[index]['pourcentage'] };
+                    // //         contenu += "<br>Evolution 2008-2012 : "+numeraire+" € ("+numeraire2+" %)";
+                    // //     }
+                    // // });           
+                    // return contenu;
+                }
+            },
+            plotOptions: {
+                bar: {
+                    groupPadding:0.1,
+                    dataLabels: {
+                        enabled: true,
+                        formatter: function() {
+                            if(this.series.index == 1) { 
+                                if(this.y > 0) { 
+                                   numeraire = "+ "+this.y; 
+                                }
+                                else { numeraire = this.y };
+                                return numeraire+" €"; 
+                            }
+                            else { return this.y+" €" };                        
+                        }
+                    },
+                    colorByPoint: true
+                }
+            },
+            legend: {
+                enabled: false,
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                x: -40,
+                y: 100,
+                floating: true,
+                borderWidth: 1,
+                backgroundColor: '#FFFFFF',
+                shadow: true
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: "Produit de la taxe d\"habitation par habitant",
+                data: [{name:"Paris",y:310,"parti":"PS","2009":212},
+                    {name:"Marseille",y:288,"parti":"UMP","2009":229},
+                    {name:"Lyon",y:325,"parti":"PS","2009":298},
+                    {name:"Toulouse",y:199,"parti":"PS","2009":180},
+                    {name:"Nice",y:367,"parti":"UMP","2009":336},
+                    {name:"Nantes",y:304,"parti":"PS","2009":274},
+                    {name:"Strasbourg",y:230,"parti":"PS","2009":211},
+                    {name:"Montpellier",y:286,"parti":"PS","2009":257},
+                    {name:"Bordeaux",y:352,"parti":"UMP","2009":326},
+                    {name:"Lille",y:301,"parti":"PS","2009":276},
+                    {name:"Rennes",y:305,"parti":"PS","2009":264},
+                    {name:"Reims",y:247,"parti":"PS","2009":225},
+                    {name:"Le Havre",y:208,"parti":"UMP","2009":187},
+                    {name:"Saint-Etienne",y:259,"parti":"PS","2009":232},
+                    {name:"Toulon",y:244,"parti":"UMP","2009":224},
+                    {name:"Grenoble",y:298,"parti":"PS","2009":270},
+                    {name:"Dijon",y:257,"parti":"PS","2009":229},
+                    {name:"Angers",y:236,"parti":"PS","2009":201},
+                    {name:"Villeurbanne",y:250,"parti":"PS","2009":235},
+                    {name:"Nimes",y:333,"parti":"UMP","2009":301},
+                    {name:"Le Mans",y:199,"parti":"PS","2009":109},
+                    {name:"Clermont-Ferrand",y:255,"parti":"PS","2009":220},
+                    {name:"Aix-en-Provence",y:242,"parti":"UMP","2009":217},
+                    {name:"Brest",y:243,"parti":"PS","2009":203},
+                    {name:"Limoges",y:272,"parti":"PS","2009":259},
+                    {name:"Tours",y:249,"parti":"PS","2009":225},
+                    {name:"Amiens",y:204,"parti":"PS","2009":188},
+                    {name:"Metz",y:211,"parti":"PS","2009":191},
+                    {name:"Perpignan",y:261,"parti":"UMP","2009":219},
+                    {name:"Boulogne-Billancourt",y:259,"parti":"UMP","2009":237},
+                    {name:"Besancon",y:301,"parti":"PS","2009":279},
+                    {name:"Orleans",y:262,"parti":"UMP","2009":248},
+                    {name:"Rouen",y:284,"parti":"PS","2009":253},
+                    {name:"Mulhouse",y:187,"parti":"UMP","2009":163},
+                    {name:"Caen",y:249,"parti":"PS","2009":234},
+                    {name:"Saint-Denis",y:174,"parti":"PCF","2009":152},
+                    {name:"Nancy",y:193,"parti":"UDI","2009":178},
+                    {name:"Argenteuil",y:232,"parti":"PS","2009":203},
+                    {name:"Montreuil",y:255,"parti":"EELV","2009":112},
+                    {name:"Roubaix",y:145,"parti":"PS","2009":127},
+                    {name:"Tourcoing",y:203,"parti":"PS","2009":162},
+                    {name:"Dunkerque",y:250,"parti":"PS","2009":238},
+                    {name:"Creteil",y:255,"parti":"PS","2009":235},
+                    {name:"Avignon",y:257,"parti":"UMP","2009":230},
+                    {name:"Nanterre",y:105,"parti":"Front de gauche (FASE)","2009":93},
+                    {name:"Courbevoie",y:161,"parti":"UMP","2009":143},
+                    {name:"Poitiers",y:295,"parti":"PS","2009":267},
+                    {name:"Vitry-sur-Seine",y:235,"parti":"Front de gauche (PCF)","2009":131},
+                    {name:"Versailles",y:272,"parti":"UMP","2009":240},
+                    {name:"Colombes",y:328,"parti":"PS","2009":207}]
+                     },{
+                name: "Evolution du produit par habitant de la taxe d\'habitation par habitant",
+                data:[{"name":"Paris","y":98,"pourcentage":46.23,"parti":"PS"},
+                    {"name":"Marseille","y":59,"pourcentage":25.76,"parti":"UMP"},
+                    {"name":"Lyon","y":27,"pourcentage":9.06,"parti":"PS"},
+                    {"name":"Toulouse","y":19,"pourcentage":10.56,"parti":"PS"},
+                    {"name":"Nice","y":31,"pourcentage":9.23,"parti":"UMP"},
+                    {"name":"Nantes","y":30,"pourcentage":10.95,"parti":"PS"},
+                    {"name":"Strasbourg","y":19,"pourcentage":9.00,"parti":"PS"},
+                    {"name":"Montpellier","y":29,"pourcentage":11.28,"parti":"PS"},
+                    {"name":"Bordeaux","y":26,"pourcentage":7.98,"parti":"UMP"},
+                    {"name":"Lille","y":25,"pourcentage":9.06,"parti":"PS"},
+                    {"name":"Rennes","y":41,"pourcentage":15.53,"parti":"PS"},
+                    {"name":"Reims","y":22,"pourcentage":9.78,"parti":"PS"},
+                    {"name":"Le Havre","y":21,"pourcentage":11.23,"parti":"UMP"},
+                    {"name":"Saint-Etienne","y":27,"pourcentage":11.64,"parti":"PS"},
+                    {"name":"Toulon","y":20,"pourcentage":8.93,"parti":"UMP"},
+                    {"name":"Grenoble","y":28,"pourcentage":10.37,"parti":"PS"},
+                    {"name":"Dijon","y":28,"pourcentage":12.23,"parti":"PS"},
+                    {"name":"Angers","y":35,"pourcentage":17.41,"parti":"PS"},
+                    {"name":"Villeurbanne","y":15,"pourcentage":6.38,"parti":"PS"},
+                    {"name":"Nimes","y":32,"pourcentage":10.63,"parti":"UMP"},
+                    {"name":"Le Mans","y":90,"pourcentage":82.57,"parti":"PS"},
+                    {"name":"Clermont-Ferrand","y":35,"pourcentage":15.91,"parti":"PS"},
+                    {"name":"Aix-en-Provence","y":25,"pourcentage":11.52,"parti":"UMP"},
+                    {"name":"Brest","y":40,"pourcentage":19.70,"parti":"PS"},
+                    {"name":"Limoges","y":13,"pourcentage":5.02,"parti":"PS"},
+                    {"name":"Tours","y":24,"pourcentage":10.67,"parti":"PS"},
+                    {"name":"Amiens","y":16,"pourcentage":8.51,"parti":"PS"},
+                    {"name":"Metz","y":20,"pourcentage":10.47,"parti":"PS"},
+                    {"name":"Perpignan","y":42,"pourcentage":19.18,"parti":"UMP"},
+                    {"name":"Boulogne-Billancourt","y":22,"pourcentage":9.28,"parti":"UMP"},
+                    {"name":"Besancon","y":22,"pourcentage":7.89,"parti":"PS"},
+                    {"name":"Orleans","y":14,"pourcentage":5.65,"parti":"UMP"},
+                    {"name":"Rouen","y":31,"pourcentage":12.25,"parti":"PS"},
+                    {"name":"Mulhouse","y":24,"pourcentage":14.72,"parti":"UMP"},
+                    {"name":"Caen","y":15,"pourcentage":6.41,"parti":"PS"},
+                    {"name":"Saint-Denis","y":22,"pourcentage":14.47,"parti":"PCF"},
+                    {"name":"Nancy","y":15,"pourcentage":8.43,"parti":"UDI"},
+                    {"name":"Argenteuil","y":29,"pourcentage":14.29,"parti":"PS"},
+                    {"name":"Montreuil","y":143,"pourcentage":127.68,"parti":"EELV"},
+                    {"name":"Roubaix","y":18,"pourcentage":14.17,"parti":"PS"},
+                    {"name":"Tourcoing","y":41,"pourcentage":25.31,"parti":"PS"},
+                    {"name":"Dunkerque","y":12,"pourcentage":5.04,"parti":"PS"},
+                    {"name":"Creteil","y":20,"pourcentage":8.51,"parti":"PS"},
+                    {"name":"Avignon","y":27,"pourcentage":11.74,"parti":"UMP"},
+                    {"name":"Nanterre","y":12,"pourcentage":12.90,"parti":"Front de gauche (FASE)"},
+                    {"name":"Courbevoie","y":18,"pourcentage":12.59,"parti":"UMP"},
+                    {"name":"Poitiers","y":28,"pourcentage":10.49,"parti":"PS"},
+                    {"name":"Vitry-sur-Seine","y":104,"pourcentage":79.39,"parti":"Front de gauche (PCF)"},
+                    {"name":"Versailles","y":32,"pourcentage":13.33,"parti":"UMP"},
+                    {"name":"Colombes","y":121,"pourcentage":58.45,"parti":"PS"}]
+            }]
+        },
+        function(chart) { 
+             // On trie en fonction du y de la première série
+                
+                var chart3 = $("#taxehabitation").highcharts(),
+                $button = $('#button2');
+                var serie1 = chart3.series[0];
+                var serie2 = chart3.series[1];
+                serie2.hide();
+
+                sortData(chart3,0,0);
+
+                $button.click(function() {
+
+                    if (serie1.visible) {
+                            serie1.hide();
+                            serie2.show();
+                            sortData(chart3,1,1); // Classe selon la 2ème série (1), affiche la 2ème série seulement (1)
+                            
+                            
+                            
+                            $button.html("Voir les chiffres 2012");
+                            chart3.setTitle( { text: 'Evolution de la taxe d\'habitation par habitant entre 2009 et 2012' } )
+                    } else {
+
+                            var chart2 = $('#taxehabitation').highcharts();
+                            chart3.series[0].setVisible(true,false);
+                            chart3.series[1].setVisible(false,false);
+
+                            $button.html('Voir l\'évolution 2009-2012');
+                            chart3.setTitle( { text: 'Taxe d\'habitation par habitant (2012)' } );
+                            sortData(chart3,0,0); // Classe selon la 1ère série (0), affiche la 1ère série seulement (0)
+                    }
+                });
+
+        });
+    
+        
+
+
+
+
+
+
+    });
+
+
+
+function assocCouleurs(data) {
+              switch(data["parti"]) {
+                    case "UMP":
+                         return '#2c59a8';
+                    break;
+                    case "PS":
+                         return '#d41066';
+                    break;
+                    case "EELV":
+                         return '#608a32';
+                    break;
+                    case "UDI":
+                         return '#5bc1f4';
+                    break;
+                    case "Front de gauche (PCF)":
+                    case "PCF":
+                    case "Front de gauche (FASE)":
+                         return '#b50b11';
+                    break;
+                        
+                };
+}
+
+
+
+
+
+
+
+
+
+
+
+
+ var sortData = function(chartSource,quelleserieclasser,quelleserieafficher) {
+            var graphe = chartSource.container.id;
+            console.log(chartSource)
+            var series = chartSource.series;
+            
+            if(quelleserieafficher == 0) { 
+                series[0].setVisible(true,false);
+                series[1].setVisible(false,false);
+            }
+            if(quelleserieafficher == 1) { 
+                series[0].setVisible(false,false);
+                series[1].setVisible(true,false);
+            }
+           
+            var axis = chartSource.xAxis[0];
+            var categories = [];
+            
+            if($.isArray(series)) {
+
+                if(quelleserieclasser == 0) { 
+                    var ser = $.grep(series, function(ser, seriesIndex) {
+                            if(graphe == "highcharts-0") {
+                                return ser.name == "Encours de la dette par habitant";
+                            }
+                            if(graphe == "highcharts-1") {
+                                return ser.name == "Produit de la taxe d\"habitation par habitant";
+                            }
+                    })[0];
+                }
+                if(quelleserieclasser == 1) { 
+                    var ser = $.grep(series, function(ser, seriesIndex) {
+                        if(graphe == "highcharts-0") {
+                            return ser.name == "Evolution de l'encours de la dette par habitant (2008-2012)";
+                        }
+                        if(graphe == "highcharts-1") {
+                            return ser.name == "Evolution du produit de la taxe d\"habitation par habitant";
+                        }
+                    })[0];
+                }
+                
+                $.each(series[quelleserieclasser].data, function(dataIndex, datum) {
+                    var obj = {
+                        name: datum.name,
+                        index: dataIndex,
+                        stackTotal: datum.y
+                    }
+                    categories.push(obj);
+                });
+            }
+            
+            categories.sort(function(a, b) {
+                var aName = a.name.toLowerCase();
+                var bName = b.name.toLowerCase();
+                var aTotal = a.stackTotal;
+                var bTotal = b.stackTotal;
+                if(aTotal === bTotal) {
+                    return ((aName < bName) ? -1 : ((aName > bName) ? 1 : 0));
+                } else {
+                    return ((aTotal > bTotal) ? -1 : ((aTotal < bTotal) ? 1 : 0));
+                }
+            });
+
+            
+            var mappedIndex = $.map(categories, function(category, index) {
+                return category.index;
+            });
+            
+            categories = $.map(categories, function(category, index) {
+                return category.name;
+            });
+            
+            axis.setCategories(categories);
+                
+                var data = new Array();
+                $.map(mappedIndex, function(mappedIndex, origIndex) {
+                    data[origIndex] = { 
+                        name: series[quelleserieclasser].data[mappedIndex].name,
+                        y: series[quelleserieclasser].data[mappedIndex].y,
+                        color: assocCouleurs(series[quelleserieclasser].data[mappedIndex]),
+                        "parti": series[quelleserieclasser].data[mappedIndex]["parti"],
+                        "numeraire2012": series[0].data[mappedIndex].y,
+                        "evolution2012": series[1].data[mappedIndex].y,
+                        "2008": series[0].data[mappedIndex]["2008"],
+                        "2009": series[0].data[mappedIndex]["2009"],
+                        "pourcentage": series[1].data[mappedIndex]["pourcentage"]
+                    }
+                });
+                console.log(data)
+               
+                chartSource.series[quelleserieclasser].setData(data);
+
+        };
+    
+
+//]]>  
+
+</script>
+
+
+</head>
+<body>
+  <script src="http://code.highcharts.com/highcharts.js"></script>
+<button id="button" class="autocompare">Voir l'évolution 2008-2012</button>
+<div id="endettement" style="width: 534px; height:900px; margin: 0 auto"></div>
+<div style="clear:both; height:30px;"></div>
+<div id="bouton2"><button id="button2" class="autocompare"><p>Voir l'évolution 2009-2012</p></button></div>
+<div id="taxehabitation" style="width: 534px; height:900px; margin: 0 auto"></div>
+
+  
+</body>
+
+
+</html>
+

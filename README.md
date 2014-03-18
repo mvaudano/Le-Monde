@@ -7,6 +7,11 @@ Carte de France (Google maps) des candidats aux municipales qui se retrouveraien
 
 ![Municipales : allez-vous élire un futur cumulard ?](vignettes/cumul.png "Municipales : allez-vous élire un futur cumulard ?")
 
+## [NSA : la pieuvre de la cybersurveillance](nsa) ##
+Visualisation des programmes de la NSA et de ses partenaires en SVG et JSON.
+
+[>> Voir sur Le Monde.fr](http://www.lemonde.fr/technologies/visuel/2013/08/27/plongee-dans-la-pieuvre-de-la-cybersurveillance-de-la-nsa_3467057_651865.html)
+
 ![NSA : la pieuvre de la cybersurveillance](vignettes/nsa.png "NSA : la pieuvre de la cybersurveillance")
 
 ## [Littérature : les éditeurs qui raflent tous les prix](prix-litteraires) ##
@@ -29,13 +34,6 @@ Carte (Google maps) mettant en forme les données de l'enquête de Mathilde Damg
 [>> Voir sur Le Monde.fr](http://www.lemonde.fr/les-decodeurs/visuel/2014/03/13/le-scandale-des-emprunts-toxiques-six-ans-apres-que-sont-ils-devenus_4381119_4355770.html)
 
 ![Carte des emprunts toxiques](vignettes/emprunts-toxiques.png "Carte des emprunts toxiques")
-
-## [NSA : la pieuvre de la cybersurveillance](nsa) ##
-Visualisation des programmes de la NSA et de ses partenaires en SVG et JSON.
-
-[>> Voir sur Le Monde.fr](http://www.lemonde.fr/technologies/visuel/2013/08/27/plongee-dans-la-pieuvre-de-la-cybersurveillance-de-la-nsa_3467057_651865.html)
-
-![NSA : la pieuvre de la cybersurveillance](vignettes/nsa.png "NSA : la pieuvre de la cybersurveillance")
 
 
 ## [Trente ans après la Marche pour l'égalité, où en est la société française ?](marche-egalite) ##
