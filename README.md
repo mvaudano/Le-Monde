@@ -1,6 +1,6 @@
 # Productions pour Le Monde.fr
 
-## [Municipales : allez-vous élire un futur cumulard ?](https://github.com/mvaudano/Le-Monde/tree/master/cumul-municipales) ##
+## [Municipales : allez-vous élire un futur cumulard ?](cumul-municipales) ##
 Carte de France (Google maps) des candidats aux municipales qui se retrouveraient en situation de cumul des mandats en cas d'élection aux municipales de mars 2014. Alimentée par une Google Spreadsheet (avec [Gselper](https://github.com/Pirhoo/LODP/tree/master/Gselper)), mise à jour avec les contributions des lecteurs. Moteur de recherche géré par [filter.js](https://github.com/jiren/filter.js)
 
 [Voir sur Le Monde.fr](http://www.lemonde.fr/municipales/visuel/2014/02/28/municipales-allez-vous-elire-un-futur-cumulard_4368751_1828682.html)
