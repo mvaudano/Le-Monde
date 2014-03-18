@@ -5,6 +5,8 @@ Carte de France (Google maps) des candidats aux municipales qui se retrouveraien
 
 [Voir sur Le Monde.fr](http://www.lemonde.fr/municipales/visuel/2014/02/28/municipales-allez-vous-elire-un-futur-cumulard_4368751_1828682.html)
 
+![Municipales : allez-vous élire un futur cumulard ?](vignettes/cumul.png "Municipales : allez-vous élire un futur cumulard ?")
+
 ## [Comparateur de sondages pour les municipales](https://github.com/mvaudano/Le-Monde/tree/master/comparateur-sondages-municipales) ##
 Carte de France (Google maps) des sondages par ville pour les élections municipales de mars 2014. Alimentée par une Google Spreadsheet avec Gselper(https://github.com/Pirhoo/LODP/tree/master/Gselper).
 
