@@ -1,0 +1,456 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title></title>
+	 <link href="css/lemonde.css" media="screen" rel="stylesheet" type="text/css">
+    
+     <script src="js/data3.json"></script>
+    <script src="js/jquery.min.js"></script>
+      <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script>
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/jquery.jeditable.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/2D.js"></script>
+    <style type="text/css">
+    	svg {z-index:9999;}
+    	#container2{
+    		width:530px;
+    		float:left;
+    		/*margin:0 auto;*/
+    	}
+    	.dept {
+    		width:100px;
+    		height:30px;
+    		margin:10px 30px;
+    		float:left;
+    		overflow:hidden;
+    		border:1px solid black;
+    	}
+    	#notule{
+    		width: 200px;
+			float: left;
+			/*clear:left;*/
+			height: 200px;
+    	}
+
+    	.dept.q0{background-color:rgb(166,206,227)} .dept.q1{background-color:rgb(31,120,180)} .dept.q2{background-color:rgb(178,223,138)} .dept.q3{background-color:rgb(51,160,44)} .dept.q4{background-color:rgb(251,154,153)} .dept.q5{background-color:rgb(227,26,28)} .dept.q6{background-color:rgb(253,191,111)} .dept.q7{background-color:rgb(255,127,0)} .dept.q8{background-color:rgb(202,178,214)} .dept.q9{background-color:rgb(106,61,154)} .dept.q10{background-color:rgb(255,255,153)} .dept.q11{background-color:rgb(177,89,40)} .dept.q12{background-color:rgb(255,237,111)} .dept.q13{background-color:rgb(251,128,114)} .dept.q14{background-color:rgb(128,177,211)} .dept.q15{background-color:rgb(253,180,98)} .dept.q16{background-color:rgb(179,222,105)} .dept.q17{background-color:rgb(252,205,229)} .dept.q18{background-color:rgb(217,217,217)} .dept.q19{background-color:rgb(188,128,189)} .dept.q20{background-color:rgb(204,235,197)} .dept.q21{background-color:rgb(255,237,111)}
+    	#regions{
+    		width:470px;
+    		float:left;
+    		z-index:0;
+    	}
+    	.region{
+    		width:200px;
+    		height:50px;
+    		padding:15px;
+    		float:left;
+    		background-color: #ccc;
+    		margin:10px 0;
+    		z-index:-2000;
+    		/*cursor:all-scroll;*/
+    	}
+    	.rose {
+    		background-color: #FCCDE5;
+    	}
+    	.rouge {
+    		background-color: red;
+    	}
+    	.tooltip{
+    		background:rgba(255,255,255,0.8);
+    	}
+    	.move {
+    		float:right;
+    		width:20px;
+    		height:20px;
+    		background-color: red;
+    		cursor: all-scroll;
+    	}
+    	.region form input {
+    		width:110px;
+    		float:left;
+    	}
+    	.region p {
+    		clear:left;
+    	}
+    </style>
+</head>
+<body>
+
+
+	<div id="container"></div>
+	<div id="container2"><svg></svg></div>
+	<div id="indication">Commencez par supprimer 10 des 22 régions actuelles :</div>
+	<div id="regions">
+
+	</div>
+<div id="notule"></div>
+
+<script type="text/javascript">
+
+
+
+	var tooltip = d3.select("#container2")
+		.append("div")
+		.attr("class", "tooltip")
+		.style("position", "absolute")
+		.style("z-index", "10")
+		.style("visibility", "hidden")
+		.html("tooltip");
+
+
+var position = [0,0]
+	/*var position = [0,0];*/
+/*console.log(depts)*/
+
+
+
+	 d3.json("js/data2.json", function(fr) {
+	 	 var drag = d3.behavior.drag()
+	    .on("drag", dragmove)
+	    .on("dragstart", dragstart)
+	    .on("dragend", dragend);
+
+		//CARTE PRINCIPALE
+		d3.select("#container2 svg").append("g")
+		   .attr("id", "dept")
+		   .selectAll("path")
+		   .data(fr)
+		   .enter().append("path")
+		   .attr("d", function(d){return d.trace})
+		   .attr("id", function(d){return d.id})
+		   .attr("class", function(d){return "region"+d.reg})
+		   .attr("fill", function(d){
+    			return colors[d.reg];
+    		})
+    		.attr("transform", "translate(0,0)")
+    		.on("click", function(d){
+    			region = depts[Number(d.id.substring(11)) - 1].reg;
+    			$.each(depts,function(index,value){
+    				/*if(value.reg == region) console.log(value)*/
+    			})
+    			$("#notule").html(region)
+    		})
+    		.on("mouseover", function(d){
+    			d3.select(".tooltip")
+    				.style("visibility", "visible")
+    				.html(function(){
+    					return d.nom+"<br>"+regions[d.reg].nom}); 
+    		})
+			.on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+			.on("mouseout", function(){return tooltip.style("visibility", "hidden");})
+		   .call(drag);
+
+
+
+		$.each(regions, function(i,d){ // Générer les régions
+
+			$("#regions").append("<div class=\"region\" id=\"region"+d.id+"\"><div class=\"move\"></div><h2 class=\"editable\">"+d.nom+"</h2></div>")
+			$.each(fr,function(index,value){ // Générer les départements
+				
+				if(value.reg == i) {
+					$("#region"+d.id).append("<p>"+value.nom+"</p>")
+					/*if(index == 0) {
+						d3.select("#container2 svg").append("text")
+							.text(regions[value.reg].nom)
+							.attr("x","60")
+							.attr("y","60")
+					}
+					var combinedD = "";
+					combinedD += d3.select("#"+index).attr("d");
+					var centroid = path.centroid(combinedD);*/
+				}
+				
+				
+				
+			})	
+			
+			
+			
+
+		})
+
+	function maj(){
+			console.log(fr)
+			$("#regions").empty()
+			$.each(regions, function(i,d){
+				$("#regions").append("<div class=\"region\" id=\"region"+d.id+"\"><h2>"+d.nom+"</h2></div>")
+				
+				$.each(fr,function(index,value){
+					if(value.reg == i) {
+						$("#region"+d.id).append("<p>"+value.nom+"</p>")
+					}
+				})
+			})
+		}
+
+	function dragstart(d) {
+		$(".region").removeClass("rouge")
+		position = [0,0]
+		d3.event.sourceEvent.stopPropagation(); // silence other listeners
+		d3.select(".tooltip")
+    		.html(function(){
+    			return "Déposez le département dans la région de votre choix"
+    		});
+		/*  d.x = Number(d3.select(this).attr("x"));
+		  d.y = Number(d3.select(this).attr("y"));*/
+		  
+		}
+
+	function dragmove(d) {
+
+			d3.select(this).attr("transform", function(d,i){
+				position[0] += d3.event.dx;
+				position[1] += d3.event.dy;
+                return "translate(" + [ position[0],position[1] ] + ")"
+            })
+			
+			$(".region").each(function(index,value){
+			reg = $("#region"+index)
+			left = reg.position().left - 5;
+			left2 = left + reg.width() + 10;
+			topo = reg.position().top - 5;
+			topo2 = topo + reg.height() + 10;
+			if(event.pageX >= left && event.pageX <= left2 && event.pageY >= topo && event.pageY <= topo2) {
+				reg.addClass("rose")
+
+			}
+			})
+	}
+
+
+
+	function dragend(d) {
+		$(".region").removeClass("rose")
+		
+		$(".region").each(function(index,value){
+			reg = $("#region"+index)
+			left = reg.position().left - 5;
+			left2 = left + reg.width() + 10;
+			topo = reg.position().top - 5;
+			topo2 = topo + reg.height() + 10;
+			
+			if(event.pageX >= left && event.pageX <= left2 && event.pageY >= topo && event.pageY <= topo2) {
+				reg.addClass("rouge");
+				d.reg = index;
+				maj();
+			}
+			
+
+			
+
+		})
+		d3.select(this).attr("transform", function(d,i){
+                return "translate(0,0)"
+        })
+        .attr("fill",function(d){
+                return colors[d.reg]
+        })
+
+		
+	}
+
+	$('.editable').editable(function(value, settings) { 
+	     console.log($(this).parent())
+	     region = $(this).parent()[0].id.substring(6)
+
+	     regions[region].nom = value;
+	     console.log(regions);
+	     return(value);
+	  }, { 
+	     type    : 'text',
+	     width: '110',
+	     submit  : 'ok',
+	 });
+
+ 	})
+	
+	
+
+
+	
+
+	$('.region').draggable({
+    	containment: '#regions',
+    	snap : '.region',
+    	revert: 'invalid',
+    	cursor: "crosshair"
+    }); 
+    $('.region').droppable({
+    	accept: '.region',
+	    drop : function(event,ui){
+	    	region_supprimee = ui.draggable.id
+	    	ui.draggable.remove()
+	    	$(this)[0].addClass("rouge")
+
+	    }
+	});
+
+	
+
+	/*d3.json("depts2.json", function(data) {*/
+        /*console.log(xml)*/
+		/*var importedNode = document.importNode(xml.documentElement, true);*/
+		/*var drag = d3.behavior.drag()
+			.on("drag", function(d,i) {
+		            position[0] += d3.event.dx;
+		            position[1] += d3.event.dy;
+		            d3.select(this)
+		            .attr("transform", function(d,i){
+		                return "translate(" + position + ")"
+		            })
+		    })*/
+		
+		
+
+
+
+    	/*d3.select("#container2").node().appendChild(importedNode);*/
+    	/*d3.selectAll("#layer10 path")
+    		.data(data, function(d) { return d.name; }depts)
+    		.enter()
+    		.attr("fill", function(d,i){
+    			dept = Number(this.id.substring(11)) - 1;
+    			return colors[depts[dept].reg];
+    		})
+    		.attr("transform", "translate(0,0)")
+    		.on("click", function(d){
+    			region = depts[Number(this.id.substring(11)) - 1].reg;
+    			$.each(depts,function(index,value){
+    				if(value.reg == region) console.log(value)
+    			})
+    			$("#notule").html(region)
+    		})
+    		.on("mouseover", function(d){
+    			dept = Number(this.id.substring(11)) - 1;
+    			d3.select(".tooltip")
+    				.style("visibility", "visible")
+    				.text(function(){return regions[depts[dept].reg].nom}); 
+    		})
+			.on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+			.on("mouseout", function(){return tooltip.style("visibility", "hidden");})
+			.call(drag);
+	});*/
+	
+/*	function dragstart(d) {
+	console.log(d)
+	  d3.event.sourceEvent.stopPropagation(); // silence other listeners
+	  d.x = Number(d3.select(this).attr("x"));
+	  d.y = Number(d3.select(this).attr("y"));
+	  
+	}*/
+
+	/*function dragmove(d) {
+console.log(d)*/
+	  //only if its new country
+	  /*if(d3.select('#b'+d.id).attr("class") == "country"){*/
+/*	    position[0] += d3.event.dx;
+	    position[1] += d3.event.dy;
+
+	    d3.select(this).attr("transform", function(d,i){
+	      return "translate(" + [ position[0],position[1] ] + ")"
+	    });
+	 /* }*/
+/*}*/
+
+
+/*
+function dragend(d) {
+	console.log(d)
+  //only if its new country
+  if(d3.select('path')){
+
+    //snap to position if you are 10 pixels or closer
+    if(d.x > -10 && d.x < 10 && d.y > -10 && d.y < 10 ){
+      d3.select(this).attr("class","correct").attr("transform", function(d,i){
+        return "translate([0,0])";
+      });
+      score++;
+      tries = 0;
+
+      //go to next!
+      go();
+
+    } else {
+
+      //wrong
+      tries++;
+
+      if(tries == 1){
+        d3.select("#info").text(d.properties.borders);
+
+        //put back in the middle!
+        var cx = Number(-1*path.centroid(d)[0]);
+        var cy = Number(-1*path.centroid(d)[1]);
+        var coord = [cx,cy];
+
+        d3.select(this).transition().duration(500).attr("transform", function(d,i){
+          return "translate(" + coord + ")"
+        });
+
+      } else {
+        //wrong again, move element to correct position and mark red!
+        tries = 0;
+        d3.select(this).transition().duration(500).attr("class","error").attr("transform", function(d,i){
+          return "translate([0,0])";
+        });
+
+        //go to next!
+        go();
+      } 
+      
+    }
+
+  }
+}*/
+/*	function move(){
+		console.log(d3.event.dx)
+	    this.parentNode.appendChild(this);
+	    var dragTarget = d3.select(this);
+	    dragTarget
+	        .attr("transform", function(){return "translate("+d3.event.dx+","+d3.event.dy+")"})
+	};*/
+
+
+	/*$.each(depts, function(i,d){
+		
+		$("#container").append("<div class=\"dept q"+d.reg+"\" id=\"dept"+d.id+"\">"+d.nom+"</div>")
+	})
+
+	$(function(){
+	$( '.dept' ).tooltip({
+
+		content: function(){
+			depts[$( this ).id].nom
+		}
+	});
+
+    $('path').draggable({
+
+    	containment: '#container',
+    	snap : '.dept',
+    	revert: true,
+    	cursor: "crosshair"
+    }); 
+    $('path').droppable({
+    	accept: '.dept',
+	    drop : function(event,ui){
+	    	console.log("yes")
+	        dept_origine = $(ui.draggable)[0].id.substring(4) - 1;
+	        dept_destination = $(this)[0].id.substring(4) - 1;
+	        console.log(depts[dept_destination])
+	        depts[dept_origine].reg = depts[dept_destination].reg;
+	        colorer($(ui.draggable))
+	    }
+
+	});
+
+	});
+
+
+
+*/
+
+</script>
+</body>
+</html>

@@ -1,5 +1,20 @@
 # Productions pour Le Monde.fr
 
+## [Jouez à composer votre carte des régions](jeu-regions) ##
+Carte interactive permettant de redessiner soi-même une France à 12 régions, comme le souhaitent François Hollande et Manuel Valls. Le code utilise la librairie [d3.js](http://d3js.org)
+
+[>> Voir sur Le Monde.fr](http://www.lemonde.fr/les-decodeurs/visuel/2014/04/18/et-vous-comment-reduiriez-vous-la-france-a-12-regions_4403491_4355770.html)
+
+![Jouez à composer votre carte des régions](vignettes/regions.png "Jouez à composer votre carte des régions")
+
+## [Le jeu dont François Hollande est le héros : comment conserver sa majorité ?](newgame-hollande) ##
+Newsgame l'équation compliquée de François Hollande pour composer un nouveau gouvernement sans mettre en danger sa majorité à l'Assemblée nationale.
+
+[>> Voir sur Le Monde.fr](http://www.lemonde.fr/les-decodeurs/visuel/2014/04/07/nouveau-gouvernement-aidez-francois-hollande-a-conserver-sa-majorite_4396716_4355770.html)
+
+![Le jeu dont François Hollande est le héros : comment conserver sa majorité ?](vignettes/newsgame.png "Le jeu dont François Hollande est le héros : comment conserver sa majorité ?")
+
+
 ## [Municipales : allez-vous élire un futur cumulard ?](cumul-municipales) ##
 Carte de France (Google maps) des candidats aux municipales qui se retrouveraient en situation de cumul des mandats en cas d'élection aux municipales de mars 2014. Alimentée par une Google Spreadsheet (avec [Gselper](https://github.com/Pirhoo/LODP/tree/master/Gselper)), mise à jour avec les contributions des lecteurs. Moteur de recherche géré par [filter.js](https://github.com/jiren/filter.js)
 
