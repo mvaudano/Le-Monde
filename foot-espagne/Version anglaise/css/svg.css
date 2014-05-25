@@ -1,0 +1,98 @@
+body {
+	background: #FFF!important;
+}
+.intro p {
+	margin:5px 0;
+}
+#container {
+	width:1000px;
+}
+svg {
+	width: 600px;
+	height: 630px;
+}
+#chart3 {
+	width: 600px;
+	float:left;
+	margin-left:50px;
+}
+path {
+	stroke: #FFF;
+	stroke-width:0px;
+	cursor: pointer;
+}
+
+.labels {
+	fill: #aaa;
+	font-weight: 200;
+	letter-spacing: -1px;
+}
+.labels.segment {
+	font-size: 10px;
+}
+.labels.radial text textpath{
+	font-size: 18px!important;
+}
+
+#chart3 .labels {
+	fill: #555;
+}
+#indications text {
+	cursor: pointer;
+}
+
+#legende {
+	float:right;
+	width:350px;
+	height: 600px;
+}
+
+#legende div {
+	width:240px;
+	height:29px;
+	border-left-width:20px;
+	border-top-width:1px;
+	border-bottom-width:1px;
+	border-right-width:1px;
+	border-style:solid;
+	padding:5px 0px 0 10px;
+	margin:2px 0;
+	font-weight: bold;
+	cursor: pointer;
+}
+#legende div:hover {
+	border-left-width:30px;
+	width:240px;
+}
+
+#germany { border-color:#000000; }
+#england { border-color:#abd9e9; }
+#scotland { border-color:#8c510a; }
+#spain { border-color:#d73027; }
+#france { border-color:#313695; }
+#italy { border-color:#a6d96a; }
+#portugal { border-color:#1a9850; }
+#romania { border-color:#ffed0a; }
+#russia { border-color:#fdae61; }
+#denmark { border-color:#fe0002; }
+#greece { border-color:#bf812d; }
+#netherlands { border-color:#026aa7; }
+#sweden { border-color:#ffcb01; }
+#czechoslovakia { border-color:#de77ae; }
+#serbia { border-color:#35978f; }
+#turkey { border-color:#762a83; }
+#ukraine { border-color:#9970ab; }
+#belgium { border-color:#dd1c77;}
+#outofeurope { border-color:#cccccc; }
+
+.ui-tooltip ul {
+	list-style: none;
+	margin:0;
+	padding:0;
+}
+.ui-tooltip ul li {
+	border-left-style:solid;
+	border-left-width:10px;
+	padding-left:10px;
+	margin:2px 0;
+}

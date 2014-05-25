@@ -1,5 +1,19 @@
 # Productions pour Le Monde.fr
 
+## [La domination de l'Espagne sur le football européen](foot-espagne) ##
+Infographie inspirée d'un article de [Slate.fr](http://www.slate.fr/sports/87183/football-espagne-trophees-monde) montrant que l'Espagne détient les quatre principaux titres de football offerts à une nation européenne. Construite avec [d3.js](http://d3js.org) à partir du [Circular Heat Chart](https://github.com/prcweb/d3-circularheat) de [Peter Cook](https://github.com/prcweb)
+
+>> Voir sur Le Monde.fr : [la version française](http://www.lemonde.fr/sport/visuel/2014/05/25/la-domination-de-l-espagne-sur-le-foot-europeen_4425329_3242.html) || [la version anglophone](http://www.lemonde.fr/sport/visuel/2014/05/25/la-domination-de-l-espagne-sur-le-foot-europeen_4425329_3242.html)
+
+![La domination de l'Espagne sur le football européen](vignettes/foot.png "La domination de l'Espagne sur le football européen")
+
+## [Le jeu surprenant des coalitions européennes](europe-coalitions) ##
+Analyse avec [alphoenix](https://github.com/alphoenix) des coalitions au Parlement européen sur cinq votes emblématiques. Bubble chart avec force construit avec [d3.js](http://d3js.org)
+
+[>> Voir sur Le Monde.fr](www.lemonde.fr/les-decodeurs/visuel/2014/05/23/parlement-europeen-comprendre-le-jeu-surprenant-des-coalitions_4424919_4355770.html)
+
+![Le jeu surprenant des coalitions européennes](vignettes/coalitions.png "Le jeu surprenant des coalitions européennes")
+
 ## [Jouez à composer votre carte des régions](jeu-regions) ##
 Carte interactive permettant de redessiner soi-même une France à 12 régions, comme le souhaitent François Hollande et Manuel Valls. Le code utilise la librairie [d3.js](http://d3js.org)
 
@@ -13,6 +27,14 @@ Newsgame l'équation compliquée de François Hollande pour composer un nouveau 
 [>> Voir sur Le Monde.fr](http://www.lemonde.fr/les-decodeurs/visuel/2014/04/07/nouveau-gouvernement-aidez-francois-hollande-a-conserver-sa-majorite_4396716_4355770.html)
 
 ![Le jeu dont François Hollande est le héros : comment conserver sa majorité ?](vignettes/newsgame.png "Le jeu dont François Hollande est le héros : comment conserver sa majorité ?")
+
+
+## [Le bingo du discours de politique générale de Manuel Valls](bullshit-bingo) ##
+Bullshit bingo pour suivre le premier grand discours de Manuel Valls à l'Assemblée nationale.
+
+[>> Voir sur Le Monde.fr](http://www.lemonde.fr/les-decodeurs/visuel/2014/04/08/jouez-au-bingo-du-discours-de-politique-generale-de-manuel-valls_4397625_4355770.html)
+
+![Le bingo du discours de politique générale de Manuel Valls](vignettes/bullshitbingo.png "Le bingo du discours de politique générale de Manuel Valls")
 
 
 ## [Municipales : allez-vous élire un futur cumulard ?](cumul-municipales) ##

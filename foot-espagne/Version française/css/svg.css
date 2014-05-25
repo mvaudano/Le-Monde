@@ -1,0 +1,98 @@
+body {
+	background: #FFF!important;
+}
+.intro p {
+	margin:5px 0;
+}
+#container {
+	width:1000px;
+}
+svg {
+	width: 600px;
+	height: 630px;
+}
+#chart3 {
+	width: 600px;
+	float:left;
+	margin-left:50px;
+}
+path {
+	stroke: #FFF;
+	stroke-width:0px;
+	cursor: pointer;
+}
+
+.labels {
+	fill: #aaa;
+	font-weight: 200;
+	letter-spacing: -1px;
+}
+.labels.segment {
+	font-size: 10px;
+}
+.labels.radial text textpath{
+	font-size: 18px!important;
+}
+
+#chart3 .labels {
+	fill: #555;
+}
+#indications text {
+	cursor: pointer;
+}
+
+#legende {
+	float:right;
+	width:350px;
+	height: 600px;
+}
+
+#legende div {
+	width:240px;
+	height:29px;
+	border-left-width:20px;
+	border-top-width:1px;
+	border-bottom-width:1px;
+	border-right-width:1px;
+	border-style:solid;
+	padding:5px 0px 0 10px;
+	margin:2px 0;
+	font-weight: bold;
+	cursor: pointer;
+}
+#legende div:hover {
+	border-left-width:30px;
+	width:240px;
+}
+
+#allemagne { border-color:#000000; }
+#angleterre { border-color:#abd9e9; }
+#ecosse { border-color:#8c510a; }
+#espagne { border-color:#d73027; }
+#france { border-color:#313695; }
+#italie { border-color:#a6d96a; }
+#portugal { border-color:#1a9850; }
+#roumanie { border-color:#ffed0a; }
+#russie { border-color:#fdae61; }
+#danemark { border-color:#fe0002; }
+#grece { border-color:#bf812d; }
+#paysbas { border-color:#026aa7; }
+#suede { border-color:#ffcb01; }
+#tchequoslovaquie { border-color:#de77ae; }
+#serbie { border-color:#35978f; }
+#turquie { border-color:#762a83; }
+#ukraine { border-color:#9970ab; }
+#belgique { border-color:#dd1c77;}
+#horseurope { border-color:#cccccc; }
+
+.ui-tooltip ul {
+	list-style: none;
+	margin:0;
+	padding:0;
+}
+.ui-tooltip ul li {
+	border-left-style:solid;
+	border-left-width:10px;
+	padding-left:10px;
+	margin:2px 0;
+}
