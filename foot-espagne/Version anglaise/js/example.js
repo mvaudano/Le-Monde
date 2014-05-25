@@ -211,10 +211,10 @@ var datum = [
   [207,"c1",1967,"Scotland","Celtic Glasgow "],
   [208,"c1",1968,"England","Manchester United "],
   [209,"c1",1969,"Italy","AC Milan "],
-  [210,"c1",1970,"Netherlands ","Feyenoord Rotterdam "],
-  [211,"c1",1971,"Netherlands ","Ajax Amsterdam "],
-  [212,"c1",1972,"Netherlands ","Ajax Amsterdam "],
-  [213,"c1",1973,"Netherlands ","Ajax Amsterdam "],
+  [210,"c1",1970,"Netherlands","Feyenoord Rotterdam "],
+  [211,"c1",1971,"Netherlands","Ajax Amsterdam "],
+  [212,"c1",1972,"Netherlands","Ajax Amsterdam "],
+  [213,"c1",1973,"Netherlands","Ajax Amsterdam "],
   [214,"c1",1974,"Germany","Bayern Munich "],
   [215,"c1",1975,"Germany","Bayern Munich "],
   [216,"c1",1976,"Germany","Bayern Munich "],
@@ -346,7 +346,7 @@ var datum = [
 
 couleurs = {
 "Germany":"#000000",
-"England":"#abd9e9",
+"England":"#a6bddb",
 "Belgium":"#dd1c77",
 "Scotland":"#8c510a",
 "Spain":"#d73027",
