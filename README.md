@@ -1,5 +1,12 @@
 # Productions pour Le Monde.fr
 
+## [Coupe du monde : faites vos pronostics sur la suite de la compétition](foot-pronotics) ##
+Outil de pronostics sur la Coupe du monde 2014 au Brésil avec une mise à jour quotidienne des résultats. Graphisme par Marianne Boyer, infographiste au "Monde"
+
+[>> Voir sur Le Monde.fr](hwww.lemonde.fr/les-decodeurs/visuel/2014/06/14/coupe-du-monde-faites-vos-pronostics-sur-la-suite-de-la-competition_4438319_4355770.html)
+
+![oupe du monde : faites vos pronostics sur la suite de la compétition](vignettes/pronostics.png "oupe du monde : faites vos pronostics sur la suite de la compétition")
+
 ## [La domination de l'Espagne sur le football européen](foot-espagne) ##
 Infographie inspirée d'un article de [Slate.fr](http://www.slate.fr/sports/87183/football-espagne-trophees-monde) montrant que l'Espagne détient les quatre principaux titres de football offerts à une nation européenne. Construite avec [d3.js](http://d3js.org) à partir du [Circular Heat Chart](https://github.com/prcweb/d3-circularheat) de [Peter Cook](https://github.com/prcweb)
 
