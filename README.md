@@ -1,7 +1,7 @@
 # Productions pour Le Monde.fr
 
 ## [Coupe du monde : faites vos pronostics sur la suite de la compétition](foot-pronotics) ##
-Outil de pronostics sur la Coupe du monde 2014 au Brésil avec une mise à jour quotidienne des résultats. Graphisme par Marianne Boyer, infographiste au "Monde"
+Outil de pronostics sur la Coupe du monde 2014 au Brésil avec une mise à jour quotidienne des résultats. Graphisme par Marianne Boyer, infographiste au "Monde". Export du tableau avec [canvas2image.js](http://www.nihilogic.dk/labs/canvas2image/)
 
 [>> Voir sur Le Monde.fr](hwww.lemonde.fr/les-decodeurs/visuel/2014/06/14/coupe-du-monde-faites-vos-pronostics-sur-la-suite-de-la-competition_4438319_4355770.html)
 
